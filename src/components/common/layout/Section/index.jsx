@@ -20,7 +20,7 @@ const Section = ({
       ${className}
     `}>
       <h3 className={`
-        font-bold mb-8 
+        font-bold 
         text-gray-800 dark:text-gray-100
         border-b border-gray-200 dark:border-gray-700
         flex items-center gap-3
@@ -32,7 +32,11 @@ const Section = ({
         `} />
         {title}
       </h3>
-      {children}
+      
+      <div className="mt-8">
+        {children}
+      </div>
+
     </section>
   );
 };
