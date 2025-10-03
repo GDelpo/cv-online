@@ -13,6 +13,7 @@ export default defineConfig({
       '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
       '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+      '@data': fileURLToPath(new URL('./src/data', import.meta.url)),
       '@ui': fileURLToPath(new URL('./src/components/common/ui', import.meta.url)),
       '@layout': fileURLToPath(new URL('./src/components/common/layout', import.meta.url)),
       '@cv': fileURLToPath(new URL('./src/components/cv', import.meta.url)),

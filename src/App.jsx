@@ -1,9 +1,11 @@
 import Cv from '@cv/CV';
+import ATSCV from '@cv/ATSCV';
 import { cvData } from '@constants/cv';
 import { COMMON_STYLES } from '@constants/styles';
 import ThemeToggle from '@ui/ThemeToggle';
 import PrintButton from '@ui/PrintButton';
 import ScrollToTop from '@ui/ScrollToTop';
+import ATSInfo from '@ui/ATSInfo';
 
 // Componente de controles flotantes modernos
 const FloatingControls = () => (
@@ -40,10 +42,15 @@ function App() {
       
       <FloatingControls />
       <ScrollToTop />
+      <ATSInfo />
       
-      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8">
+      {/* Versión normal para pantalla */}
+      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 print:hidden">
         <Cv cvData={cvData} />
       </div>
+      
+      {/* Versión ATS para impresión */}
+      <ATSCV cvData={cvData} />
     </div>
   );
 }
