@@ -13,6 +13,7 @@ import Education from '@sections/Education';
 import Certifications from '@sections/Certifications';
 import ContinuousLearning from '@sections/ContinuousLearning';
 import Card from '@ui/Card';
+import { formatBuildDate } from '@utils/date';
 import TabButton from '@ui/TabButton';
 
 // Configuración de secciones centralizada y reutilizable
@@ -174,6 +175,11 @@ const Cv = ({ cvData }) => {
           </Card>
         </div>
       )}
+
+      {/* Footer: Última actualización (solo impresión) */}
+      <footer className="hidden print:block text-center text-xs text-gray-600 mt-2">
+        Última actualización: {formatBuildDate(import.meta.env.VITE_BUILD_TIME)}
+      </footer>
     </div>
   );
 };

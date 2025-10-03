@@ -6,11 +6,12 @@ import ThemeToggle from '@ui/ThemeToggle';
 import PrintButton from '@ui/PrintButton';
 import ScrollToTop from '@ui/ScrollToTop';
 import ATSInfo from '@ui/ATSInfo';
+import { formatBuildDate } from '@utils/date';
 
 // Componente de controles flotantes modernos
 const FloatingControls = () => (
   <div className="fixed top-6 right-6 z-50 print:hidden">
-    <div className="flex gap-3 p-3 rounded-2xl 
+    <div className="flex items-center gap-3 p-3 rounded-2xl 
       bg-white/80 dark:bg-gray-900/80 
       backdrop-blur-xl 
       border border-white/20 dark:border-gray-700/30
@@ -20,6 +21,10 @@ const FloatingControls = () => (
       hover:scale-[1.01]">
       <PrintButton />
       <ThemeToggle />
+      <div className="h-5 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
+      <span className="text-[11px] leading-none text-gray-700 dark:text-gray-300 px-1">
+        Última actualización: {formatBuildDate(import.meta.env.VITE_BUILD_TIME)}
+      </span>
     </div>
   </div>
 );
