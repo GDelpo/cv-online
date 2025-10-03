@@ -1,23 +1,21 @@
-import React from 'react';
-import { User } from 'lucide-react';
-import Badge from '../../../components/common/ui/Badge';
-import IconWrapper from '../../../components/common/ui/IconWrapper';
+
+import { User, Star, MapPin } from 'lucide-react';
+import IconWrapper from '@ui/IconWrapper';
+import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { COMMON_STYLES } from '@constants/styles';
 
 const Header = ({ name, title, description, photo }) => {
-  // Función para renderizar la descripción como múltiples párrafos.
+  const [headerRef, isVisible] = useIntersectionObserver();
+  const headerAnimation = isVisible ? COMMON_STYLES.fadeInEnterActive : COMMON_STYLES.fadeInEnter;
+  // Función para renderizar la descripción como múltiples párrafos
   const renderDescription = () => {
-    if (!description) {
-      return null;
-    }
+    if (!description) return null;
     
-    // Divide la descripción por el string '<br>' para obtener un array de párrafos.
     const paragraphs = description.split('<br>');
-
-    // Mapea cada párrafo a un elemento <p> con sus clases.
     return paragraphs.map((paragraph, index) => (
       <p 
         key={index} 
-        className="text-base md:text-lg text-gray-300 dark:text-gray-400 leading-relaxed max-w-3xl"
+        className="text-base md:text-lg text-white/90 leading-relaxed max-w-4xl font-light"
       >
         {paragraph}
       </p>
@@ -25,47 +23,97 @@ const Header = ({ name, title, description, photo }) => {
   };
 
   return (
-    <header className="bg-slate-900 dark:bg-gray-950 text-white p-6 md:p-8 rounded-t-xl">
-      <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8">
-        <div className="flex justify-center md:justify-start">
-          <div className="w-48 h-48 rounded-full overflow-hidden 
-            border-2 border-white/20 
-            shadow-lg shadow-blue-500/50 dark:shadow-blue-400/30 
-            transition-shadow duration-300 
-            hover:shadow-blue-500/75 dark:hover:shadow-blue-400/50">
-            {photo ? (
-              <img
-                src={photo}
-                alt={name}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gray-800 dark:bg-gray-900">
-                <IconWrapper 
-                  icon={User} 
-                  size="lg" 
-                  color="gray" 
-                  className="w-24 h-24 opacity-50"
-                />
+    <header 
+      ref={headerRef}
+      className={`relative overflow-hidden rounded-3xl mb-8 shadow-2xl ${headerAnimation}`}
+    >
+      {/* Background gradient moderno */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 dark:from-blue-800 dark:via-blue-900 dark:to-indigo-950"></div>
+      
+      {/* Patrón decorativo con glassmorphism */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-radial from-white/10 to-transparent opacity-40"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-radial from-cyan-400/15 to-transparent opacity-50"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+      </div>
+      
+      <div className="relative z-10 p-8 md:p-12 text-white">
+        <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-8 lg:gap-16">
+          {/* Foto de perfil mejorada */}
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative group">
+              {/* Glow effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 blur-xl"></div>
+              
+              <div className="relative w-56 h-56 lg:w-64 lg:h-64 rounded-3xl overflow-hidden 
+                border-4 border-white/30 backdrop-blur-sm
+                shadow-2xl shadow-black/30
+                transition-all duration-500 ease-out
+                group-hover:border-white/50 group-hover:shadow-3xl 
+                group-hover:scale-[1.01] group-hover:-rotate-0.5">
+                
+                {photo ? (
+                  <img
+                    src={photo}
+                    alt={name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-800 to-indigo-900">
+                    <IconWrapper 
+                      icon={User} 
+                      size="lg" 
+                      color="white" 
+                      className="w-32 h-32 opacity-70"
+                    />
+                  </div>
+                )}
+                
+                {/* Overlay gradient sutil */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <div className="text-center md:text-left space-y-3">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-              {name}
-            </h1>
-            <div className="flex flex-col md:flex-row items-center gap-3">
-              <h2 className="text-xl text-gray-300 dark:text-gray-400 font-medium">
-                {title}
-              </h2>
-              <Badge variant="success">Disponible para proyectos</Badge>
             </div>
           </div>
-          <div className="space-y-4"> 
-            {renderDescription()}
+
+          {/* Información principal */}
+          <div className="space-y-6 text-center lg:text-left">
+            {/* Nombre y título */}
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+                <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                  {name}
+                </span>
+              </h1>
+              
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                <h2 className="text-xl md:text-2xl text-blue-100 font-medium tracking-wide">
+                  {title}
+                </h2>
+                
+                {/* Badges mejorados */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl
+                    bg-emerald-500/15 border border-emerald-400/25 
+                    text-emerald-100 text-sm font-semibold 
+                    backdrop-blur-sm shadow-sm">
+                    <Star size={14} />
+                    <span>Disponible</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl
+                    bg-white/10 border border-white/20 
+                    text-white text-sm font-semibold 
+                    backdrop-blur-sm shadow-sm">
+                    <MapPin size={14} />
+                    <span>CABA, Argentina</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Descripción mejorada */}
+            <div className="space-y-4 max-w-4xl">
+              {renderDescription()}
+            </div>
           </div>
         </div>
       </div>

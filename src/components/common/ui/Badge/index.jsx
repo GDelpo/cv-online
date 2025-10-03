@@ -1,30 +1,50 @@
-import React from 'react';
 
-const Badge = ({ children, variant = "primary", size = "md" }) => {
-  const variants = {
-    primary: "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100",
-    success: "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100",
-    warning: "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100",
-    info: "bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-100"
-  };
+import { TECH_COLORS, COMMON_STYLES } from '../../../../constants/styles';
 
-  const sizes = {
-    sm: "px-2 py-0.5 text-xs",
-    md: "px-2.5 py-1 text-sm",
-    lg: "px-3 py-1.5 text-base"
-  };
+const BADGE_VARIANTS = {
+  primary: TECH_COLORS.blue,
+  success: TECH_COLORS.emerald,
+  warning: TECH_COLORS.yellow,
+  info: TECH_COLORS.indigo,
+  danger: TECH_COLORS.red,
+  secondary: "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100"
+};
+
+const BADGE_SIZES = {
+  xs: "px-1.5 py-0.5 text-xs",
+  sm: "px-2 py-0.5 text-xs",
+  md: "px-2.5 py-1 text-sm",
+  lg: "px-3 py-1.5 text-base"
+};
+
+const Badge = ({ 
+  children, 
+  variant = "primary", 
+  size = "md", 
+  color,
+  className = "",
+  onClick 
+}) => {
+  const baseClasses = `
+    inline-flex items-center rounded-full font-medium
+    ${COMMON_STYLES.transition}
+    ${onClick ? 'cursor-pointer hover:opacity-80' : ''}
+  `.trim();
+
+  // Si se pasa un color específico, usarlo directamente
+  const variantClass = color ? TECH_COLORS[color] || BADGE_VARIANTS[variant] : BADGE_VARIANTS[variant];
+  const sizeClass = BADGE_SIZES[size] || BADGE_SIZES.md;
+
+  const Component = onClick ? 'button' : 'span';
 
   return (
-    <span className={`
-      inline-flex items-center rounded-full font-medium
-      ${variants[variant]} ${sizes[size]}
-      transition-all duration-200 hover:opacity-90
-    `}>
+    <Component 
+      className={`${baseClasses} ${variantClass} ${sizeClass} ${className}`}
+      onClick={onClick}
+    >
       {children}
-    </span>
+    </Component>
   );
 };
 
-
-  
 export default Badge;

@@ -1,7 +1,8 @@
-import React from 'react';
+
 import { Globe } from 'lucide-react';
-import Section from '../../../../components/common/layout/Section';
+import Section from '@layout/Section';
 import LanguageLevel from './LanguageLevel';
+import { generateKey, validateArray } from '@/utils/componentHelpers';
 
 const LanguageItem = ({ language, level, certifications }) => (
   <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
@@ -15,13 +16,27 @@ const LanguageItem = ({ language, level, certifications }) => (
   </div>
 );
 
-const Languages = ({ languages }) => {
+const Languages = ({ 
+  languages = [], 
+  animationType = "slideUp",
+  className = ""
+}) => {
+  if (!validateArray(languages, 'Languages')) {
+    return null;
+  }
+
   return (
-    <Section icon={Globe} title="Idiomas" variant="sidebar">
+    <Section 
+      icon={Globe} 
+      title="Idiomas" 
+      variant="sidebar" 
+      animationType={animationType}
+      className={className}
+    >
       <div className="space-y-2">
         {languages.map((lang, index) => (
           <LanguageItem
-            key={index}
+            key={generateKey('language', index, lang)}
             language={typeof lang === 'string' ? lang : lang.language}
             level={lang.level || 'Intermedio'}
             certifications={lang.certifications}

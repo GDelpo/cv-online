@@ -1,23 +1,18 @@
-// TabButton.jsx
 
-import React from 'react';
+import Button from '../Button';
 
 const TabButton = ({ label, viewName, activeView, onClick }) => {
   const isActive = activeView === viewName;
-
-  const baseClasses = "flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300";
-  
-  const activeClasses = "bg-white dark:bg-gray-700 shadow-sm text-blue-600 dark:text-white";
-  
-  const inactiveClasses = "bg-transparent text-gray-600 dark:text-gray-400 hover:bg-gray-300/50 dark:hover:bg-gray-700/50";
+  const variant = isActive ? 'tab-active' : 'tab';
 
   return (
-    <button
+    <Button
+      variant={variant}
       onClick={() => onClick(viewName)}
-      className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
+      className="rounded-lg"
     >
       {label}
-    </button>
+    </Button>
   );
 };
 
