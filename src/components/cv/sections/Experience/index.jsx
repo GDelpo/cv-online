@@ -1,7 +1,7 @@
-import React from 'react';
+
 import { Briefcase, CircleDot } from 'lucide-react';
-import Section from '../../../../components/common/layout/Section';
-import ListItem from '../../../../components/common/ui/ListItem';
+import Section from '@layout/Section';
+import ListItem from '@ui/ListItem';
 
 const ExperienceItem = ({ experience }) => {
   return (
@@ -57,15 +57,28 @@ const ExperienceItem = ({ experience }) => {
   );
 };
 
-const Experience = ({ experiences }) => {
+const Experience = ({ 
+  experiences = [], 
+  animationType = "slideUp",
+  className = ""
+}) => {
+  if (!experiences.length) {
+    console.warn('Experience component: No experiences provided');
+    return null;
+  }
+
   return (
     <Section 
       icon={Briefcase} 
       title="Experiencia Profesional" 
-      className="mb-6"
+      animationType={animationType}
+      className={className}
     >
       {experiences.map((exp, index) => (
-        <ExperienceItem key={index} experience={exp} />
+        <ExperienceItem 
+          key={`experience-${index}-${exp.company || index}`} 
+          experience={exp} 
+        />
       ))}
     </Section>
   );

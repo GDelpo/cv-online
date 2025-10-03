@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Printer } from 'lucide-react';
 
 const PrintButton = () => {

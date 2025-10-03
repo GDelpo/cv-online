@@ -1,72 +1,98 @@
-import React from 'react';
-import { Zap } from 'lucide-react';
-import Section from '../../../../components/common/layout/Section';
-import TechnologyItem from './TechnologyItem';
 
-const TechStack = ({ technologies }) => {
-  // Renombramos este componente a TechSection para evitar la colisión
+import { Zap } from 'lucide-react';
+import Section from '@layout/Section';
+import TechnologyItem from './TechnologyItem';
+import AnimatedCard from '@ui/AnimatedCard';
+import { TECH_CATEGORY_COLORS } from '@constants/cv';
+
+const TechStack = ({ 
+  technologies = {}, 
+  animationType = "scaleIn",
+  className = ""
+}) => {
+  // Componente interno reutilizable para cada sección
   const TechSection = ({ title, items }) => (
-    <div className="mb-4">
-      <h4 className="text-sm font-medium mb-2">{title}</h4>
+    <div className="mb-4 last:mb-0">
+      <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+        {title}
+      </h4>
       <div className="flex flex-wrap gap-2">
         {items}
       </div>
     </div>
   );
 
-  const renderLanguages = () => (
+  // Función genérica para renderizar cualquier sección de tecnologías
+  const renderTechSection = (title, items, keyPrefix = title.toLowerCase()) => (
     <TechSection
-      title="Lenguajes"
-      items={technologies.Lenguajes.map((lang, index) => (
-        <TechnologyItem
-          key={`lang-${lang.name}-${index}`}
-          text={lang.name}
-          color={lang.color}
-          isMain={lang.isMain}
-        />
-      ))}
-    />
-  );
-
-  const renderFrameworks = () => (
-    <TechSection
-      title="Frameworks/Librerías"
-      items={technologies.Lenguajes.flatMap((lang, langIndex) =>
-        lang.frameworks.map((framework, frameworkIndex) => (
+      title={title}
+      items={items.map((item, index) => (
+        <AnimatedCard
+          key={`${keyPrefix}-${item.name || item}-${index}`}
+          animationType="scaleIn"
+          delay={index * 50}
+        >
           <TechnologyItem
-            key={`framework-${lang.name}-${framework}-${langIndex}-${frameworkIndex}`}
-            text={framework}
-            color={lang.color}
+            text={item.name || item}
+            color={item.color || TECH_CATEGORY_COLORS[title] || 'blue'}
+            isMain={item.isMain}
           />
-        ))
-      )}
-    />
-  );
-
-  const renderOtherSection = (category) => (
-    <TechSection
-      title={category}
-      items={technologies[category].map((item, index) => (
-        <TechnologyItem
-          key={`${category}-${item}-${index}`}
-          text={item}
-          color={category}
-        />
+        </AnimatedCard>
       ))}
     />
   );
+
+  // Generar frameworks de forma más limpia
+  const frameworks = technologies.Lenguajes?.flatMap(lang => 
+    lang.frameworks?.map(framework => ({
+      name: framework,
+      color: lang.color
+    })) || []
+  ) || [];
+
+  // Categorías especiales que requieren tratamiento diferente
+  const specialCategories = ['Lenguajes'];
+  const otherCategories = Object.keys(technologies).filter(
+    category => !specialCategories.includes(category)
+  );
+
+  if (!Object.keys(technologies).length) {
+    console.warn('TechStack component: No technologies provided');
+    return null;
+  }
 
   return (
-    <Section icon={Zap} title="Tecnologías" variant="sidebar">
-      {renderLanguages()}
-      {renderFrameworks()}
-      {Object.keys(technologies)
-        .filter(category => category !== "Lenguajes")
-        .map(category => (
-          <React.Fragment key={category}>
-            {renderOtherSection(category)}
-          </React.Fragment>
-        ))}
+    <Section 
+      icon={Zap} 
+      title="Tecnologías" 
+      variant="sidebar" 
+      animationType={animationType}
+      className={className}
+    >
+      {/* Lenguajes */}
+      {technologies.Lenguajes && renderTechSection(
+        "Lenguajes", 
+        technologies.Lenguajes,
+        'languages'
+      )}
+      
+      {/* Frameworks/Librerías */}
+      {frameworks.length > 0 && renderTechSection(
+        "Frameworks/Librerías", 
+        frameworks,
+        'frameworks'
+      )}
+      
+      {/* Otras categorías */}
+      {otherCategories.map(category => (
+        <div key={`tech-category-${category}`}>
+          {renderTechSection(
+            category,
+            technologies[category].map(item => ({ name: item })),
+            category.toLowerCase()
+          )}
+        </div>
+      ))}
     </Section>
   );
 };

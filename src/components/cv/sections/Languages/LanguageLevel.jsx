@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { LANGUAGE_LEVELS } from '../../../../constants/cv';
 
 const LanguageLevel = ({ level }) => {

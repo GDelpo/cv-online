@@ -33,6 +33,14 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      // Deshabilitar reglas no necesarias para proyectos modernos
+      'react/react-in-jsx-scope': 'off', // No necesario en React 17+
+      'react/prop-types': 'off', // Opcional en proyectos con TypeScript o sin validación estricta
+      'no-unused-vars': ['error', { 
+        'varsIgnorePattern': '^React$', // Ignorar React no usado
+        'argsIgnorePattern': '^_' // Ignorar argumentos que empiecen con _
+      }],
+      'react/no-unescaped-entities': 'off', // Permitir comillas sin escapar
     },
   },
 ]

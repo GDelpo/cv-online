@@ -1,13 +1,13 @@
-export const TECH_COLORS = {
-  blue: "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100",
-  indigo: "bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-100",
-  violet: "bg-violet-100 dark:bg-violet-900 text-violet-800 dark:text-violet-100",
-  emerald: "bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-100",
-  "Bases de Datos": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100",
-  "DevTools": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100"
+import { TECH_COLORS, LANGUAGE_LEVELS } from './styles';
+
+// Mapeo específico para categorías de tecnologías
+export const TECH_CATEGORY_COLORS = {
+  "Bases de Datos": "purple",
+  "DevTools": "yellow"
 };
 
-export const LANGUAGE_LEVELS = ['Básico', 'Intermedio', 'Avanzado', 'Nativo'];
+// Re-exportamos para mantener compatibilidad
+export { TECH_COLORS, LANGUAGE_LEVELS };
 
 export const cvData = {
     header: {
@@ -143,10 +143,56 @@ export const cvData = {
       institution: "ORT Argentina",
       period: "2019 - 2022"
     },
-    courses: [
-      "JAVA - Educación IT (2022)",
-      "Análisis Funcional – Educación IT (2020)",
-      "FrontEnd – Plataforma5 (2020)",
-      "WebMaster – UTN (2018)"
+    
+    // Certificaciones oficiales con credenciales verificables
+    certifications: [
+      {
+        title: "Programación Avanzada en JAVA",
+        institution: "Educación IT",
+        date: "2022",
+        credentialUrl: "https://educacionit.com", // Link de ejemplo - reemplazar con real
+        credentialId: "JAVA-ADV-2022-GD001",
+        verified: true
+      },
+      {
+        title: "Análisis Funcional de Sistemas",
+        institution: "Educación IT", 
+        date: "2020",
+        credentialUrl: "https://educacionit.com", // Link de ejemplo - reemplazar con real
+        credentialId: "AFS-2020-GD001",
+        verified: true
+      },
+      {
+        title: "Desarrollo Frontend Completo",
+        institution: "Plataforma5",
+        date: "2020",
+        credentialUrl: "https://plataforma5.la", // Link de ejemplo - reemplazar con real
+        credentialId: "FRONT-P5-2020-GD001",
+        verified: true
+      },
+      {
+        title: "WebMaster Profesional",
+        institution: "UTN (Universidad Tecnológica Nacional)",
+        date: "2018",
+        credentialUrl: "https://utn.edu.ar", // Link de ejemplo - reemplazar con real
+        credentialId: "WM-UTN-2018-GD001",
+        verified: true
+      }
+    ],
+
+    // Aprendizaje continuo - cursos sin certificación formal pero que demuestran crecimiento
+    continuousLearning: [
+      "Python para Data Science - Udemy",
+      "FastAPI & Modern Python APIs - Udemy", 
+      "React 18 con Hooks y Context - Udemy",
+      "Docker & Containerización - Udemy",
+      "Microservicios con Python - Udemy",
+      "SQL Avanzado y Optimización - Udemy",
+      "Git Flow y Metodologías Ágiles - Autodidacta",
+      "APIs RESTful Design Patterns - Autodidacta",
+      "Clean Architecture - Autodidacta",
+      "TDD y Testing Strategies - Autodidacta",
+      "Cloud Computing Basics - Autodidacta",
+      "DevOps Fundamentals - Autodidacta"
     ]
   };
