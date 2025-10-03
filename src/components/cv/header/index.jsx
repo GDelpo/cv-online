@@ -32,9 +32,8 @@ const Header = ({ name, title, description, photo }) => {
       
       {/* Patrón decorativo con glassmorphism */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-radial from-white/10 to-transparent opacity-40"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-radial from-cyan-400/15 to-transparent opacity-50"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-radial from-white/10 to-transparent opacity-30"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-radial from-cyan-400/15 to-transparent opacity-40"></div>
       </div>
       
       <div className="relative z-10 p-8 md:p-12 text-white">
@@ -43,13 +42,13 @@ const Header = ({ name, title, description, photo }) => {
           <div className="flex justify-center lg:justify-start">
             <div className="relative group">
               {/* Glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 blur-xl"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-white/10 to-cyan-300/20 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 blur-xl"></div>
               
               <div className="relative w-56 h-56 lg:w-64 lg:h-64 rounded-3xl overflow-hidden 
                 border-4 border-white/30 backdrop-blur-sm
-                shadow-2xl shadow-black/30
+                shadow-xl shadow-blue-900/30 dark:shadow-black/50
                 transition-all duration-500 ease-out
-                group-hover:border-white/50 group-hover:shadow-3xl 
+                group-hover:border-white/50 group-hover:shadow-2xl group-hover:shadow-blue-900/40 dark:group-hover:shadow-black/60
                 group-hover:scale-[1.01] group-hover:-rotate-0.5">
                 
                 {photo ? (

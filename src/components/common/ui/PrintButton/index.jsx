@@ -10,7 +10,8 @@ const PrintButton = () => {
         bg-gray-100 hover:bg-gray-200
         dark:bg-gray-800 dark:hover:bg-gray-700
         transition-colors duration-200"
-      aria-label="Imprimir o guardar como PDF"
+      aria-label="Imprimir CV en formato ATS-friendly"
+      title="Generar PDF optimizado para sistemas ATS (Applicant Tracking System)"
     >
       <Printer className="w-5 h-5" />
     </button>

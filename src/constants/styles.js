@@ -53,6 +53,12 @@ export const TECH_COLORS = {
 
 export const LANGUAGE_LEVELS = ['Básico', 'Intermedio', 'Avanzado', 'Nativo'];
 
+// Mapeo específico para categorías de tecnologías
+export const TECH_CATEGORY_COLORS = {
+  "Bases de Datos": "purple",
+  "DevTools": "yellow"
+};
+
 // Estilos modernos con mejor performance y accesibilidad
 export const COMMON_STYLES = {
   // Transiciones más fluidas
