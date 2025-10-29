@@ -1,5 +1,5 @@
 
-import { Mail, Github, MapPin, UserRound } from 'lucide-react';
+import { Mail, Github, MapPin, UserRound, Linkedin } from 'lucide-react';
 import Section from '@layout/Section';
 
 const ContactItem = ({ icon: Icon, text, href, isExternal }) => {
@@ -25,7 +25,8 @@ const ContactItem = ({ icon: Icon, text, href, isExternal }) => {
 
 const Contact = ({ 
   email, 
-  github, 
+  github,
+  linkedin, 
   location, 
   animationType = "fadeIn",
   className = "" 
@@ -33,6 +34,7 @@ const Contact = ({
   const contactItems = [
     email && { icon: Mail, text: email, href: `mailto:${email}` },
     github && { icon: Github, text: github, href: `https://${github}`, isExternal: true },
+    linkedin && { icon: Linkedin, text:  `in/${linkedin.split('/').pop()}`, href: linkedin, isExternal: true },
     location && { icon: MapPin, text: location },
   ].filter(Boolean);
 

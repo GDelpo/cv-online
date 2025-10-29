@@ -1,0 +1,84 @@
+{
+  "certifications": [
+    {
+      "title": "Certificación Profesional en Inteligencia Artificial",
+      "institution": "ITBA Universidad",
+      "date": "nov. 2024",
+      "credentialUrl": "https://certtun.vottun.com/badgedetail?id=e6e399dc-b093-4d33-859d-20199a48d76d",
+      "credentialId": "e6e399dc-b093-4d33-859d-20199a48d76d",
+      "verified": true
+    },
+    {
+      "title": "Patrones de Diseño",
+      "institution": "EducacionIT",
+      "date": "ene. 2023",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/60846",
+      "credentialId": "39816060846",
+      "verified": true
+    },
+    {
+      "title": "UML y UP: Análisis y Diseño Orientado a Objetos",
+      "institution": "EducacionIT",
+      "date": "ene. 2023",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/62198",
+      "credentialId": "39816062198",
+      "verified": true
+    },
+    {
+      "title": "Git: Desarrollo Colaborativo",
+      "institution": "EducacionIT",
+      "date": "dic. 2022",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/61182",
+      "credentialId": "39816061182",
+      "verified": true
+    },
+    {
+      "title": "Javascript desde cero",
+      "institution": "EducacionIT",
+      "date": "oct. 2022",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/56488",
+      "credentialId": "39816056488",
+      "verified": true
+    },
+    {
+      "title": "Introducción al Paradigma de Objetos",
+      "institution": "EducacionIT",
+      "date": "mar. 2022",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/56363",
+      "credentialId": "39816056363",
+      "verified": true
+    },
+    {
+      "title": "Introducción a Bases de Datos y SQL",
+      "institution": "EducacionIT",
+      "date": "feb. 2022",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/55954",
+      "credentialId": "39816055954",
+      "verified": true
+    },
+    {
+      "title": "HTML5: Fundamentos Web",
+      "institution": "EducacionIT",
+      "date": "ene. 2022",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/55693",
+      "credentialId": "39816055693",
+      "verified": true
+    },
+    {
+      "title": "Java para no programadores",
+      "institution": "EducacionIT",
+      "date": "dic. 2021",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/55444",
+      "credentialId": "39816055444",
+      "verified": true
+    },
+    {
+      "title": "Análisis Funcional",
+      "institution": "EducacionIT",
+      "date": "dic. 2020",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/48178",
+      "credentialId": "39816048178",
+      "verified": true
+    }
+  ]
+}

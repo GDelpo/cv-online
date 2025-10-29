@@ -1,25 +1,28 @@
-
-import { User, Star, MapPin } from 'lucide-react';
+import { User } from 'lucide-react';
 import IconWrapper from '@ui/IconWrapper';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { useTypingEffect } from '@hooks/useTypingEffect';
 import { COMMON_STYLES } from '@constants/styles';
 
 const Header = ({ name, title, description, photo }) => {
   const [headerRef, isVisible] = useIntersectionObserver();
   const headerAnimation = isVisible ? COMMON_STYLES.fadeInEnterActive : COMMON_STYLES.fadeInEnter;
-  // Función para renderizar la descripción como múltiples párrafos
-  const renderDescription = () => {
-    if (!description) return null;
-    
-    const paragraphs = description.split('<br>');
-    return paragraphs.map((paragraph, index) => (
-      <p 
-        key={index} 
-        className="text-base md:text-lg text-white/90 leading-relaxed max-w-4xl font-light"
-      >
-        {paragraph}
-      </p>
-    ));
+  
+  // Detectar si el título tiene múltiples opciones separadas por |
+  const titles = title ? title.split('|').map(t => t.trim()) : [];
+  const hasMultipleTitles = titles.length > 1;
+  const displayedTitle = useTypingEffect(
+    hasMultipleTitles ? titles : [title],
+    100,  // velocidad escritura
+    50,   // velocidad borrado
+    2000  // pausa entre títulos
+  );
+  
+  // Función para procesar el HTML de la descripción
+  const processDescription = (desc) => {
+    if (!desc) return '';
+    // Reemplazar \n por <br> para saltos de línea
+    return desc.replace(/\\n/g, '<br>');
   };
 
   return (
@@ -85,34 +88,22 @@ const Header = ({ name, title, description, photo }) => {
               </h1>
               
               <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
-                <h2 className="text-xl md:text-2xl text-blue-100 font-medium tracking-wide">
-                  {title}
+                <h2 className="text-xl md:text-2xl text-blue-100 font-medium tracking-wide min-w-[280px] md:min-w-[420px]">
+                  {displayedTitle}
+                  {hasMultipleTitles && (
+                    <span className="inline-block w-0.5 h-6 bg-blue-200 ml-1 animate-pulse align-middle"></span>
+                  )}
                 </h2>
-                
-                {/* Badges mejorados */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl
-                    bg-emerald-500/15 border border-emerald-400/25 
-                    text-emerald-100 text-sm font-semibold 
-                    backdrop-blur-sm shadow-sm">
-                    <Star size={14} />
-                    <span>Disponible</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl
-                    bg-white/10 border border-white/20 
-                    text-white text-sm font-semibold 
-                    backdrop-blur-sm shadow-sm">
-                    <MapPin size={14} />
-                    <span>CABA, Argentina</span>
-                  </div>
-                </div>
               </div>
             </div>
-            
-            {/* Descripción mejorada */}
-            <div className="space-y-4 max-w-4xl">
-              {renderDescription()}
-            </div>
+
+            {/* Descripción con HTML renderizado */}
+            {description && (
+              <div 
+                className="text-base md:text-lg text-white/90 leading-relaxed max-w-4xl font-light space-y-3"
+                dangerouslySetInnerHTML={{ __html: processDescription(description) }}
+              />
+            )}
           </div>
         </div>
       </div>

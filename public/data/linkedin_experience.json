@@ -1,0 +1,121 @@
+{
+  "experiences": [
+    {
+      "title": "Python Developer & Systems Analyst",
+      "company": "Noble Seguros · Jornada completa",
+      "period": "dic. 2020 - actualidad · 4 años 11 meses",
+      "location": "Ciudad de Buenos Aires, Provincia de Buenos Aires, Argentina · Híbrido",
+      "description": "Responsable del desarrollo, análisis y mejora continua de sistemas críticos del negocio, combinando roles técnicos y de gestión.",
+      "sections": [
+        {
+          "title": "Desarrollo y Automatización",
+          "items": [
+            "Diseño e implementación de soluciones utilizando Python para automatizar procesos de gran escala",
+            "Desarrollo de APIs y microservicios para integración de sistemas",
+            "Mantenimiento y mejora de sistemas legacy en PHP",
+            "Implementación de documentación técnica con Docusaurus"
+          ]
+        },
+        {
+          "title": "Análisis y Gestión",
+          "items": [
+            "Análisis funcional y técnico de sistemas internos",
+            "Auditoría y optimización de servicios con proveedores externos",
+            "Coordinación con equipos técnicos y stakeholders del negocio",
+            "Implementación de mejoras en procesos y sistemas existentes"
+          ]
+        },
+        {
+          "title": "Logros Destacados",
+          "items": [
+            "Lideré la implementación y puesta en producción de NobleOnline (plataforma para productores)",
+            "Desarrollo de automatizaciones que optimizaron procesos críticos del negocio",
+            "Simplificación de procesos y resolución de problemas complejos",
+            "Mejora significativa en la documentación y mantenibilidad de sistemas"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Software Developer & Tech Consultant",
+      "company": "Profesional independiente",
+      "period": "dic. 2018 - actualidad · 6 años 11 meses",
+      "location": "En remoto",
+      "description": "Desarrollo de soluciones tecnológicas integrales y consultoría técnica para diversos clientes.",
+      "sections": [
+        {
+          "title": "Desarrollo de Software",
+          "items": [
+            "Implementación de soluciones a medida (web, escritorio, automatizaciones)",
+            "Desarrollo de APIs y sistemas de integración",
+            "Procesamiento y análisis de datos",
+            "Modernización de sistemas legacy"
+          ]
+        },
+        {
+          "title": "Proyectos Destacados",
+          "items": [
+            "Sistema de turnos para cooperativa municipal, modernizando sistema legacy",
+            "Automatizaciones para procesamiento de datos a gran escala",
+            "Plataforma e-commerce completa para fundación",
+            "Sistema de gestión de contenidos para editorial"
+          ]
+        },
+        {
+          "title": "Servicios",
+          "items": [
+            "Asesoramiento técnico y consultoría",
+            "Diseño e implementación de soluciones personalizadas",
+            "Mantenimiento y soporte técnico continuo",
+            "Optimización de procesos y sistemas"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Soporte Técnico de Sistemas & Administrativo",
+      "company": "Laboratorio Dr. Enrique Lovine · Jornada completa",
+      "period": "abr. 2015 - nov. 2020 · 5 años 8 meses",
+      "location": "Ciudad Autónoma de Buenos Aires, Argentina · Presencial",
+      "description": "Evolución profesional desde rol administrativo hacia responsabilidades técnicas de sistemas, desempeñando efectivamente ambas funciones.",
+      "sections": [
+        {
+          "title": "Gestión Técnica de Sistemas",
+          "items": [
+            "Administración y mantenimiento integral del parque informático",
+            "Implementación y mantenimiento de redes e infraestructura",
+            "Instalación y configuración de sistemas de seguridad (cámaras IP)",
+            "Soporte técnico a usuarios y resolución de incidencias"
+          ]
+        },
+        {
+          "title": "Gestión Administrativa",
+          "items": [
+            "Administración contable y facturación con múltiples obras sociales",
+            "Atención al cliente y gestión de cobranzas",
+            "Coordinación logística del equipo de extraccionistas",
+            "Manejo de sistema de gestión interno (LabWin)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Asistente Organizador de Eventos Deportivos",
+      "company": "Maratón de Buenos Aires · Contrato temporal",
+      "period": "2018 - 2019 · 1 año",
+      "location": "Participación en la organización de múltiples eventos de running (10K, 21K, 42K)",
+      "description": "𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐚𝐛𝐢𝐥𝐢𝐝𝐚𝐝𝐞𝐬:",
+      "sections": [
+        {
+          "title": "Detalles",
+          "items": [
+            "Resolución de incidencias y contingencias puntuales durante los eventos",
+            "Coordinación con diferentes áreas para asegurar el desarrollo exitoso",
+            "Documentación y análisis post-evento de situaciones y soluciones",
+            "Atención y asistencia a participantes"
+          ]
+        }
+      ]
+    }
+  ]
+}

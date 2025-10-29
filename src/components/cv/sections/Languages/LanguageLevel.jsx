@@ -1,5 +1,5 @@
 
-import { LANGUAGE_LEVELS } from '../../../../constants/cv';
+import { LANGUAGE_LEVELS } from '@constants/styles';
 
 const LanguageLevel = ({ level }) => {
   const currentLevelIndex = LANGUAGE_LEVELS.indexOf(level);

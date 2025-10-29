@@ -1,14 +1,15 @@
-
+import { useState } from 'react';
 import { Award, ExternalLink } from 'lucide-react';
 import Section from '@layout/Section';
 import Button from '@ui/Button';
 import AnimatedCard from '@ui/AnimatedCard';
+import { COMMON_STYLES } from '@constants/styles';
 
 const CertificationItem = ({ certification }) => {
   const { title, institution, date, credentialUrl, credentialId, verified } = certification;
 
   return (
-    <div className="group mb-6 last:mb-0 relative">
+    <div className="group mb-4 relative">
       {/* Glow effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
       
@@ -103,9 +104,18 @@ const CertificationItem = ({ certification }) => {
 };
 
 const Certifications = ({ certifications, animationType = "scaleIn" }) => {
+  const [showAll, setShowAll] = useState(false);
+  
+  // Número de certificaciones a mostrar inicialmente
+  const INITIAL_DISPLAY = 3;
+  
   if (!certifications || certifications.length === 0) {
     return null;
   }
+
+  // Determinar qué certificaciones mostrar
+  const displayedCerts = showAll ? certifications : certifications.slice(0, INITIAL_DISPLAY);
+  const hasMore = certifications.length > INITIAL_DISPLAY;
 
   return (
     <Section 
@@ -114,8 +124,8 @@ const Certifications = ({ certifications, animationType = "scaleIn" }) => {
       className="mb-6"
       animationType={animationType}
     >
-      <div className="space-y-0">
-        {certifications.map((cert, index) => (
+      <div className="space-y-4">
+        {displayedCerts.map((cert, index) => (
           <AnimatedCard 
             key={`cert-${index}-${cert.credentialId || cert.title}`}
             animationType="slideUp"
@@ -127,6 +137,31 @@ const Certifications = ({ certifications, animationType = "scaleIn" }) => {
           </AnimatedCard>
         ))}
       </div>
+
+      {/* Botón "Ver más" / "Ver menos" */}
+      {hasMore && (
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className={`
+            w-full py-3 px-4 mt-4
+            bg-gradient-to-r from-blue-50 to-indigo-50 
+            hover:from-blue-100 hover:to-indigo-100
+            dark:from-blue-900/20 dark:to-indigo-900/20
+            dark:hover:from-blue-900/30 dark:hover:to-indigo-900/30
+            text-blue-700 dark:text-blue-300
+            font-semibold rounded-xl
+            border border-blue-200 dark:border-blue-800
+            ${COMMON_STYLES.transition}
+            hover:scale-[1.01] active:scale-[0.99]
+            shadow-sm hover:shadow-md
+          `}
+        >
+          {showAll 
+            ? `Ver menos certificaciones` 
+            : `Ver todas las certificaciones (${certifications.length - INITIAL_DISPLAY} más)`
+          }
+        </button>
+      )}
       
       {/* Call to action para reclutadores */}
       <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-800">

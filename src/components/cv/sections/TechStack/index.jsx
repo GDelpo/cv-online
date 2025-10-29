@@ -3,7 +3,7 @@ import { Zap } from 'lucide-react';
 import Section from '@layout/Section';
 import TechnologyItem from './TechnologyItem';
 import AnimatedCard from '@ui/AnimatedCard';
-import { TECH_CATEGORY_COLORS } from '@constants/cv';
+import { TECH_CATEGORY_COLORS } from '@constants/styles';
 
 const TechStack = ({ 
   technologies = {}, 
@@ -88,7 +88,7 @@ const TechStack = ({
         <div key={`tech-category-${category}`}>
           {renderTechSection(
             category,
-            technologies[category].map(item => ({ name: item })),
+            technologies[category],
             category.toLowerCase()
           )}
         </div>

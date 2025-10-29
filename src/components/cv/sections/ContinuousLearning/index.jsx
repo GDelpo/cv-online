@@ -4,40 +4,9 @@ import Section from '@layout/Section';
 import Badge from '@ui/Badge';
 
 const ContinuousLearning = ({ continuousLearning, animationType = "slideUp" }) => {
-  if (!continuousLearning || continuousLearning.length === 0) {
+  if (!continuousLearning || Object.keys(continuousLearning).length === 0) {
     return null;
   }
-
-  // Función para determinar el color del badge basado en la plataforma/tipo
-  const getBadgeColor = (course) => {
-    if (course.toLowerCase().includes('udemy')) return 'violet';
-    if (course.toLowerCase().includes('autodidacta')) return 'emerald';
-    if (course.toLowerCase().includes('coursera')) return 'blue';
-    if (course.toLowerCase().includes('platzi')) return 'yellow';
-    return 'indigo'; // Color por defecto
-  };
-
-  // Función para extraer la plataforma/fuente del curso
-  const getPlatform = (course) => {
-    const parts = course.split(' - ');
-    return parts.length > 1 ? parts[parts.length - 1] : 'Otros';
-  };
-
-  // Función para extraer el título del curso
-  const getCourseTitle = (course) => {
-    const parts = course.split(' - ');
-    return parts[0];
-  };
-
-  // Agrupar cursos por plataforma para mejor organización
-  const groupedCourses = continuousLearning.reduce((acc, course) => {
-    const platform = getPlatform(course);
-    if (!acc[platform]) {
-      acc[platform] = [];
-    }
-    acc[platform].push(course);
-    return acc;
-  }, {});
 
   return (
     <Section 
@@ -47,22 +16,22 @@ const ContinuousLearning = ({ continuousLearning, animationType = "slideUp" }) =
       animationType={animationType}
     >
       <div className="space-y-4">
-        {Object.entries(groupedCourses).map(([platform, courses]) => (
-          <div key={platform} className="mb-4">
+        {Object.values(continuousLearning).map((platformData) => (
+          <div key={platformData.platform} className="mb-4">
             <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3 flex items-center gap-2">
               <TrendingUp size={16} />
-              {platform}
+              {platformData.platform}
             </h4>
             
             <div className="flex flex-wrap gap-2">
-              {courses.map((course, index) => (
+              {platformData.courses.map((course, index) => (
                 <Badge
-                  key={`${platform}-${index}`}
-                  color={getBadgeColor(course)}
+                  key={`${platformData.platform}-${index}`}
+                  color={platformData.color}
                   size="sm"
                   className="cursor-default"
                 >
-                  {getCourseTitle(course)}
+                  {course.title}
                 </Badge>
               ))}
             </div>
