@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import { Info, X, FileText, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Info, X, FileText } from 'lucide-react';
 import { COMMON_STYLES } from '@constants/styles';
 
 const ATSInfo = () => {
   const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    // Auto-cerrar después de 8 segundos
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!isVisible) return null;
 
@@ -23,28 +32,12 @@ const ATSInfo = () => {
           
           <div className="flex-1">
             <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">
-              💼 CV Optimizado para ATS
+            💼 Generar PDF para Enviar
             </h4>
             <p className="text-xs text-blue-600 dark:text-blue-300 mb-3 leading-relaxed">
-              Al imprimir, se genera automáticamente una versión optimizada para 
-              <strong> sistemas ATS</strong> (Applicant Tracking System) que usan las empresas 
-              para filtrar CVs.
+              Al imprimir, se genera automáticamente una versión profesional optimizada 
+              para empresas y sistemas de seguimiento de candidatos.
             </p>
-            
-            <div className="space-y-1 mb-3">
-              <div className="flex items-center gap-2 text-xs text-blue-600 dark:text-blue-300">
-                <CheckCircle className="w-3 h-3" />
-                <span>Formato estándar legible por ATS</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-blue-600 dark:text-blue-300">
-                <CheckCircle className="w-3 h-3" />
-                <span>Tipografía Times New Roman</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-blue-600 dark:text-blue-300">
-                <CheckCircle className="w-3 h-3" />
-                <span>Layout limpio y estructurado</span>
-              </div>
-            </div>
             
             <div className="flex items-center gap-2">
               <button
@@ -52,13 +45,13 @@ const ATSInfo = () => {
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-lg transition-colors"
               >
                 <FileText className="w-3 h-3" />
-                Generar PDF ATS
+                Imprimir / Guardar PDF
               </button>
               
               <button
                 onClick={() => setIsVisible(false)}
                 className="p-1 hover:bg-blue-100 dark:hover:bg-blue-900/50 rounded transition-colors"
-                aria-label="Cerrar información"
+                aria-label="Cerrar"
               >
                 <X className="w-3 h-3 text-blue-500 dark:text-blue-400" />
               </button>

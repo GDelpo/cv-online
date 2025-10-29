@@ -38,113 +38,281 @@
 
   /* Estilos ATS-friendly para impresión */
   @media print {
+    /* Reset general */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Márgenes de página globales - consistentes para todas las páginas */
+    @page {
+      margin: 0.5in 0.45in;
+    }
+
+    body {
+      background: white !important;
+    }
+
     /* Layout optimizado para ATS */
     .ats-layout {
       display: block !important;
       width: 100% !important;
       max-width: none !important;
       margin: 0 !important;
-      padding: 0.5in !important;
+      padding: 0 !important; /* El padding lo maneja @page */
       background: white !important;
-      color: black !important;
       font-family: 'Times New Roman', serif !important;
-      font-size: 11pt !important;
+      font-size: 10pt !important;
       line-height: 1.2 !important;
+      page-break-after: always !important; /* CV en páginas separadas del anexo */
+    }
+    
+    /* Asegurar margen superior en páginas desbordadas */
+    .ats-layout > * {
+      page-break-inside: avoid !important;
+    }
+    
+    /* ANEXO - Nueva página con márgenes apropiados */
+    .ats-annex {
+      display: block !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important; /* El padding lo maneja @page */
+      background: white !important;
+      font-family: 'Times New Roman', serif !important;
+      font-size: 10pt !important;
+      line-height: 1.2 !important;
+      page-break-before: always !important;
+    }
+
+    .ats-annex-header {
+      text-align: center !important;
+      margin-bottom: 0.2in !important;
+      padding-bottom: 0.12in !important;
+      border-bottom: 2px solid #000 !important;
+    }
+
+    .ats-annex-name {
+      font-size: 14pt !important;
+      font-weight: bold !important;
+      text-transform: uppercase !important;
+      margin-bottom: 0.08in !important;
+      color: #000 !important;
+      letter-spacing: 1px !important;
+    }
+
+    .ats-annex-title {
+      font-size: 12pt !important;
+      font-weight: bold !important;
+      text-transform: uppercase !important;
+      margin-bottom: 0.05in !important;
+      color: #000 !important;
+    }
+
+    .ats-annex-subtitle {
+      font-size: 9pt !important;
+      font-style: italic !important;
+      color: #555 !important;
+    }
+
+    .ats-annex-content {
+      margin-top: 0.15in !important;
+    }
+
+    .ats-annex-item {
+      margin-bottom: 0.12in !important;
+      page-break-inside: avoid !important;
+      padding-bottom: 0.1in !important;
+      border-bottom: 1px dashed #ccc !important;
+    }
+
+    .ats-annex-item:last-child {
+      border-bottom: none !important;
     }
 
     /* Headers ATS */
     .ats-header {
       text-align: center !important;
-      margin-bottom: 0.2in !important;
-      border-bottom: 1px solid #000 !important;
-      padding-bottom: 0.1in !important;
+      margin-bottom: 0.12in !important;
+      border-bottom: 1.5px solid #000 !important;
+      padding-bottom: 0.06in !important;
     }
 
     .ats-name {
       font-size: 16pt !important;
       font-weight: bold !important;
-      margin-bottom: 0.05in !important;
+      margin-bottom: 0.03in !important;
       text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      color: #000 !important;
     }
 
     .ats-title {
-      font-size: 12pt !important;
+      font-size: 10.5pt !important;
       font-weight: normal !important;
-      margin-bottom: 0.1in !important;
+      margin-bottom: 0.04in !important;
+      line-height: 1.3 !important;
+      color: #000 !important;
     }
 
     .ats-contact {
-      font-size: 10pt !important;
-      margin-bottom: 0.1in !important;
+      font-size: 9pt !important;
+      margin-bottom: 0 !important;
+      color: #000 !important;
     }
 
     /* Secciones ATS */
     .ats-section {
-      margin-bottom: 0.15in !important;
+      margin-bottom: 0.12in !important;
       page-break-inside: avoid !important;
     }
 
     .ats-section-title {
-      font-size: 12pt !important;
+      font-size: 11pt !important;
       font-weight: bold !important;
       text-transform: uppercase !important;
-      border-bottom: 1px solid #000 !important;
-      margin-bottom: 0.1in !important;
+      border-bottom: 1.5px solid #000 !important;
+      margin-bottom: 0.06in !important;
       padding-bottom: 0.02in !important;
+      letter-spacing: 0.5px !important;
+      color: #000 !important;
     }
 
-    /* Contenido de experiencia ATS */
-    .ats-experience-item {
-      margin-bottom: 0.1in !important;
+    /* Items de experiencia/certificaciones */
+    .ats-experience-item,
+    .ats-cert-item {
+      margin-bottom: 0.08in !important;
       page-break-inside: avoid !important;
     }
 
     .ats-job-title {
       font-weight: bold !important;
-      font-size: 11pt !important;
+      font-size: 10.5pt !important;
+      margin-bottom: 0.01in !important;
+      color: #000 !important;
     }
 
     .ats-company {
       font-weight: bold !important;
-      font-size: 11pt !important;
+      font-size: 10pt !important;
+      margin-bottom: 0.01in !important;
+      color: #000 !important;
     }
 
     .ats-period {
       font-style: italic !important;
-      font-size: 10pt !important;
+      font-size: 9pt !important;
+      color: #333 !important;
+      margin-bottom: 0.03in !important;
     }
 
     .ats-description {
-      margin-top: 0.05in !important;
-      font-size: 10pt !important;
+      margin-top: 0.03in !important;
+      margin-bottom: 0.04in !important;
+      font-size: 9.5pt !important;
+      line-height: 1.25 !important;
+      text-align: justify !important;
+      color: #000 !important;
     }
 
-    /* Listas ATS */
+    .ats-credential,
+    .ats-url {
+      font-size: 8.5pt !important;
+      color: #555 !important;
+      margin-top: 0.02in !important;
+    }
+
+    /* Subsecciones */
+    .ats-subsection {
+      margin-top: 0.03in !important;
+      margin-bottom: 0.04in !important;
+    }
+
+    .ats-subsection strong {
+      font-size: 9.5pt !important;
+      font-weight: bold !important;
+      color: #000 !important;
+    }
+
+    /* Listas */
     .ats-list {
-      margin: 0.05in 0 !important;
-      padding-left: 0.2in !important;
+      margin: 0.02in 0 0.03in 0.15in !important;
+      padding-left: 0 !important;
+      list-style-type: disc !important;
     }
 
     .ats-list-item {
-      margin-bottom: 0.02in !important;
-      font-size: 10pt !important;
+      margin-bottom: 0.015in !important;
+      font-size: 9pt !important;
+      line-height: 1.2 !important;
+      padding-left: 0 !important;
+      color: #000 !important;
     }
 
-    /* Skills/Technologies ATS */
-    .ats-skills {
-      font-size: 10pt !important;
+    /* Notas de "más información" */
+    .ats-more-info {
+      font-size: 8.5pt !important;
+      font-style: italic !important;
+      color: #666 !important;
+      margin-top: 0.04in !important;
+      margin-bottom: 0 !important;
+      text-align: right !important;
+    }
+
+    /* Nota final del CV */
+    .ats-footer-note {
+      margin-top: 0.15in !important;
+      padding-top: 0.1in !important;
+      page-break-inside: avoid !important;
+      font-size: 9pt !important;
+      font-style: italic !important;
+      color: #666 !important;
+      text-align: center !important;
+      border-top: 1px solid #ccc !important;
+    }
+
+    /* Skills/Technologies */
+    .ats-skills,
+    .ats-tech-list,
+    .ats-languages {
+      font-size: 9.5pt !important;
       line-height: 1.3 !important;
+      margin: 0 !important;
+      color: #000 !important;
+    }
+
+    .ats-tech-category {
+      margin-bottom: 0.02in !important;
+      color: #000 !important;
     }
 
     /* Ocultar elementos no ATS */
-    .no-ats {
+    .no-ats,
+    .print\\:hidden,
+    button,
+    nav {
       display: none !important;
     }
 
-    /* Forzar texto negro */
+    /* Control de saltos de página */
+    .ats-section,
+    .ats-experience-item,
+    .ats-cert-item,
+    .ats-annex-item {
+      page-break-inside: avoid !important;
+    }
+
+    h1, h2, h3, h4,
+    .ats-section-title,
+    .ats-job-title {
+      page-break-after: avoid !important;
+    }
+
+    /* Eliminar efectos visuales */
     * {
-      color: black !important;
-      background: transparent !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
     }
   }
 }
@@ -158,6 +326,21 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Estilos para tags HTML en descripciones - SOLO PANTALLA */
+  @media screen {
+    .description-content b,
+    .description-content strong {
+      @apply font-bold text-white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    header .description-content b,
+    header .description-content strong {
+      @apply font-extrabold text-white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
   }
 
   /* Animaciones de entrada personalizadas */

@@ -1,0 +1,16 @@
+{
+  "courses": [
+    {
+      "title": "FrontEnd - Módulo Introductorio",
+      "platform": "Plataforma5"
+    },
+    {
+      "title": "“De Cero a Experto en Python”",
+      "platform": "Udemy, Plataforma online"
+    },
+    {
+      "title": "“Universidad JAVA”",
+      "platform": "Udemy, Plataforma online"
+    }
+  ]
+}

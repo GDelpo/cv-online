@@ -1,0 +1,42 @@
+{
+  "technologies": {
+    "Lenguajes": [
+      {
+        "name": "Python",
+        "isMain": true,
+        "frameworks": [
+          "FastAPI",
+          "Django",
+          "Flask"
+        ]
+      },
+      {
+        "name": "PHP",
+        "frameworks": [
+          "Laravel"
+        ]
+      },
+      {
+        "name": "Java",
+        "frameworks": [
+          "Spring"
+        ]
+      },
+      {
+        "name": "JavaScript",
+        "frameworks": [
+          "React",
+          "Astro"
+        ]
+      }
+    ],
+    "Bases de Datos": [
+      "SQL (varios motores relacionales)"
+    ],
+    "DevTools": [
+      "Git",
+      "Jira",
+      "Docusaurus"
+    ]
+  }
+}

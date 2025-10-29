@@ -1,5 +1,5 @@
 
-import { TECH_COLORS, COMMON_STYLES } from '../../../../constants/styles';
+import { TECH_COLORS, COMMON_STYLES } from '@constants/styles';
 
 const BADGE_VARIANTS = {
   primary: TECH_COLORS.blue,
