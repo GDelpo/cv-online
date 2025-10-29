@@ -42,7 +42,7 @@ const Section = ({
       className={`${currentVariant.padding} ${currentAnimation} ${className}`}
     >
       {/* Header con gradiente sutil */}
-      <div className={`${currentVariant.spacing} mb-6 relative`}>
+      <div className={`${currentVariant.spacing} relative`}>
         <div className="flex items-center gap-4 mb-3">
           {/* Icono con background gradient */}
           <div className="flex-shrink-0 p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-md shadow-blue-500/15 dark:shadow-blue-500/20">

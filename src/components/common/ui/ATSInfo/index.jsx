@@ -32,7 +32,7 @@ const ATSInfo = () => {
           
           <div className="flex-1">
             <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">
-            💼 Generar PDF para Enviar
+            📋 Generar PDF para Enviar
             </h4>
             <p className="text-xs text-blue-600 dark:text-blue-300 mb-3 leading-relaxed">
               Al imprimir, se genera automáticamente una versión profesional optimizada 

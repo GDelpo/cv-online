@@ -3,7 +3,7 @@ import { Briefcase, CircleDot } from 'lucide-react';
 import Section from '@layout/Section';
 import ListItem from '@ui/ListItem';
 
-const ExperienceItem = ({ experience }) => {
+const ExperienceItem = ({ experience, isLast }) => {
   return (
     <div className="mb-8 last:mb-0">
       {/* Encabezado con título, empresa y período */}
@@ -53,6 +53,11 @@ const ExperienceItem = ({ experience }) => {
           </ul>
         </div>
       ))}
+      
+      {/* Separador sutil entre experiencias */}
+      {!isLast && (
+        <div className="mt-6 border-t border-gray-300 dark:border-gray-700/70 opacity-70" />
+      )}
     </div>
   );
 };
@@ -77,7 +82,8 @@ const Experience = ({
       {experiences.map((exp, index) => (
         <ExperienceItem 
           key={`experience-${index}-${exp.company || index}`} 
-          experience={exp} 
+          experience={exp}
+          isLast={index === experiences.length - 1}
         />
       ))}
     </Section>
