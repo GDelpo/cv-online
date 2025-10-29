@@ -36,6 +36,12 @@
     }
   }
 
+  /* Ocultar ATS CV en pantalla normal */
+  .ats-layout,
+  .ats-annex {
+    display: none !important;
+  }
+
   /* Estilos ATS-friendly para impresión */
   @media print {
     /* Reset general */
