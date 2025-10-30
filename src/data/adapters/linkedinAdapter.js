@@ -5,12 +5,12 @@ import { TECH_COLORS, TECH_CATEGORY_COLORS } from '@constants/styles';
 
 export function adaptLinkedInData(raw = {}) {
   const personal = raw.personal || {};
-  const experiences = Array.isArray(raw.experiences) ? raw.experiences : [];
-  const educationArr = Array.isArray(raw.education) ? raw.education : [];
-  const certificationsArr = Array.isArray(raw.certifications) ? raw.certifications : [];
-  const coursesArr = Array.isArray(raw.courses) ? raw.courses : [];
+  const experiences = Array.isArray(raw.experiences?.experiences) ? raw.experiences.experiences : [];
+  const educationArr = Array.isArray(raw.education?.education) ? raw.education.education : [];
+  const certificationsArr = Array.isArray(raw.certifications?.certifications) ? raw.certifications.certifications : [];
+  const coursesArr = Array.isArray(raw.courses?.courses) ? raw.courses.courses : [];
   const contactRaw = raw.contact || {};
-  const languagesArr = Array.isArray(raw.languages) ? raw.languages : [];
+  const languagesArr = Array.isArray(raw.languages?.languages) ? raw.languages.languages : [];
 
   // Colores disponibles para asignar por posición a lenguajes
   const TECH_COLOR_KEYS = Object.keys(TECH_COLORS);
@@ -140,7 +140,7 @@ export function adaptLinkedInData(raw = {}) {
     technologies: normalizedTechnologies,
     programmingLanguages, // Lenguajes de programación para TechStack
     languages: normalizedLanguages, // Idiomas hablados para Languages
-    strengths: raw.strengths || [],
+    strengths: raw.strengths?.strengths || [],
     experiences: normalizedExperiences,
     education: normalizedEducation,
     certifications: normalizedCerts,
