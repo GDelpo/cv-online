@@ -91,8 +91,8 @@ export function adaptLinkedInData(raw = {}) {
   const normalizedTechnologies = {};
   let programmingLanguages = []; // Renombrado de normalizedLanguages para evitar conflicto
 
-  if (raw.technologies) {
-    Object.entries(raw.technologies).forEach(([category, items]) => {
+  if (raw.technologies && raw.technologies.technologies) {
+    Object.entries(raw.technologies.technologies).forEach(([category, items]) => {
       if (category === 'Lenguajes') {
         // Asignar color por posición
         programmingLanguages = items.map((lang, idx) => ({
