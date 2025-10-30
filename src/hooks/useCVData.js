@@ -13,7 +13,7 @@ const JSON_FILES = {
   contact: 'linkedin_contact.json',
   courses: 'linkedin_courses.json',
   education: 'linkedin_education.json',
-  experience: 'linkedin_experience.json',
+  experiences: 'linkedin_experience.json',
   languages: 'linkedin_languages.json',
   personal: 'linkedin_personal.json',
   strengths: 'linkedin_strengths.json',
