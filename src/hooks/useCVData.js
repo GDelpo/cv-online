@@ -2,8 +2,46 @@ import { useEffect, useState } from 'react';
 import { adaptLinkedInData } from '@data/adapters/linkedinAdapter';
 
 /**
- * Hook para cargar y adaptar datos del CV desde archivos JSON de LinkedIn.
- * Los archivos deben estar en public/data/ con el prefijo linkedin_*.json
+ * @typedef {'certifications' | 'contact' | 'courses' | 'education' | 'experience' | 'languages' | 'personal' | 'strengths' | 'technologies'} CVDataKey
+ */
+
+/**
+ * @type {Record<CVDataKey, string>}
+ */
+const JSON_FILES = {
+  certifications: 'linkedin_certifications.json',
+  contact: 'linkedin_contact.json',
+  courses: 'linkedin_courses.json',
+  education: 'linkedin_education.json',
+  experience: 'linkedin_experience.json',
+  languages: 'linkedin_languages.json',
+  personal: 'linkedin_personal.json',
+  strengths: 'linkedin_strengths.json',
+  technologies: 'linkedin_technologies.json',
+};
+
+/**
+ * Carga un archivo JSON de forma segura.
+ * @param {string} fileName - El nombre del archivo a cargar.
+ * @returns {Promise<any>}
+ */
+const fetchJson = async (fileName) => {
+  const response = await fetch(`/data/${fileName}`);
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: No se pudo cargar el archivo ${fileName}`);
+  }
+  return response.json();
+};
+
+/**
+ * Hook para cargar y adaptar los datos del CV desde archivos JSON.
+ * Gestiona los estados de carga, éxito y error.
+ *
+ * @returns {{
+ *   cvData: ReturnType<typeof adaptLinkedInData> | null;
+ *   loading: boolean;
+ *   error: string | null;
+ * }}
  */
 export function useCVData() {
   const [cvData, setCvData] = useState(null);
@@ -11,70 +49,44 @@ export function useCVData() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let cancelled = false;
+    let isCancelled = false;
 
-    async function loadCVData() {
+    const loadData = async () => {
       try {
         setLoading(true);
 
-        // Lista de archivos JSON a cargar
-        const jsonFiles = [
-          'linkedin_certifications.json',
-          'linkedin_contact.json',
-          'linkedin_courses.json',
-          'linkedin_education.json',
-          'linkedin_experience.json',
-          'linkedin_languages.json',
-          'linkedin_personal.json',
-          'linkedin_strengths.json',
-          'linkedin_technologies.json',
-        ];
-
-        // Cargar todos los archivos en paralelo
-        const dataPromises = jsonFiles.map(filename =>
-          fetch(`/data/${filename}`).then(response => {
-            if (!response.ok) throw new Error(`No se pudo cargar ${filename}`);
-            return response.json();
+        const dataEntries = await Promise.all(
+          Object.entries(JSON_FILES).map(async ([key, fileName]) => {
+            const data = await fetchJson(fileName);
+            // Extrae el contenido del objeto si tiene una clave primaria
+            return [key, data[key] || data];
           })
         );
 
-        const [certs, contact, courses, edu, exp, langs, personal, strengths, technologies] = await Promise.all(dataPromises);
+        if (isCancelled) return;
 
-        if (cancelled) return;
-
-        // Preparar objeto raw con la data sin procesar
-        const rawData = {
-          personal: personal.personal || personal,
-          experiences: exp.experiences || exp,
-          education: edu.education || edu,
-          certifications: certs.certifications || certs,
-          courses: courses.courses || courses,
-          strengths: strengths.strengths || strengths,
-          technologies: technologies.technologies || technologies,
-          contact: contact.contact || contact,
-          languages: langs.languages || langs,
-        };
-
-        // Adaptar datos usando el adapter
+        const rawData = Object.fromEntries(dataEntries);
         const adaptedData = adaptLinkedInData(rawData);
 
         setCvData(adaptedData);
+        setError(null);
 
       } catch (err) {
-        if (!cancelled) {
-          console.error('Error cargando datos del CV:', err);
-          setError(String(err));
-          setCvData(null);
+        if (!isCancelled) {
+          console.error("Error al cargar los datos del CV:", err);
+          setError(err.message || 'Ocurrió un error desconocido.');
         }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!isCancelled) {
+          setLoading(false);
+        }
       }
-    }
+    };
 
-    loadCVData();
+    loadData();
 
     return () => {
-      cancelled = true;
+      isCancelled = true;
     };
   }, []);
 

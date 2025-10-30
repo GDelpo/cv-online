@@ -1,6 +1,5 @@
 
-import { Mail, Github, MapPin, UserRound, Linkedin } from 'lucide-react';
-import Section from '@layout/Section';
+import { Mail, Github, MapPin, Linkedin } from 'lucide-react';
 
 const ContactItem = ({ icon: Icon, text, href, isExternal }) => {
   const linkProps = isExternal 
@@ -23,14 +22,12 @@ const ContactItem = ({ icon: Icon, text, href, isExternal }) => {
   );
 };
 
-const Contact = ({ 
-  email, 
-  github,
-  linkedin, 
-  location, 
-  animationType = "fadeIn",
-  className = "" 
-}) => {
+const Contact = ({ data }) => {
+  if (!data) {
+    return null;
+  }
+  const { email, github, linkedin, location } = data;
+
   const contactItems = [
     email && { icon: Mail, text: email, href: `mailto:${email}` },
     github && { icon: Github, text: github, href: `https://${github}`, isExternal: true },
@@ -43,19 +40,11 @@ const Contact = ({
   }
 
   return (
-    <Section 
-      icon={UserRound} 
-      title="Contacto" 
-      variant="sidebar" 
-      animationType={animationType}
-      className={className}
-    >
-      <div className="space-y-3">
-        {contactItems.map((item, index) => (
-          <ContactItem key={`contact-${index}-${item.text}`} {...item} />
-        ))}
-      </div>
-    </Section>
+    <div className="space-y-3">
+      {contactItems.map((item, index) => (
+        <ContactItem key={`contact-${index}-${item.text}`} {...item} />
+      ))}
+    </div>
   );
 };
 

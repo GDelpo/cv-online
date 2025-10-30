@@ -15,58 +15,98 @@ import ContinuousLearning from '@sections/ContinuousLearning';
 import Card from '@ui/Card';
 import { formatBuildDate } from '@utils/date';
 import TabButton from '@ui/TabButton';
+import { Briefcase, GraduationCap, Award, BookOpen, User, Cpu, Languages as LanguagesIcon, Zap } from 'lucide-react';
+import Section from '@components/common/layout/Section';
+
+
+const SECTION_COMPONENTS = {
+  experience: Experience,
+  education: Education,
+  certifications: Certifications,
+  'continuous-learning': ContinuousLearning,
+  contact: Contact,
+  tech: TechStack,
+  languages: Languages,
+  strengths: Strengths,
+};
+
 
 // Configuración de secciones centralizada y reutilizable
 const CV_SECTIONS = [
   { 
     id: 'experience', 
     label: 'Experiencia', 
+    title: 'Experiencia Profesional',
+    icon: Briefcase,
+    component: SECTION_COMPONENTS.experience,
     area: 'main',
     priority: 1
   },
   { 
     id: 'education', 
     label: 'Educación', 
+    title: 'Educación Formal',
+    icon: GraduationCap,
+    component: SECTION_COMPONENTS.education,
     area: 'main',
     priority: 2
   },
   { 
     id: 'certifications', 
     label: 'Certificaciones', 
+    title: 'Certificaciones Relevantes',
+    icon: Award,
+    component: SECTION_COMPONENTS.certifications,
     area: 'main',
     priority: 3
   },
   { 
     id: 'continuous-learning', 
     label: 'Aprendizaje', 
+    title: 'Aprendizaje Continuo',
+    icon: BookOpen,
+    component: SECTION_COMPONENTS['continuous-learning'],
     area: 'main',
     priority: 4
   },
   { 
     id: 'contact', 
     label: 'Contacto', 
+    title: 'Información de Contacto',
+    icon: User,
+    component: SECTION_COMPONENTS.contact,
     area: 'sidebar',
     priority: 1
   },
   { 
     id: 'tech', 
     label: 'Tecnologías', 
+    title: 'Stack Tecnológico',
+    icon: Cpu,
+    component: SECTION_COMPONENTS.tech,
     area: 'sidebar',
     priority: 2
   },
   { 
     id: 'languages', 
     label: 'Idiomas', 
+    title: 'Idiomas',
+    icon: LanguagesIcon,
+    component: SECTION_COMPONENTS.languages,
     area: 'sidebar',
     priority: 3
   },
   { 
     id: 'strengths', 
     label: 'Fortalezas', 
+    title: 'Fortalezas Clave',
+    icon: Zap,
+    component: SECTION_COMPONENTS.strengths,
     area: 'sidebar',
     priority: 4
   }
 ];
+
 
 const Cv = ({ cvData }) => {
   const isDesktop = useBreakpoint('lg');
@@ -78,23 +118,18 @@ const Cv = ({ cvData }) => {
       validateCvData(cvData);
     }
   }, [cvData]);
-
-  // Función para obtener el componente de cada sección con diferentes animaciones
-  const getSectionComponent = (sectionId, index = 0) => {
-    const animationTypes = ['slideUp', 'fadeIn', 'scaleIn'];
-    const animationType = animationTypes[index % animationTypes.length];
-    
-    const components = {
-      experience: <Experience experiences={cvData.experiences} animationType={animationType} />,
-      education: <Education education={cvData.education} animationType={animationType} />,
-      certifications: <Certifications certifications={cvData.certifications} animationType={animationType} />,
-      'continuous-learning': <ContinuousLearning continuousLearning={cvData.continuousLearning} animationType={animationType} />,
-      contact: <Contact {...cvData.contact} animationType="fadeIn" />,
-      tech: <TechStack technologies={cvData.technologies} animationType="scaleIn" />,
-      languages: <Languages languages={cvData.languages} animationType="slideUp" />,
-      strengths: <Strengths items={cvData.strengths} animationType="fadeIn" />
+  const getSectionData = (sectionId) => {
+    const dataMap = {
+      experience: cvData.experiences,
+      education: cvData.education,
+      certifications: cvData.certifications,
+      'continuous-learning': cvData.continuousLearning,
+      contact: cvData.contact,
+      tech: cvData.technologies,
+      languages: cvData.languages,
+      strengths: cvData.strengths,
     };
-    return components[sectionId];
+    return dataMap[sectionId];
   };
 
   // Filtrar y ordenar secciones por área y prioridad
@@ -115,20 +150,61 @@ const Cv = ({ cvData }) => {
   );
 
   // Renderizar secciones con animaciones y error boundaries
-  const renderSections = (sections) => 
-    sections.map((section, index) => (
-      <Card key={section.id}>
+  const renderSections = (sections, isSidebar = false) =>
+    sections.map((section, index) => {
+      const SectionComponent = section.component;
+      const sectionData = getSectionData(section.id);
+      const animationTypes = ['slideUp', 'fadeIn', 'scaleIn'];
+      const animationType = animationTypes[index % animationTypes.length];
+
+      return (
+        <Card key={section.id}>
+          <ErrorBoundary
+            title={`Error en la sección ${section.label}`}
+            message="No se pudo cargar esta sección."
+          >
+            <Suspense fallback={<SectionLoader />}>
+              <Section
+                icon={section.icon}
+                title={section.title}
+                variant={isSidebar ? 'sidebar' : 'default'}
+                animationType={animationType}
+              >
+                <SectionComponent data={sectionData} />
+              </Section>
+            </Suspense>
+          </ErrorBoundary>
+        </Card>
+      );
+    });
+
+  const renderActiveSection = () => {
+    const section = CV_SECTIONS.find(s => s.id === activeView);
+    if (!section) return null;
+
+    const SectionComponent = section.component;
+    const sectionData = getSectionData(section.id);
+
+    return (
+      <Card>
         <ErrorBoundary
-          title="Error en la sección"
-          message={`No se pudo cargar la sección ${section.label}. Esto no afecta el resto del CV.`}
+          title={`Error en la sección ${section.label}`}
+          message="No se pudo cargar esta sección."
         >
           <Suspense fallback={<SectionLoader />}>
-            {getSectionComponent(section.id, index)}
+            <Section
+              icon={section.icon}
+              title={section.title}
+              variant="default"
+              animationType="fadeIn"
+            >
+              <SectionComponent data={sectionData} />
+            </Section>
           </Suspense>
         </ErrorBoundary>
       </Card>
-    ));
-
+    );
+  };
   return (
     <div className={`space-y-6 ${COMMON_STYLES.transition}`}>
       <ErrorBoundary
@@ -141,7 +217,7 @@ const Cv = ({ cvData }) => {
       {isDesktop ? (
         <div className="grid lg:grid-cols-[1fr,2fr] gap-6">
           <aside className="space-y-6">
-            {renderSections(sidebarSections)}
+            {renderSections(sidebarSections, true)}
           </aside>
           <main className="space-y-6">
             {renderSections(mainSections)}
@@ -163,16 +239,7 @@ const Cv = ({ cvData }) => {
           </nav>
 
           {/* Contenido activo */}
-          <Card>
-            <ErrorBoundary
-              title="Error en la sección activa"
-              message="No se pudo cargar la sección seleccionada."
-            >
-              <Suspense fallback={<SectionLoader />}>
-                {getSectionComponent(activeView)}
-              </Suspense>
-            </ErrorBoundary>
-          </Card>
+          {renderActiveSection()}
         </div>
       )}
 

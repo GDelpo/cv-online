@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Award, ExternalLink } from 'lucide-react';
-import Section from '@layout/Section';
 import Button from '@ui/Button';
 import AnimatedCard from '@ui/AnimatedCard';
 import { COMMON_STYLES } from '@constants/styles';
@@ -103,27 +102,22 @@ const CertificationItem = ({ certification }) => {
   );
 };
 
-const Certifications = ({ certifications, animationType = "scaleIn" }) => {
+const Certifications = ({ data = [] }) => {
   const [showAll, setShowAll] = useState(false);
   
   // Número de certificaciones a mostrar inicialmente
   const INITIAL_DISPLAY = 3;
   
-  if (!certifications || certifications.length === 0) {
+  if (!data || data.length === 0) {
     return null;
   }
 
   // Determinar qué certificaciones mostrar
-  const displayedCerts = showAll ? certifications : certifications.slice(0, INITIAL_DISPLAY);
-  const hasMore = certifications.length > INITIAL_DISPLAY;
+  const displayedCerts = showAll ? data : data.slice(0, INITIAL_DISPLAY);
+  const hasMore = data.length > INITIAL_DISPLAY;
 
   return (
-    <Section 
-      icon={Award} 
-      title="Certificaciones" 
-      className="mb-6"
-      animationType={animationType}
-    >
+    <>
       <div className="space-y-4">
         {displayedCerts.map((cert, index) => (
           <AnimatedCard 
@@ -158,7 +152,7 @@ const Certifications = ({ certifications, animationType = "scaleIn" }) => {
         >
           {showAll 
             ? `Ver menos certificaciones` 
-            : `Ver todas las certificaciones (${certifications.length - INITIAL_DISPLAY} más)`
+            : `Ver todas las certificaciones (${data.length - INITIAL_DISPLAY} más)`
           }
         </button>
       )}
@@ -179,7 +173,7 @@ const Certifications = ({ certifications, animationType = "scaleIn" }) => {
           </div>
         </div>
       </div>
-    </Section>
+    </>
   );
 };
 

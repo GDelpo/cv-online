@@ -1,22 +1,16 @@
 
 import { BookOpen, TrendingUp } from 'lucide-react';
-import Section from '@layout/Section';
 import Badge from '@ui/Badge';
 
-const ContinuousLearning = ({ continuousLearning, animationType = "slideUp" }) => {
-  if (!continuousLearning || Object.keys(continuousLearning).length === 0) {
+const ContinuousLearning = ({ data }) => {
+  if (!data || Object.keys(data).length === 0) {
     return null;
   }
 
   return (
-    <Section 
-      icon={BookOpen} 
-      title="Aprendizaje Continuo" 
-      className="mb-6"
-      animationType={animationType}
-    >
+    <>
       <div className="space-y-4">
-        {Object.values(continuousLearning).map((platformData) => (
+        {Object.values(data).map((platformData) => (
           <div key={platformData.platform} className="mb-4">
             <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3 flex items-center gap-2">
               <TrendingUp size={16} />
@@ -55,7 +49,7 @@ const ContinuousLearning = ({ continuousLearning, animationType = "slideUp" }) =
           </div>
         </div>
       </div>
-    </Section>
+    </>
   );
 };
 

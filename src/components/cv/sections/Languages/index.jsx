@@ -1,6 +1,4 @@
 
-import { Globe } from 'lucide-react';
-import Section from '@layout/Section';
 import LanguageLevel from './LanguageLevel';
 import { generateKey, validateArray } from '@/utils/componentHelpers';
 
@@ -16,34 +14,22 @@ const LanguageItem = ({ language, level, certifications }) => (
   </div>
 );
 
-const Languages = ({ 
-  languages = [], 
-  animationType = "slideUp",
-  className = ""
-}) => {
-  if (!validateArray(languages, 'Languages')) {
+const Languages = ({ data = [] }) => {
+  if (!validateArray(data, 'Languages')) {
     return null;
   }
 
   return (
-    <Section 
-      icon={Globe} 
-      title="Idiomas" 
-      variant="sidebar" 
-      animationType={animationType}
-      className={className}
-    >
-      <div className="space-y-2">
-        {languages.map((lang, index) => (
-          <LanguageItem
-            key={generateKey('language', index, lang)}
-            language={typeof lang === 'string' ? lang : lang.language}
-            level={lang.level || 'Intermedio'}
-            certifications={lang.certifications}
-          />
-        ))}
-      </div>
-    </Section>
+    <div className="space-y-2">
+      {data.map((lang, index) => (
+        <LanguageItem
+          key={generateKey('language', index, lang)}
+          language={typeof lang === 'string' ? lang : lang.language}
+          level={lang.level || 'Intermedio'}
+          certifications={lang.certifications}
+        />
+      ))}
+    </div>
   );
 };
 
