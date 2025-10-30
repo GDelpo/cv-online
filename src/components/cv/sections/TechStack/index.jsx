@@ -1,15 +1,9 @@
 
-import { Zap } from 'lucide-react';
-import Section from '@layout/Section';
 import TechnologyItem from './TechnologyItem';
 import AnimatedCard from '@ui/AnimatedCard';
 import { TECH_CATEGORY_COLORS } from '@constants/styles';
 
-const TechStack = ({ 
-  technologies = {}, 
-  animationType = "scaleIn",
-  className = ""
-}) => {
+const TechStack = ({ data = {} }) => {
   // Componente interno reutilizable para cada sección
   const TechSection = ({ title, items }) => (
     <div className="mb-4 last:mb-0">
@@ -43,7 +37,7 @@ const TechStack = ({
   );
 
   // Generar frameworks de forma más limpia
-  const frameworks = technologies.Lenguajes?.flatMap(lang => 
+  const frameworks = data.Lenguajes?.flatMap(lang =>
     lang.frameworks?.map(framework => ({
       name: framework,
       color: lang.color
@@ -52,27 +46,21 @@ const TechStack = ({
 
   // Categorías especiales que requieren tratamiento diferente
   const specialCategories = ['Lenguajes'];
-  const otherCategories = Object.keys(technologies).filter(
+  const otherCategories = Object.keys(data).filter(
     category => !specialCategories.includes(category)
   );
 
-  if (!Object.keys(technologies).length) {
-    console.warn('TechStack component: No technologies provided');
+  if (!Object.keys(data).length) {
+    console.warn('TechStack component: No data provided');
     return null;
   }
 
   return (
-    <Section 
-      icon={Zap} 
-      title="Tecnologías" 
-      variant="sidebar" 
-      animationType={animationType}
-      className={className}
-    >
+    <>
       {/* Lenguajes */}
-      {technologies.Lenguajes && renderTechSection(
+      {data.Lenguajes && renderTechSection(
         "Lenguajes", 
-        technologies.Lenguajes,
+        data.Lenguajes,
         'languages'
       )}
       
@@ -88,12 +76,12 @@ const TechStack = ({
         <div key={`tech-category-${category}`}>
           {renderTechSection(
             category,
-            technologies[category],
+            data[category],
             category.toLowerCase()
           )}
         </div>
       ))}
-    </Section>
+    </>
   );
 };
 
