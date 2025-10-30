@@ -65,8 +65,7 @@ const Header = ({ name, title, description, photo }) => {
                     <IconWrapper 
                       icon={User} 
                       size="lg" 
-                      color="white" 
-                      className="w-32 h-32 opacity-70"
+                      className="w-32 h-32 opacity-70 text-white"
                     />
                   </div>
                 )}
