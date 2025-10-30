@@ -30,8 +30,8 @@ const Education = ({ data }) => {
         </div>
 
         {/* Badge de estado */}
-        <div className="flex flex-col items-end gap-2">
-          <div className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
+        <div className="flex flex-col items-start sm:items-end gap-2">
+          <div className="px-3 py-1 w-full sm:w-auto text-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
             ✓ Completado
           </div>
         </div>

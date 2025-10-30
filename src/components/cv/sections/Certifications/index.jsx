@@ -16,7 +16,7 @@ const CertificationItem = ({ certification }) => {
         {/* Header con título, fecha y verificación */}
         <div className="mb-4">
           {/* Título con indicador de verificación y fecha */}
-          <div className="flex items-start justify-between gap-4 mb-3">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-3">
             <div className="flex items-start gap-4 flex-1">
               {verified && (
                 <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25">
@@ -34,8 +34,8 @@ const CertificationItem = ({ certification }) => {
             </div>
             
             {/* Fecha alineada a la derecha a la altura del título */}
-            <div className="flex-shrink-0">
-              <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-bold rounded-xl shadow-md shadow-blue-500/15 dark:shadow-blue-500/20">
+            <div className="flex-shrink-0 w-full sm:w-auto">
+              <span className="w-full text-center inline-block sm:w-auto px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-bold rounded-xl shadow-md shadow-blue-500/15 dark:shadow-blue-500/20">
                 {date}
               </span>
             </div>
@@ -44,7 +44,7 @@ const CertificationItem = ({ certification }) => {
           {/* ID de credencial y botón */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* ID de credencial */}
-            <div className="flex-1">
+            <div className="flex-1 w-full">
               {credentialId && (
                 <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -56,13 +56,13 @@ const CertificationItem = ({ certification }) => {
             </div>
             
             {/* Botón para ver credencial */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-full sm:w-auto">
               {credentialUrl && credentialUrl !== '#' && (
                 <Button
                   variant="primary"
                   size="md"
                   onClick={() => window.open(credentialUrl, '_blank')}
-                  className="inline-flex items-center gap-3 px-6 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3 text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01]"
                 >
                   <ExternalLink size={16} />
                   Ver Credencial
@@ -74,7 +74,7 @@ const CertificationItem = ({ certification }) => {
                   variant="outline"
                   size="md"
                   disabled
-                  className="inline-flex items-center gap-3 px-6 py-3 text-sm opacity-60"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3 text-sm opacity-60"
                 >
                   <ExternalLink size={16} />
                   Próximamente
