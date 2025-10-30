@@ -16,7 +16,7 @@ import Card from '@ui/Card';
 import { formatBuildDate } from '@utils/date';
 import TabButton from '@ui/TabButton';
 import { Briefcase, GraduationCap, Award, BookOpen, User, Cpu, Languages as LanguagesIcon, Zap } from 'lucide-react';
-import Section from '@components/common/layout/Section';
+import Section from '@layout/Section';
 
 
 const SECTION_COMPONENTS = {

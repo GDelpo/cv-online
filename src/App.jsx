@@ -1,8 +1,8 @@
-import Cv from '@cv/CV';
-import ATSCV from '@cv/ATSCV';
+import Cv from './components/cv/CV';
+import ATSCV from './components/cv/ATSCV';
 import { useCVData } from '@hooks/useCVData';
 import { COMMON_STYLES } from '@constants/styles';
-import ThemeToggle from '@ui/ThemeToggle';
+import ThemeToggle from '@icons/ThemeToggle';
 import PrintButton from '@ui/PrintButton';
 import ScrollToTop from '@ui/ScrollToTop';
 import ATSInfo from '@ui/ATSInfo';
@@ -30,7 +30,7 @@ const FloatingControls = () => (
 );
 
 function App() {
-  const { cvData, loading, error } = useCVData();
+  const { cvData } = useCVData();
 
   return (
     <div className={`
@@ -53,18 +53,8 @@ function App() {
       
       {/* Versión normal para pantalla */}
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 print:hidden">
-        {loading && (
-          <div className="mb-4 text-xs text-gray-500 dark:text-gray-400 italic">Cargando datos de LinkedIn...</div>
-        )}
-        {!loading && cvData && (
-          <>
-            <Cv cvData={cvData} />
-            <div className="mt-4 text-[10px] text-gray-400 dark:text-gray-500">Fuente de datos: LinkedIn (JSON)</div>
-          </>
-        )}
-        {error && (
-          <div className="mb-4 text-xs text-red-500 dark:text-red-400 italic">Error cargando datos: {error}</div>
-        )}
+        <Cv cvData={cvData} />
+        <div className="mt-4 text-[10px] text-gray-400 dark:text-gray-500">Fuente de datos: LinkedIn (JSON)</div>
       </div>
 
       {/* Versión ATS para impresión */}

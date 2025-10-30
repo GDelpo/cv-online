@@ -21,7 +21,7 @@ const Education = ({ data }) => {
               <GraduationCap size={16} className="text-blue-600 dark:text-blue-400" />
               <span className="font-medium">{data.institution}</span>
             </div>
-            
+
             <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
               <Calendar size={16} className="text-blue-600 dark:text-blue-400" />
               <span>{data.period}</span>
