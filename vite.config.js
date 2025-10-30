@@ -18,9 +18,10 @@ export default defineConfig({
       '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
       '@data': fileURLToPath(new URL('./src/data', import.meta.url)),
       '@ui': fileURLToPath(new URL('./src/components/common/ui', import.meta.url)),
-      '@layout': fileURLToPath(new URL('./src/components/common/layout', import.meta.url)),
-      '@cv': fileURLToPath(new URL('./src/components/cv', import.meta.url)),
-      '@sections': fileURLToPath(new URL('./src/components/cv/sections', import.meta.url)),
+      '@layout': fileURLToPath(new URL('./src/components/layout', import.meta.url)),
+      '@icons': fileURLToPath(new URL('./src/components/icons', import.meta.url)),
+      '@sections': fileURLToPath(new URL('./src/components/sections', import.meta.url)),
+      '@cv/header': fileURLToPath(new URL('./src/components/cv/header', import.meta.url)),
     }
   }
 })

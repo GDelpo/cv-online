@@ -1,5 +1,5 @@
 import { User } from 'lucide-react';
-import IconWrapper from '@ui/IconWrapper';
+import IconWrapper from '@icons/IconWrapper';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { useTypingEffect } from '@hooks/useTypingEffect';
 import { COMMON_STYLES } from '@constants/styles';
