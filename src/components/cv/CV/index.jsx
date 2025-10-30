@@ -167,7 +167,7 @@ const Cv = ({ cvData }) => {
               <Section
                 icon={section.icon}
                 title={section.title}
-                variant={isSidebar ? 'sidebar' : 'default'}
+                variant={isSidebar ? 'sidebar' : 'main'}
                 animationType={animationType}
               >
                 <SectionComponent data={sectionData} />
@@ -195,7 +195,7 @@ const Cv = ({ cvData }) => {
             <Section
               icon={section.icon}
               title={section.title}
-              variant="default"
+              variant="main"
               animationType="fadeIn"
             >
               <SectionComponent data={sectionData} />
