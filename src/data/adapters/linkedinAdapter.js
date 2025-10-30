@@ -4,12 +4,12 @@
 import { TECH_COLORS, TECH_CATEGORY_COLORS } from '@constants/styles';
 
 export function adaptLinkedInData(raw = {}) {
-  const personal = raw.personal || {};
+  const personal = raw.personal?.personal || {};
   const experiences = Array.isArray(raw.experiences?.experiences) ? raw.experiences.experiences : [];
   const educationArr = Array.isArray(raw.education?.education) ? raw.education.education : [];
   const certificationsArr = Array.isArray(raw.certifications?.certifications) ? raw.certifications.certifications : [];
   const coursesArr = Array.isArray(raw.courses?.courses) ? raw.courses.courses : [];
-  const contactRaw = raw.contact || {};
+  const contactRaw = raw.contact?.contact || {};
   const languagesArr = Array.isArray(raw.languages?.languages) ? raw.languages.languages : [];
 
   // Colores disponibles para asignar por posición a lenguajes
