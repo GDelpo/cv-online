@@ -102,7 +102,7 @@ cuenta a Guido. Se corre solo a mano, nunca en CI ni programado. Ver [scraper/RE
 
 | Archivo | Qué tiene |
 |---|---|
-| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, `projects`, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, niveles de idioma. También `extraLanguages`: `Español / Nativo` no está en el export (`Languages.csv` solo trae inglés) y ningún guard lo ata a una fuente. |
+| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, `projects`, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, sus textos reescritos (`bulletRewrites`), niveles de idioma. También `extraLanguages`: `Español / Nativo` no está en el export (`Languages.csv` solo trae inglés) y ningún guard lo ata a una fuente. |
 | `data/overlays/en.json` | Traducciones, una entrada `{ source, en }` por texto. |
 | `data/ui.es.json`, `data/ui.en.json` | Textos de la interfaz. Los dos tienen que tener las mismas claves. |
 
