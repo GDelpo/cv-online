@@ -1,3 +1,18 @@
+# Secretos y sesiones: state.json es la sesión del navegador (equivale a un login)
+.env
+.env.*
+!.env.example
+state.json
+
+# Python
+.venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Exports de LinkedIn (traen contactos y mensajes)
+export/
+
 # Logs
 logs
 *.log
