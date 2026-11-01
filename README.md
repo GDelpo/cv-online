@@ -52,6 +52,9 @@ Es el camino normal: no pide login ni scraper.
    | `stale translation: "..."` | Ese texto en español ya no se usa: corregí el `source` o borrá la entrada. |
    | `position "id" has no company and no engagement label` | Agregá la etiqueta en `engagements` de `profile.json`. |
    | `end is null without current: true` | El puesto no trae fecha de fin y no figura como actual: revisá `data/base.json`. |
+   | `end ... is before start`, `... is after the data date` | Fecha imposible: revisá `data/base.json` o LinkedIn. Solo una carrera puede terminar después de la fecha del export. |
+   | `company must be text or null` | Empresa en blanco: poné `null` y la etiqueta en `engagements`. |
+   | `language name: duplicate` | El idioma está dos veces: en el export y en `extraLanguages` de `profile.json`, o repetido. |
 
 6. **Miralo en local:**
 
@@ -59,8 +62,8 @@ Es el camino normal: no pide login ni scraper.
    npm run dev
    ```
 
-   Abrí `http://localhost:5173/` y `http://localhost:5173/en`. Para ver el build, `npm run preview` sirve `dist/`: ahí
-   entrá a `/en/` con barra, porque sin barra Vite devuelve la página en español.
+   Abrí `http://localhost:5173/` y `http://localhost:5173/en`. Para ver el build, `npm run preview` sirve `dist/`, con
+   `/en` igual que en producción (un middleware de `vite.config.js` lo reescribe a `en/index.html`).
 
 7. **Generá los PDF y corré las compuertas.** Cada una tiene que terminar sin error:
 
@@ -99,12 +102,14 @@ cuenta a Guido. Se corre solo a mano, nunca en CI ni programado. Ver [scraper/RE
 
 | Archivo | Qué tiene |
 |---|---|
-| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, niveles de idioma. |
+| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, niveles de idioma. También `extraLanguages`: `Español / Nativo` no está en el export (`Languages.csv` solo trae inglés) y ningún guard lo ata a una fuente. |
 | `data/overlays/en.json` | Traducciones, una entrada `{ source, en }` por texto. |
 | `data/ui.es.json`, `data/ui.en.json` | Textos de la interfaz. Los dos tienen que tener las mismas claves. |
 
 El guard solo controla que cada traducción corresponda al texto en español actual, no que esté bien. El campo `status`
-de `en.json` dice `draft-review-by-guido`: son un borrador hasta que Guido las revise.
+de `en.json` dice `draft-review-by-guido`: son un borrador hasta que Guido las revise. Los títulos de cursos y
+certificaciones quedan en su idioma original en `/en`: es el nombre con el que se emitieron y el que muestra el enlace a
+la credencial.
 
 ## Cómo se arma
 

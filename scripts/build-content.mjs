@@ -7,8 +7,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SUMMARY_MAX = 600
-const DATE = /^\d{4}(-\d{2})?$/
-const DATA_DATE = /^\d{4}-\d{2}$/
+const DATE = /^\d{4}(-(0[1-9]|1[0-2]))?$/
+const DATA_DATE = /^\d{4}-(0[1-9]|1[0-2])$/
 const URL_PATTERN = /^https?:\/\/\S+$/
 const UI_REQUIRED = [
   'meta.title', 'meta.description',
@@ -56,6 +56,23 @@ function checkDate(value, where, problems) {
   }
 }
 
+// YYYY-MM compares correctly as text. A bare year spans its whole year, so "2020" can end a "2020-05" start.
+const earliest = (date) => (date.length > 4 ? date : `${date}-01`)
+const latest = (date) => (date.length > 4 ? date : `${date}-12`)
+const isDate = (value) => typeof value === 'string' && DATE.test(value)
+
+function checkNotFuture(value, dataDate, where, problems) {
+  if (isDate(value) && DATA_DATE.test(dataDate ?? '') && earliest(value) > dataDate) {
+    problems.push(`${where}: ${value} is after the data date ${dataDate}`)
+  }
+}
+
+function checkOrder(start, end, where, problems) {
+  if (isDate(start) && isDate(end) && latest(end) < earliest(start)) {
+    problems.push(`${where}: end ${end} is before start ${start}`)
+  }
+}
+
 function checkUrl(value, where, problems) {
   // INTENTIONAL: these end up in href attributes, so anything but http(s) must never pass.
   if (isText(value) && !URL_PATTERN.test(value)) problems.push(`${where}: not an http(s) URL: "${value}"`)
@@ -89,17 +106,28 @@ function guardBase(base, problems) {
     if (position?.end != null && position?.current === true) {
       problems.push(`${where}: has an end date and current: true`)
     }
+    // INTENTIONAL: blank is not null. `company ?? engagement` would keep the "" and print a blank employer.
+    if (position?.company != null && !isText(position.company)) {
+      problems.push(`${where}: company must be text or null, found ${JSON.stringify(position.company)}`)
+    }
+    checkOrder(position?.start, position?.end, where, problems)
+    checkNotFuture(position?.start, base?.dataDate, `${where}.start`, problems)
+    checkNotFuture(position?.end, base?.dataDate, `${where}.end`, problems)
   }
   for (const item of list(base?.education)) {
     const where = `education "${item?.id}"`
     requireFields(item, ['id', 'degree', 'school'], where, problems)
     checkDate(item?.start, `${where}.start`, problems)
     checkDate(item?.end, `${where}.end`, problems)
+    checkOrder(item?.start, item?.end, where, problems)
+    // Only the start: a degree in progress has an expected end after the data date.
+    checkNotFuture(item?.start, base?.dataDate, `${where}.start`, problems)
   }
   for (const item of list(base?.certifications)) {
     const where = `certification "${item?.id}"`
     requireFields(item, ['id', 'title', 'issuer'], where, problems)
     checkDate(item?.date, `${where}.date`, problems)
+    checkNotFuture(item?.date, base?.dataDate, `${where}.date`, problems)
     checkUrl(item?.credentialUrl, `${where}.credentialUrl`, problems)
   }
   for (const item of list(base?.languages)) {
@@ -194,6 +222,7 @@ function guardProfile(base, profile, problems) {
     }
   }
   for (const item of list(profile?.extraLanguages)) requireFields(item, ['name'], 'profile.extraLanguages item', problems)
+  checkUnique([...list(profile?.extraLanguages), ...list(base?.languages)].map((item) => item?.name), 'language name', problems)
 }
 
 function keyPaths(value, prefix = '') {

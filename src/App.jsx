@@ -24,11 +24,11 @@ const useHydrated = () =>
   )
 
 /** @param {{ content: import('@/lib/types').Content }} props */
-export default function App({ content }) {
+function Page({ content }) {
   const { meta, person, positions, skillGroups, education, certifications, languages, ui } = content
   const hydrated = useHydrated()
   return (
-    <ErrorBoundary>
+    <>
       <div className={`mx-auto max-w-page px-5 pb-10 lg:px-10 ${hydrated ? 'print:hidden' : ''}`}>
         <a
           href="#content"
@@ -52,6 +52,19 @@ export default function App({ content }) {
         </footer>
       </div>
       {hydrated ? <PrintCV content={content} /> : null}
+    </>
+  )
+}
+
+/**
+ * INTENTIONAL: a boundary only catches what renders below it, so everything that reads content lives in Page. Reading
+ * it here, as the footer date used to, would turn bad content into a blank page instead of the fallback.
+ * @param {{ content: import('@/lib/types').Content }} props
+ */
+export default function App({ content }) {
+  return (
+    <ErrorBoundary>
+      <Page content={content} />
     </ErrorBoundary>
   )
 }

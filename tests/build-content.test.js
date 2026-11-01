@@ -206,6 +206,40 @@ describe('guard failures', () => {
     expectGuard((i) => { i.base.certifications[0].date = 'nov. 2024' }, /date must be YYYY-MM or YYYY/)
   })
 
+  it.each([
+    ['position month', (i) => { i.base.positions[0].start = '2020-13' }, /position "vieja"\.start: date must be/],
+    ['education month', (i) => { i.base.education[0].end = '2027-00' }, /education "abc"\.end: date must be/],
+    ['data date month', (i) => { i.base.dataDate = '2026-13' }, /base\.dataDate/],
+    ['position end before start', (i) => { i.base.positions[0].end = '2010-01' }, /position "vieja": end 2010-01 is before start 2015-04/],
+    ['position year end before start', (i) => { i.base.positions[0].end = '2014' }, /position "vieja": end 2014 is before start/],
+    ['education end before start', (i) => { i.base.education[0].end = '2024' }, /education "abc": end 2024 is before start 2025/],
+    ['position start after the data date', (i) => { i.base.positions[1].start = '2027-01' }, /position "freelance"\.start: 2027-01 is after the data date/],
+    ['position start far ahead', (i) => { i.base.positions[1].start = '9999' }, /position "freelance"\.start: 9999 is after the data date/],
+    ['position end after the data date', (i) => { i.base.positions[0].end = '2026-11' }, /position "vieja"\.end: 2026-11 is after the data date/],
+    ['education start after the data date', (i) => { i.base.education[0].start = '2027'; i.base.education[0].end = '2028' }, /education "abc"\.start: 2027 is after the data date/],
+    ['certification after the data date', (i) => { i.base.certifications[0].date = '2027' }, /certification "uno"\.date: 2027 is after the data date/],
+  ])('fails on an impossible date: %s', (_name, mutate, message) => expectGuard(mutate, message))
+
+  it('accepts a degree expected to end after the data date and a year closing its own start', () => {
+    const inputs = fixtures()
+    inputs.base.positions[0].start = '2020-05'
+    inputs.base.positions[0].end = '2020'
+    expect(() => buildContent(inputs)).not.toThrow()
+    expect(inputs.base.education[0].end > inputs.base.dataDate).toBe(true)
+  })
+
+  it('fails on a blank company even when an engagement label exists', () => {
+    expectGuard((i) => {
+      i.base.positions[0].company = ''
+      i.profile.engagements.vieja = 'Independiente'
+    }, /position "vieja": company must be text or null/)
+  })
+
+  it('fails on a language name that appears twice, in the base or through the overlay', () => {
+    expectGuard((i) => { i.base.languages.push({ name: 'Latín', proficiency: null }) }, /language name: duplicate "Latín"/)
+    expectGuard((i) => { i.profile.extraLanguages.push({ name: 'Inglés', level: null }) }, /language name: duplicate "Inglés"/)
+  })
+
   it('fails on a non-http credential URL', () => {
     expectGuard((i) => { i.base.certifications[0].credentialUrl = 'javascript:alert(1)' }, /not an http\(s\) URL/)
   })

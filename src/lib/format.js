@@ -24,14 +24,26 @@ export function formatEnd(end, current, ui) {
   throw new Error('period has no end and is not current')
 }
 
-/** A period that may have no end, as in education: "2019 – 2022", or just "2019". */
+/**
+ * A period where either side may be missing, as in education: "2019 – 2022", "2019", or "" with no dates at all.
+ * INTENTIONAL: LinkedIn lets a degree have no dates, and a missing value renders nothing. A present but malformed date
+ * still throws through formatDate.
+ */
 export function formatPeriod(start, end, months) {
-  const from = formatDate(start, months)
-  return end ? `${from} – ${formatDate(end, months)}` : from
+  return [start, end]
+    .filter(Boolean)
+    .map((date) => formatDate(date, months))
+    .join(' – ')
 }
 
 /** Months since year 0, to place a date on the rail. A year alone counts as its January. */
 export function toMonths(value) {
   const { year, month } = parse(value)
   return year * 12 + (month ?? 1) - 1
+}
+
+/** The moment a period ending on this date is over: an end month or year is inclusive, so the next month's start. */
+export function toMonthsAfter(value) {
+  const { year, month } = parse(value)
+  return year * 12 + (month ?? 12)
 }

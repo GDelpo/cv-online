@@ -17,7 +17,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'cv')
 const MANIFEST = join(OUT, 'manifest.json')
 const LOCALES = ['es', 'en']
-const PRINT_PATH = { es: '/', en: '/en/' }
+const PRINT_PATH = { es: '/', en: '/en' }
 const MAX_PAGES = 2
 
 const contentFile = (locale) => join(ROOT, 'src', 'content', `${locale}.json`)

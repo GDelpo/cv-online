@@ -33,10 +33,29 @@ COLUMNS = {
 }
 MAX_MEMBER_BYTES = 5_000_000
 
-MONTHS = {
-    "jan": 1, "ene": 1, "feb": 2, "mar": 3, "apr": 4, "abr": 4, "may": 5, "jun": 6,
-    "jul": 7, "aug": 8, "ago": 8, "sep": 9, "set": 9, "oct": 10, "nov": 11, "dec": 12, "dic": 12,
-}  # fmt: skip
+# Fields that may legitimately span lines. Every other whitelisted field holding a line break means broken quoting.
+MULTILINE_FIELDS = {("Profile.csv", "Summary"), ("Positions.csv", "Description"), ("Education.csv", "Notes")}
+CONTROL_CHARS = re.compile("[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")
+LINE_BREAK = re.compile("[\r\n]")
+
+# INTENTIONAL: exact names, never a prefix match: "Marketing 2020" must fail, not become March.
+MONTH_NAMES = (
+    ("january", "jan", "enero", "ene"),
+    ("february", "feb", "febrero"),
+    ("march", "mar", "marzo"),
+    ("april", "apr", "abril", "abr"),
+    ("may", "mayo"),
+    ("june", "jun", "junio"),
+    ("july", "jul", "julio"),
+    ("august", "aug", "agosto", "ago"),
+    ("september", "sep", "sept", "septiembre", "setiembre", "set"),
+    ("october", "oct", "octubre"),
+    ("november", "nov", "noviembre"),
+    ("december", "dec", "diciembre", "dic"),
+)
+MONTHS = {name: number for number, names in enumerate(MONTH_NAMES, start=1) for name in names}
+YEAR_MONTH = re.compile(r"\d{4}-(0[1-9]|1[0-2])")
+DATE = re.compile(r"\d{4}(-(0[1-9]|1[0-2]))?")
 
 BULLET_MARK = re.compile("[✅✔☑]️?")
 DECORATION = re.compile("[\U0001f300-\U0001faff☀-➿️‍]+")
@@ -78,7 +97,7 @@ def normalize_date(value):
     if re.fullmatch(r"\d{4}", text):
         return text
     match = re.fullmatch(r"([^\W\d]+)\.? (\d{4})", text)
-    month = MONTHS.get(match.group(1)[:3].lower()) if match else None
+    month = MONTHS.get(match.group(1).lower()) if match else None
     if month is None:
         raise ImportFailure(f"unrecognized date: {text!r}")
     return f"{match.group(2)}-{month:02d}"
@@ -114,19 +133,41 @@ def read_rows(archive, member):
         text = archive.read(info).decode("utf-8-sig")
     except UnicodeDecodeError as error:
         raise ImportFailure(f"{member}: not valid UTF-8 ({error})") from None
-    reader = csv.DictReader(io.StringIO(text, newline=""))
-    columns = COLUMNS[member]
-    missing = [column for column in columns if column not in (reader.fieldnames or [])]
-    if missing:
-        raise ImportFailure(f"{member}: required columns missing: {missing}")
-    rows = []
-    for number, row in enumerate(reader, start=2):
-        if None in row or any(row[column] is None for column in columns):
-            raise ImportFailure(f"{member} line {number}: wrong number of columns")
-        rows.append({column: row[column] for column in columns})
+    try:
+        rows = parse_rows(member, text)
+    except csv.Error as error:
+        raise ImportFailure(f"{member}: malformed CSV ({error})") from None
     if not rows:
         raise ImportFailure(f"{member}: no rows")
     return rows
+
+
+def parse_rows(member, text):
+    # INTENTIONAL: strict, because a lenient reader turns an unterminated quote into one plausible wrong value.
+    reader = csv.DictReader(io.StringIO(text, newline=""), strict=True)
+    columns = COLUMNS[member]
+    header = reader.fieldnames or []
+    missing = [column for column in columns if column not in header]
+    if missing:
+        raise ImportFailure(f"{member}: required columns missing: {missing}")
+    duplicates = sorted({name for name in header if header.count(name) > 1})
+    if duplicates:
+        raise ImportFailure(f"{member}: duplicate columns: {duplicates}")
+    rows = []
+    for row in reader:
+        if None in row or any(row[column] is None for column in columns):
+            raise ImportFailure(f"{member} line {reader.line_num}: wrong number of columns")
+        for column in columns:
+            check_field(member, column, row[column], reader.line_num)
+        rows.append({column: row[column] for column in columns})
+    return rows
+
+
+def check_field(member, column, value, line):
+    if CONTROL_CHARS.search(value):
+        raise ImportFailure(f"{member} line {line}: control character in {column!r}")
+    if (member, column) not in MULTILINE_FIELDS and LINE_BREAK.search(value):
+        raise ImportFailure(f"{member} line {line}: line break in single-line field {column!r}")
 
 
 def read_profile(rows):
@@ -214,8 +255,9 @@ def build_base(archive, data_date):
 
 def validate_base(base):
     """Shared by both importers: same shape, unique ids, no half-built sections."""
-    if not re.fullmatch(r"\d{4}-\d{2}", base.get("dataDate") or ""):
-        raise ImportFailure(f"dataDate must be YYYY-MM, found {base.get('dataDate')!r}")
+    data_date = base.get("dataDate") or ""
+    if not YEAR_MONTH.fullmatch(data_date):
+        raise ImportFailure(f"dataDate must be a valid YYYY-MM, found {data_date!r}")
     if not base["profile"]["about"]:
         raise ImportFailure("profile.about is empty")
     for section in ("positions", "education", "certifications", "skills", "languages"):
@@ -229,6 +271,41 @@ def validate_base(base):
     duplicates = sorted({s for s in base["skills"] if base["skills"].count(s) > 1})
     if duplicates:
         raise ImportFailure(f"skills: duplicates: {duplicates}")
+    for position in base["positions"]:
+        check_chronology(f"position {position['id']!r}", position["start"], position["end"], data_date)
+        check_not_future(f"position {position['id']!r} end", position["end"], data_date)
+    for item in base["education"]:
+        # An end after the data date is fine here: a degree in progress has an expected end.
+        check_chronology(f"education {item['id']!r}", item["start"], item["end"], data_date)
+    for item in base["certifications"]:
+        check_not_future(f"certification {item['id']!r} date", item["date"], data_date)
+
+
+def check_date(value, where):
+    if value is not None and not DATE.fullmatch(value):
+        raise ImportFailure(f"{where}: invalid date {value!r}")
+
+
+def earliest(date):
+    return date if len(date) > 4 else f"{date}-01"
+
+
+def latest(date):
+    return date if len(date) > 4 else f"{date}-12"
+
+
+def check_not_future(where, value, data_date):
+    check_date(value, where)
+    if value is not None and earliest(value) > data_date:
+        raise ImportFailure(f"{where}: {value} is after the data date {data_date}")
+
+
+def check_chronology(where, start, end, data_date):
+    """YYYY-MM compares correctly as text; a bare year spans its whole year, so '2020' can end a '2020-05' start."""
+    check_not_future(f"{where} start", start, data_date)
+    check_date(end, f"{where} end")
+    if start is not None and end is not None and latest(end) < earliest(start):
+        raise ImportFailure(f"{where}: end {end} is before start {start}")
 
 
 def write_base(base, out):

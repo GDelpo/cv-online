@@ -143,7 +143,7 @@
 
 @page {
   size: A4;
-  margin: 14mm 16mm;
+  margin: 13mm 16mm;
 }
 
 @media print {
@@ -159,7 +159,7 @@
 
   html {
     font-size: 10pt;
-    line-height: 1.32;
+    line-height: 1.3;
     scroll-behavior: auto;
   }
 }
@@ -197,6 +197,11 @@
 .print-cv li,
 .print-cv p {
   break-inside: avoid;
+}
+
+/* A list's last item never lands alone at the top of a page, away from its role. */
+.print-cv li:last-child {
+  break-before: avoid;
 }
 
 .print-cv li::before {

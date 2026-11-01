@@ -37,7 +37,11 @@ export default function Experience({ positions, dataDate, ui }) {
               </ul>
               {position.moreBullets.length > 0 ? (
                 <details className="ledger-more">
-                  <summary className="ledger-control">{ui.showMore}</summary>
+                  <summary className="ledger-control">
+                    {ui.showMore}
+                    {/* Every role has this control; the hidden text tells them apart for a screen reader. */}
+                    <span className="sr-only">{`: ${position.company ?? position.engagement}`}</span>
+                  </summary>
                   <ul className="ledger-list mt-1">
                     {position.moreBullets.map((bullet) => (
                       <li key={bullet}>{bullet}</li>

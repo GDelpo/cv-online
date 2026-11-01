@@ -1,6 +1,8 @@
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import App from '../src/App'
+import PrintCV from '../src/components/PrintCV'
+import TenureRail from '../src/components/TenureRail'
 import en from '../src/content/en.json'
 import es from '../src/content/es.json'
 
@@ -50,11 +52,56 @@ describe.each([
     expect(render(data)).toContain(data.languages[0].name)
   })
 
+  it.each([
+    ['no start', { start: null, end: '2027' }, '2027'],
+    ['no end', { start: '2025', end: null }, '2025'],
+    ['no dates', { start: null, end: null }, null],
+  ])('keeps an education item with %s, on screen and in print', (_name, dates, shown) => {
+    const data = copy(content)
+    Object.assign(data.education[0], dates)
+    const screen = render(data)
+    expect(count(screen, /data-education="/g)).toBe(content.education.length)
+    expect(screen).toContain(data.education[0].degree)
+    expect(screen).not.toMatch(/>(undefined|null)</)
+    const print = renderToString(<PrintCV content={data} />)
+    expect(print).toContain(data.education[0].degree)
+    if (shown) expect(print).toContain(shown)
+  })
+
+  it('names the role on each show-more control', () => {
+    const html = render(content)
+    for (const position of content.positions.filter((item) => item.moreBullets.length > 0)) {
+      const label = renderToString(<>{position.company ?? position.engagement}</>)
+      expect(html).toContain(`<span class="sr-only">: ${label}</span>`)
+    }
+  })
+
   it('fails loudly on a position that ended with no date', () => {
     const data = copy(content)
     data.positions[0].current = false
     data.positions[0].end = null
     expect(() => render(data)).toThrow()
+  })
+})
+
+describe('TenureRail', () => {
+  const bars = (positions, dataDate) => {
+    const html = renderToString(<TenureRail positions={positions} dataDate={dataDate} />)
+    return [...html.matchAll(/<rect x="([\d.-]+)%"[^>]* width="([\d.-]+)%"/g)].map(([, x, width]) => ({
+      x: Number(x),
+      width: Number(width),
+    }))
+  }
+  const role = (id, start, end) => ({ id, company: id, start, end, current: end === null })
+
+  it('draws adjacent roles with no gap, because an end month is inclusive', () => {
+    const [next, previous] = bars([role('next', '2020-12', null), role('previous', '2015-04', '2020-11')], '2026-10')
+    expect(previous.x + previous.width).toBeCloseTo(next.x, 1)
+  })
+
+  it('runs a current role through the end of the data month', () => {
+    const [current] = bars([role('current', '2020-12', null)], '2026-10')
+    expect(current.x + current.width).toBeCloseTo(100, 1)
   })
 })
 

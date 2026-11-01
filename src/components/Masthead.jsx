@@ -7,11 +7,12 @@ export default function Masthead({ meta, person, ui }) {
       <header>
         <Toolbar locale={meta.locale} ui={ui} />
         <div className="ledger-double" />
+        {/* Stacked below sm: a 350px line cannot hold the headline at a readable size, so it wraps to two there. */}
         <div className="grid grid-cols-[minmax(0,1fr)_112px] gap-x-4 pt-6 lg:gap-x-10 lg:pt-8">
           <h1 className="font-display text-[40px] font-medium leading-[1.05] tracking-[-0.01em] lg:text-[56px]">
             {person.name}
           </h1>
-          <picture className="col-start-2 row-start-1 lg:row-span-3">
+          <picture className="col-start-2 row-start-1 sm:row-span-3">
             <source srcSet={photo.webp} type="image/webp" />
             {/* INTENTIONAL: lowercase attribute, because React 18 warns on the camelCase prop. The linters call it
                 ignored, but React 18.3 does write it: dist/index.html has fetchpriority="high" on this img. */}
@@ -25,8 +26,8 @@ export default function Masthead({ meta, person, ui }) {
               className="block h-28 w-28 rounded-sm"
             />
           </picture>
-          <p className="col-span-2 mt-4 text-lg leading-snug lg:col-span-1 lg:col-start-1 lg:mt-3">{person.headline}</p>
-          <ul className="col-span-2 mt-4 flex flex-wrap gap-x-5 gap-y-1 lg:col-span-1 lg:col-start-1 lg:mt-3">
+          <p className="col-span-2 mt-4 text-lg leading-snug sm:col-span-1 sm:col-start-1 sm:mt-3">{person.headline}</p>
+          <ul className="col-span-2 mt-4 flex flex-wrap gap-x-5 gap-y-1 sm:col-span-1 sm:col-start-1 sm:mt-3">
             <li>{person.location}</li>
             <li>
               <a className="ledger-link" href={`mailto:${person.email}`}>

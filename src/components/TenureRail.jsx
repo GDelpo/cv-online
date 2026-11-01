@@ -1,4 +1,4 @@
-import { toMonths } from '@/lib/format'
+import { toMonths, toMonthsAfter } from '@/lib/format'
 
 const FIRST_YEAR = 2015
 const YEAR_STEP = 3
@@ -12,7 +12,8 @@ const TOP = 4
  */
 export default function TenureRail({ positions, dataDate }) {
   const from = toMonths(String(FIRST_YEAR))
-  const to = toMonths(dataDate)
+  // End months are inclusive, so adjacent jobs touch: a November end meets a December start with no false gap.
+  const to = toMonthsAfter(dataDate)
   const span = to - from
   const percent = (months) => `${((months / span) * 100).toFixed(2)}%`
   const axisY = TOP + positions.length * ROW + 8
@@ -37,7 +38,7 @@ export default function TenureRail({ positions, dataDate }) {
       {positions.map((position, index) => {
         const start = toMonths(position.start) - from
         if (start < 0) throw new Error(`${position.id} starts before the rail's first year, ${FIRST_YEAR}`)
-        const end = (position.end ? toMonths(position.end) : to) - from
+        const end = (position.end ? toMonthsAfter(position.end) : to) - from
         const y = TOP + index * ROW
         return (
           <g key={position.id}>

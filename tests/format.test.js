@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatDate, formatEnd, toMonths } from '../src/lib/format'
+import { formatDate, formatEnd, formatPeriod, toMonths, toMonthsAfter } from '../src/lib/format'
 
 const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 const ui = { months, present: 'Actualidad' }
@@ -25,6 +25,29 @@ describe('formatEnd', () => {
   })
   it('fails on a past period with no end', () => {
     expect(() => formatEnd(null, false, ui)).toThrow()
+  })
+})
+
+describe('formatPeriod', () => {
+  it('joins the two dates', () => {
+    expect(formatPeriod('2019', '2022-03', months)).toBe('2019 – mar 2022')
+  })
+  it('shows whichever side exists, and nothing without dates', () => {
+    expect(formatPeriod('2019', null, months)).toBe('2019')
+    expect(formatPeriod(null, '2022', months)).toBe('2022')
+    expect(formatPeriod(null, null, months)).toBe('')
+  })
+  it('still fails on a malformed date', () => {
+    expect(() => formatPeriod('soon', null, months)).toThrow()
+  })
+})
+
+describe('toMonthsAfter', () => {
+  it('ends a role where the next month starts', () => {
+    expect(toMonthsAfter('2020-11')).toBe(toMonths('2020-12'))
+  })
+  it('counts a year alone through its December', () => {
+    expect(toMonthsAfter('2020')).toBe(toMonths('2021'))
   })
 })
 

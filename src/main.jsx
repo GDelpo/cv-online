@@ -7,7 +7,8 @@ import './index.css'
 import App from '@/App'
 
 async function start() {
-  const locale = location.pathname.replace(/\/+$/, '') === '/en' ? 'en' : 'es'
+  // /en/index.html is the same file as /en, so it has to load the same locale or hydration replaces the page.
+  const locale = /^\/en(\/index\.html)?\/*$/.test(location.pathname) ? 'en' : 'es'
   // INTENTIONAL: two literal imports, not a template string, so each locale stays its own chunk.
   const { default: content } = await (locale === 'en' ? import('@/content/en.json') : import('@/content/es.json'))
   const root = document.getElementById('root')
