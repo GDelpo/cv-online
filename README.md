@@ -1,134 +1,83 @@
-# CV Online - Guido Delponte
+# cv-online
 
-Un CV interactivo y profesional construido con React, Vite y Tailwind CSS siguiendo las mejores prácticas de desarrollo.
+Guido Delponte's CV as a static site: Spanish at `/`, English at `/en`. Built with React 18, Vite 6 and Tailwind 3,
+prerendered to plain HTML and hydrated in the browser.
 
-## ✨ Características
+## Run it
 
-- **Diseño Responsive**: Optimizado para desktop, tablet y móvil
-- **Tema Oscuro/Claro**: Cambio dinámico de tema con persistencia
-- **Impresión Optimizada**: Estilos específicos para impresión
-- **Performance**: Componentes optimizados y lazy loading
-- **Accesibilidad**: Cumple estándares WCAG
-- **Código Limpio**: Arquitectura modular siguiendo principios DRY
-
-## 🚀 Tecnologías
-
-- **React 18** - Biblioteca principal
-- **Vite** - Build tool y dev server
-- **Tailwind CSS** - Framework de estilos
-- **Lucide React** - Iconos
-- **ESLint** - Linting y calidad de código
-
-## 📁 Estructura del Proyecto
-
-```
-src/
-├── components/           # Componentes reutilizables
-│   ├── common/          # Componentes generales
-│   │   ├── layout/      # Componentes de layout (Section)
-│   │   └── ui/          # Componentes de UI (Button, Card, etc.)
-│   └── cv/              # Componentes específicos del CV
-├── constants/           # Constantes y configuración
-├── hooks/               # Custom hooks (useTheme, useBreakpoint, etc.)
-└── assets/              # Recursos estáticos (imágenes)
-```
-
-## 🛠️ Instalación y Desarrollo
+Requires Node 20 or newer.
 
 ```bash
-# Instalar dependencias
-npm install
-
-# Ejecutar en modo desarrollo
-npm run dev
-
-# Construir para producción
-npm run build
-
-# Previsualizar build de producción
-npm run preview
-
-# Ejecutar linting
+npm ci
+npm run dev       # generates src/content, then starts Vite
 npm run lint
+npm test          # generates src/content, then runs Vitest
+npm run test:py   # importer tests, synthetic fixtures only
 ```
 
-## 📋 Características Técnicas
+## Build
 
-### Arquitectura
-- **Componentes funcionales** con hooks
-- **Principio DRY** aplicado consistentemente
-- **Separación de responsabilidades** clara
-- **Reutilización de código** maximizada
-
-### Performance
-- **Lazy loading** para componentes
-- **Memoización** de cálculos costosos
-- **Optimización de re-renders**
-- **Bundle splitting** automático
-
-### Styling
-- **Sistema de diseño** consistente
-- **Clases utilitarias** reutilizables
-- **Tema dinámico** con CSS custom properties
-- **Responsive design** mobile-first
-
-### Desarrollo
-- **TypeScript-ready** (tipos mediante JSDoc)
-- **ESLint** configurado
-- **Hot reload** rápido
-- **Debugging** optimizado
-
-## 🎨 Personalización
-
-### Colores y Temas
-Los colores y temas se pueden personalizar en `src/constants/styles.js`:
-
-```javascript
-export const TECH_COLORS = {
-  blue: "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100",
-  // ... más colores
-};
+```bash
+npm run build
 ```
 
-### Datos del CV
-Toda la información se centraliza en `src/constants/cv.js`:
+`build` runs, in order: `scripts/build-content.mjs`, `vite build`, the SSR build of `src/entry-server.jsx`,
+`scripts/prerender.mjs` and `scripts/verify-dist.mjs`. The output is `dist/`.
 
-```javascript
-export const cvData = {
-  header: { /* ... */ },
-  contact: { /* ... */ },
-  // ... más secciones
-};
+`verify-dist` fails the build when the pages, the size budgets or the PDF manifest are wrong. [PENDING - the PDF
+generator is not in the repo yet, so until it is, a build only passes with the manifest check skipped:]
+
+```bash
+SKIP_PDF_CHECK=1 npm run build
 ```
 
-## 📱 Responsive Design
+A build made that way must not be deployed: its "Download PDF" links have no files behind them.
 
-- **Mobile First**: Diseño optimizado para móviles
-- **Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px)
-- **Navegación adaptativa**: Tabs en móvil, sidebar en desktop
+## Where the content comes from
 
-## 🖨️ Funcionalidad de Impresión
+The page text is not written in the components. It flows from committed data to generated JSON:
 
-- **Estilos optimizados** para impresión
-- **Ocultar elementos** no necesarios
-- **Layout específico** para papel
-- **Botón de impresión** integrado
+```mermaid
+flowchart LR
+  zip[LinkedIn export ZIP] --> importer[importers/linkedin_zip.py]
+  scraper[scraper/, manual] --> from[importers/from_scraper.py]
+  importer --> base[data/base.json]
+  from --> base
+  base --> build[scripts/build-content.mjs]
+  overlays[data/overlays/ and data/ui.*.json] --> build
+  build --> content[src/content/es.json and en.json, gitignored]
+  content --> app[React app and prerender]
+```
 
-## 🔧 Mejoras Implementadas
+To update the CV from a new export (the ZIP stays outside the repo):
 
-1. **Refactorización de componentes** para mayor reutilización
-2. **Sistema de constantes** centralizado
-3. **Hooks personalizados** para lógica compleja
-4. **Utilidades mejoradas** con manejo de errores
-5. **Arquitectura modular** más mantenible
-6. **Performance optimizada** con lazy loading
-7. **Tipado implícito** con validaciones
-8. **Documentación completa** del código
+```bash
+npm run import:linkedin -- <path-to-export.zip>
+npm run content
+```
 
-## 📄 Licencia
+`build-content` is the guard. It stops `dev`, `test` and `build` on a missing required field, a translation that no
+longer matches its Spanish source, mismatched UI keys, or a skill or bullet from the export that was neither placed nor
+explicitly omitted. Fix those in `data/overlays/profile.json` and `data/overlays/en.json`.
 
-MIT - Ver archivo [LICENSE](LICENSE) para más detalles.
+## Layout
 
----
+```
+data/            base.json, overlays and UI strings (the source of the content)
+importers/       LinkedIn export and scraper importers, with their tests
+scraper/         isolated, manual only; see scraper/README.md
+scripts/         build-content, prerender, verify-dist
+public/          404, robots, favicon, og.jpg, img/
+src/App.jsx      page order
+src/components/  one flat file per section
+src/lib/         date formatting, theme switch, JSDoc types
+src/content/     generated, gitignored
+tests/           Vitest
+```
 
-**Desarrollado por Guido Delponte** - [GitHub](https://github.com/GDelpo)
+Colors and fonts are the CSS variables in `src/index.css`, mapped in `tailwind.config.js`. The Tailwind palette is
+replaced by those tokens, so other colors have no class to use.
+
+## Deploy
+
+Vercel, configured in `vercel.json`: static output, no SPA rewrite, so unknown URLs get `404.html` with a 404 status.
