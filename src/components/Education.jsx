@@ -1,9 +1,4 @@
-import { formatDate } from '@/lib/format'
-
-function period(item, ui) {
-  const start = formatDate(item.start, ui.months)
-  return item.end ? `${start} – ${formatDate(item.end, ui.months)}` : start
-}
+import { formatPeriod } from '@/lib/format'
 
 export default function Education({ items, ui }) {
   return (
@@ -18,7 +13,7 @@ export default function Education({ items, ui }) {
             data-education={item.id}
             className="ledger-row border-t border-rule py-2 first:border-t-0 first:pt-0"
           >
-            <p className="ledger-meta lg:pt-0.5">{period(item, ui)}</p>
+            <p className="ledger-meta lg:pt-0.5">{formatPeriod(item.start, item.end, ui.months)}</p>
             <div>
               <p className="font-semibold">{item.degree}</p>
               <p>

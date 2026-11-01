@@ -13,13 +13,14 @@ export default function Masthead({ meta, person, ui }) {
           </h1>
           <picture className="col-start-2 row-start-1 lg:row-span-3">
             <source srcSet={photo.webp} type="image/webp" />
-            {/* INTENTIONAL: lowercase attribute, because React 18 warns on the camelCase prop. */}
+            {/* INTENTIONAL: lowercase attribute, because React 18 warns on the camelCase prop. The linters call it
+                ignored, but React 18.3 does write it: dist/index.html has fetchpriority="high" on this img. */}
             <img
               src={photo.jpg}
               alt={photo.alt}
               width="112"
               height="112"
-              // eslint-disable-next-line react/no-unknown-property
+              // oxlint-disable-next-line react-doctor/no-unknown-property
               fetchpriority="high"
               className="block h-28 w-28 rounded-sm"
             />

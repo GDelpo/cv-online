@@ -140,3 +140,70 @@
     transition: none;
   }
 }
+
+@page {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+@media print {
+  :root,
+  .dark {
+    --bg: #fff;
+    --text: #000;
+    --muted: #333;
+    --accent: #000;
+    --rule: #999;
+    color-scheme: light;
+  }
+
+  html {
+    font-size: 10pt;
+    line-height: 1.32;
+    scroll-behavior: auto;
+  }
+}
+
+/* One plain column for ATS parsers: no text-transform, no justify, Plex Sans only. */
+.print-cv {
+  font-variant-ligatures: none;
+}
+
+.print-cv h1 {
+  font-size: 18pt;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.print-cv h2 {
+  margin-top: 8pt;
+  border-bottom: 1px solid var(--rule);
+  font-size: 11.5pt;
+  font-weight: 600;
+}
+
+.print-cv h3 {
+  margin-top: 5pt;
+  font-weight: 600;
+}
+
+.print-cv h1,
+.print-cv h2,
+.print-cv h3 {
+  break-after: avoid;
+  break-inside: avoid;
+}
+
+.print-cv li,
+.print-cv p {
+  break-inside: avoid;
+}
+
+.print-cv li::before {
+  content: '• ';
+}
+
+/* A wrap inside an ID or URL makes parsers drop its hyphen. */
+.print-cv-nobreak {
+  white-space: nowrap;
+}

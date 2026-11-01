@@ -24,6 +24,12 @@ export function formatEnd(end, current, ui) {
   throw new Error('period has no end and is not current')
 }
 
+/** A period that may have no end, as in education: "2019 – 2022", or just "2019". */
+export function formatPeriod(start, end, months) {
+  const from = formatDate(start, months)
+  return end ? `${from} – ${formatDate(end, months)}` : from
+}
+
 /** Months since year 0, to place a date on the rail. A year alone counts as its January. */
 export function toMonths(value) {
   const { year, month } = parse(value)

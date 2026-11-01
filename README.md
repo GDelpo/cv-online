@@ -1,83 +1,183 @@
 # cv-online
 
-Guido Delponte's CV as a static site: Spanish at `/`, English at `/en`. Built with React 18, Vite 6 and Tailwind 3,
-prerendered to plain HTML and hydrated in the browser.
+El CV de Guido Delponte como sitio estático: español en `/`, inglés en `/en`, con un PDF por idioma en `/cv/`.
+Usa React 18, Vite 6 y Tailwind 3. Las páginas se prerenderizan a HTML y después se hidratan en el navegador.
 
-## Run it
+Hace falta Node 20 o más nuevo y `npm ci` una vez. El importador usa Python 3 sin dependencias. Los PDF necesitan
+Chrome instalado.
 
-Requires Node 20 or newer.
+## Actualizar el CV desde un export nuevo de LinkedIn
 
-```bash
-npm ci
-npm run dev       # generates src/content, then starts Vite
-npm run lint
-npm test          # generates src/content, then runs Vitest
-npm run test:py   # importer tests, synthetic fixtures only
-```
+Es el camino normal: no pide login ni scraper.
 
-## Build
+1. **Pedí el export.** En LinkedIn: Configuración y privacidad > Privacidad de datos > Obtener una copia de tus datos.
+   Elegí el archivo completo, porque el importador necesita seis CSV y corta si falta uno: `Profile`, `Positions`,
+   `Education`, `Certifications`, `Skills` y `Languages`.
 
-```bash
-npm run build
-```
+2. **Guardá el ZIP fuera del repo.** Trae contactos y mensajes, y el repo es público. `.gitignore` ignora `*.zip` y
+   `export/` por las dudas.
 
-`build` runs, in order: `scripts/build-content.mjs`, `vite build`, the SSR build of `src/entry-server.jsx`,
-`scripts/prerender.mjs` and `scripts/verify-dist.mjs`. The output is `dist/`.
+3. **Importalo.** Reescribe `data/base.json`:
 
-`verify-dist` fails the build when the pages, the size budgets or the PDF manifest are wrong. [PENDING - the PDF
-generator is not in the repo yet, so until it is, a build only passes with the manifest check skipped:]
+   ```bash
+   python importers/linkedin_zip.py "<ruta-al-export>.zip"
+   ```
 
-```bash
-SKIP_PDF_CHECK=1 npm run build
-```
+   Lee solo esos seis CSV y las columnas de `COLUMNS` en el script. La fecha del CV sale del nombre del ZIP
+   (`..._MM-DD-YYYY`). Si el archivo se llama distinto, agregá `--data-date 2026-11`. Si el dato está incompleto, corta
+   con error y no escribe nada.
 
-A build made that way must not be deployed: its "Download PDF" links have no files behind them.
+4. **Mirá qué cambió:**
 
-## Where the content comes from
+   ```bash
+   git diff data/base.json
+   ```
 
-The page text is not written in the components. It flows from committed data to generated JSON:
+5. **Corré el guard** hasta que pase:
+
+   ```bash
+   npm run content
+   ```
+
+   Lista lo que encuentra y no genera nada hasta que esté resuelto. Las traducciones se controlan al final, así que
+   pueden aparecer errores nuevos después de arreglar los primeros:
+
+   | Mensaje | Qué hacer |
+   |---|---|
+   | `skill "X" is neither grouped nor in omit` | Sumalo a un grupo de `skillGroups` o a `omit` en `data/overlays/profile.json`. |
+   | `bullet of "id" is neither tiered nor in omitBullets` | Ponelo en `bulletTiers.<id>.bullets` (se ve siempre), en `moreBullets` (dentro de "ver más") o en `omitBullets`, en `profile.json`. |
+   | `tiered bullet ... is not in the export`, `omitBullets entry is not in the export`, `skill "X" is not in the export` | El texto cambió o ya no está: actualizá o borrá la entrada en `profile.json`. |
+   | `summary sentence not in the export About`, `headline segment not in the export headline` | `summary` y `headline` de `profile.json` solo pueden recortar lo que dice LinkedIn, no reescribirlo: copiá el texto nuevo. |
+   | `missing translation: "..."` | Agregá `{ "source": "<texto en español>", "en": "..." }` en `data/overlays/en.json`. |
+   | `stale translation: "..."` | Ese texto en español ya no se usa: corregí el `source` o borrá la entrada. |
+   | `position "id" has no company and no engagement label` | Agregá la etiqueta en `engagements` de `profile.json`. |
+   | `end is null without current: true` | El puesto no trae fecha de fin y no figura como actual: revisá `data/base.json`. |
+
+6. **Miralo en local:**
+
+   ```bash
+   npm run dev
+   ```
+
+   Abrí `http://localhost:5173/` y `http://localhost:5173/en`. Para ver el build, `npm run preview` sirve `dist/`: ahí
+   entrá a `/en/` con barra, porque sin barra Vite devuelve la página en español.
+
+7. **Generá los PDF y corré las compuertas.** Cada una tiene que terminar sin error:
+
+   ```bash
+   npm run lint
+   npm test
+   npm run pdf
+   npm run build
+   npm run pdf -- --check
+   ```
+
+   `npm run pdf` hace un build, imprime las dos páginas con Chrome contra un servidor local y escribe
+   `public/cv/Guido-Delponte-CV-{es,en}.pdf` y `public/cv/manifest.json`. El segundo build vuelve a armar `dist/` con
+   esos PDF.
+
+   `--check` lee los PDF con `pdftotext` de [Poppler](https://poppler.freedesktop.org/), que tiene que estar en el PATH
+   (Git for Windows lo trae en `mingw64/bin`, que PowerShell no tiene en el PATH por defecto). Controla títulos, los 4 empleadores, viñetas separadas,
+   `/Lang` y que sean 2 páginas o menos.
+
+8. **Commiteá los datos y los PDF:**
+
+   ```bash
+   git add data public/cv
+   git commit -m "chore(data): update the CV from the MM-YYYY export"
+   ```
+
+## Otras formas de actualizarlo
+
+**Editar `data/base.json` a mano**, para un dato puntual. Tiene el mismo formato que deja el importador. Sigue en el
+paso 5. El próximo import pisa este archivo: lo que cambies acá y no en LinkedIn se pierde en ese momento.
+
+**Scraper, último recurso.** `npm run scrape` entra a LinkedIn con credenciales reales, y eso ya le hizo bloquear una
+cuenta a Guido. Se corre solo a mano, nunca en CI ni programado. Ver [scraper/README.md](scraper/README.md).
+
+## Textos que no vienen de LinkedIn
+
+| Archivo | Qué tiene |
+|---|---|
+| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, niveles de idioma. |
+| `data/overlays/en.json` | Traducciones, una entrada `{ source, en }` por texto. |
+| `data/ui.es.json`, `data/ui.en.json` | Textos de la interfaz. Los dos tienen que tener las mismas claves. |
+
+El guard solo controla que cada traducción corresponda al texto en español actual, no que esté bien. El campo `status`
+de `en.json` dice `draft-review-by-guido`: son un borrador hasta que Guido las revise.
+
+## Cómo se arma
 
 ```mermaid
 flowchart LR
-  zip[LinkedIn export ZIP] --> importer[importers/linkedin_zip.py]
+  zip[ZIP de LinkedIn] --> importer[importers/linkedin_zip.py]
   scraper[scraper/, manual] --> from[importers/from_scraper.py]
   importer --> base[data/base.json]
   from --> base
+  hand[edición a mano] --> base
   base --> build[scripts/build-content.mjs]
-  overlays[data/overlays/ and data/ui.*.json] --> build
-  build --> content[src/content/es.json and en.json, gitignored]
-  content --> app[React app and prerender]
+  overlays[data/overlays/ y data/ui.*.json] --> build
+  build --> content[src/content/es.json y en.json, no versionados]
+  content --> app[React y prerender]
+  content --> pdf[scripts/pdf.mjs]
+  pdf --> cv[public/cv/, versionado]
 ```
 
-To update the CV from a new export (the ZIP stays outside the repo):
+`npm run build` corre, en orden: `build-content`, `vite build`, el build SSR de `src/entry-server.jsx`,
+`scripts/prerender.mjs` y `scripts/verify-dist.mjs`. La salida es `dist/`.
 
-```bash
-npm run import:linkedin -- <path-to-export.zip>
-npm run content
+`verify-dist` falla el build si algo de esto no da:
+
+- `lang`, un solo `h1`, 4 puestos y 16 certificaciones en el HTML, canonical y hreflang en cada página.
+- Ningún título de sección en español en `/en`, y ningún `dangerouslySetInnerHTML` en `src/`.
+- `public/cv/manifest.json` coincide con el sha256 de `src/content/{es,en}.json`. Si cambió el contenido y no se
+  regeneraron los PDF, no hay build.
+- Presupuestos en gzip: JS 75 KB, CSS 12 KB, cada JSON de idioma 10 KB, fuentes 71 KB, foto 30 KB.
+
+`SKIP_PDF_CHECK=1` saltea el control del manifest. Lo usa `npm run pdf` para su build interno; un build hecho así no se
+publica.
+
+El CV impreso es un árbol aparte, `src/components/PrintCV.jsx`, que el navegador monta oculto después de hidratar y solo se ve al imprimir:
+una columna, sin foto y con todo desplegado. Sus estilos están al final de `src/index.css`.
+
+Los colores y las fuentes son las variables CSS de `src/index.css`, mapeadas en `tailwind.config.js`. La paleta de
+Tailwind está reemplazada por esos tokens, así que otro color no tiene clase.
+
 ```
-
-`build-content` is the guard. It stops `dev`, `test` and `build` on a missing required field, a translation that no
-longer matches its Spanish source, mismatched UI keys, or a skill or bullet from the export that was neither placed nor
-explicitly omitted. Fix those in `data/overlays/profile.json` and `data/overlays/en.json`.
-
-## Layout
-
-```
-data/            base.json, overlays and UI strings (the source of the content)
-importers/       LinkedIn export and scraper importers, with their tests
-scraper/         isolated, manual only; see scraper/README.md
-scripts/         build-content, prerender, verify-dist
-public/          404, robots, favicon, og.jpg, img/
-src/App.jsx      page order
-src/components/  one flat file per section
-src/lib/         date formatting, theme switch, JSDoc types
-src/content/     generated, gitignored
+data/            base.json, overlays y textos de la interfaz (la fuente del contenido)
+importers/       importadores del export y del scraper, con sus tests
+scraper/         aislado, solo manual
+scripts/         build-content, prerender, verify-dist, pdf
+public/          404, robots, favicon, og.jpg, img/, cv/
+src/App.jsx      orden de la página
+src/components/  un archivo plano por sección
+src/lib/         fechas, tema, tipos JSDoc
+src/content/     generado, no versionado
 tests/           Vitest
 ```
 
-Colors and fonts are the CSS variables in `src/index.css`, mapped in `tailwind.config.js`. The Tailwind palette is
-replaced by those tokens, so other colors have no class to use.
+## Tests
+
+```bash
+npm test
+python -m unittest discover importers/tests
+```
+
+Los del importador usan fixtures sintéticos, nunca un export real.
 
 ## Deploy
 
-Vercel, configured in `vercel.json`: static output, no SPA rewrite, so unknown URLs get `404.html` with a 404 status.
+`vercel.json` configura Vercel: corre `npm run build` y publica `dist/`, sin rewrite de SPA, así que una URL
+desconocida devuelve `404.html` con status 404. `/assets/*` lleva cache inmutable.
+
+Vercel solo necesita Node, porque `build-content` corre ahí y los PDF ya vienen commiteados. Por eso van generados antes
+de pushear: con PDF viejos, `verify-dist` frena el deploy.
+
+[PENDIENTE - todavía no se probó contra un preview de Vercel. Con la URL del preview:]
+
+```bash
+curl -I <url>/en      # 200, sin loop de redirects
+curl -I <url>/nope    # 404
+```
+
+Y en view-source de `/en` tiene que haber contenido y `lang="en"`.

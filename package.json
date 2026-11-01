@@ -12,6 +12,7 @@
     "dev": "vite",
     "prebuild": "npm run content",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs && node scripts/verify-dist.mjs",
+    "pdf": "node scripts/pdf.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "pretest": "npm run content",

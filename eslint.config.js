@@ -5,7 +5,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', 'dist-ssr', '.venv', 'scraper'] },
+  { ignores: ['dist', 'dist-ssr', 'src/content', 'public/cv'] },
   {
     files: ['scripts/**/*.mjs', 'tests/**/*.js'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: globals.node },
@@ -34,6 +34,8 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
+      // INTENTIONAL: React 18 only accepts this attribute in lowercase; see Masthead.jsx.
+      'react/no-unknown-property': ['error', { ignore: ['fetchpriority'] }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

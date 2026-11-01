@@ -1,18 +1,35 @@
+import { useSyncExternalStore } from 'react'
 import Certifications from '@/components/Certifications'
 import Education from '@/components/Education'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import Experience from '@/components/Experience'
 import Languages from '@/components/Languages'
 import Masthead from '@/components/Masthead'
+import PrintCV from '@/components/PrintCV'
 import Skills from '@/components/Skills'
 import { formatDate } from '@/lib/format'
+
+const subscribeToNothing = () => () => {}
+
+/**
+ * INTENTIONAL: false on the server and during hydration, true right after, so PrintCV stays out of the prerendered
+ * HTML. There it would be a second h1 and a copy of every position for crawlers. Without JavaScript the screen tree
+ * prints instead, which is why print:hidden depends on this too.
+ */
+const useHydrated = () =>
+  useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  )
 
 /** @param {{ content: import('@/lib/types').Content }} props */
 export default function App({ content }) {
   const { meta, person, positions, skillGroups, education, certifications, languages, ui } = content
+  const hydrated = useHydrated()
   return (
     <ErrorBoundary>
-      <div className="mx-auto max-w-page px-5 pb-10 lg:px-10">
+      <div className={`mx-auto max-w-page px-5 pb-10 lg:px-10 ${hydrated ? 'print:hidden' : ''}`}>
         <a
           href="#content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-5 focus:top-2 focus:bg-bg focus:px-2 focus:py-1"
@@ -34,6 +51,7 @@ export default function App({ content }) {
           </p>
         </footer>
       </div>
+      {hydrated ? <PrintCV content={content} /> : null}
     </ErrorBoundary>
   )
 }
