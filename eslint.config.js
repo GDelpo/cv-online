@@ -5,7 +5,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', '.venv', 'scraper'] },
+  { ignores: ['dist', 'dist-ssr', '.venv', 'scraper'] },
   {
     files: ['scripts/**/*.mjs', 'tests/**/*.js'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: globals.node },

@@ -1,66 +1,39 @@
-import Cv from './components/cv/CV';
-import ATSCV from './components/cv/ATSCV';
-import { useCVData } from '@hooks/useCVData';
-import { COMMON_STYLES } from '@constants/styles';
-import ThemeToggle from '@icons/ThemeToggle';
-import PrintButton from '@ui/PrintButton';
-import ScrollToTop from '@ui/ScrollToTop';
-import ATSInfo from '@ui/ATSInfo';
-import { formatBuildDate } from '@utils/date';
+import Certifications from '@/components/Certifications'
+import Education from '@/components/Education'
+import ErrorBoundary from '@/components/ErrorBoundary'
+import Experience from '@/components/Experience'
+import Languages from '@/components/Languages'
+import Masthead from '@/components/Masthead'
+import Skills from '@/components/Skills'
+import { formatDate } from '@/lib/format'
 
-// Componente de controles flotantes modernos
-const FloatingControls = () => (
-  <div className="fixed top-6 left-1/2 -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 z-50 print:hidden">
-    <div className="flex items-center gap-3 p-3 rounded-2xl 
-      bg-white/80 dark:bg-gray-900/80 
-      backdrop-blur-xl 
-      border border-white/20 dark:border-gray-700/30
-      shadow-xl shadow-gray-900/10 dark:shadow-gray-900/25
-      hover:shadow-2xl hover:shadow-gray-900/15 dark:hover:shadow-gray-900/30
-      transition-all duration-300 ease-out
-      hover:scale-[1.01]">
-      <PrintButton />
-      <ThemeToggle />
-      <div className="h-5 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
-      <span className="text-[11px] leading-none text-gray-700 dark:text-gray-300 px-1">
-        Última actualización: {formatBuildDate(import.meta.env.VITE_BUILD_TIME)}
-      </span>
-    </div>
-  </div>
-);
-
-function App() {
-  const { cvData } = useCVData();
-
+/** @param {{ content: import('@/lib/types').Content }} props */
+export default function App({ content }) {
+  const { meta, person, positions, skillGroups, education, certifications, languages, ui } = content
   return (
-    <div className={`
-      min-h-screen 
-      ${COMMON_STYLES.gradientBg}
-      ${COMMON_STYLES.transition}
-      print:bg-white
-      relative
-    `}>
-      {/* Background patterns modernos */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl"></div>
+    <ErrorBoundary>
+      <div className="mx-auto max-w-page px-5 pb-10 lg:px-10">
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-5 focus:top-2 focus:bg-bg focus:px-2 focus:py-1"
+        >
+          {ui.skipLink}
+        </a>
+        <Masthead meta={meta} person={person} ui={ui} />
+        <main id="content" tabIndex={-1} className="outline-none">
+          <Experience positions={positions} dataDate={meta.dataDate} ui={ui} />
+          <Skills groups={skillGroups} ui={ui} />
+          <Education items={education} ui={ui} />
+          <Certifications items={certifications} ui={ui} />
+          <Languages items={languages} ui={ui} />
+        </main>
+        <footer className="mt-16">
+          <div className="ledger-double" />
+          <p className="ledger-meta pt-3">
+            {ui.updated} <time dateTime={meta.dataDate}>{formatDate(meta.dataDate, ui.months)}</time>
+          </p>
+        </footer>
       </div>
-      
-      <FloatingControls />
-      <ScrollToTop />
-      <ATSInfo />
-      
-      {/* Versión normal para pantalla */}
-      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 print:hidden">
-        <Cv cvData={cvData} />
-        <div className="mt-4 text-[10px] text-gray-400 dark:text-gray-500">Fuente de datos: LinkedIn (JSON)</div>
-      </div>
-
-      {/* Versión ATS para impresión */}
-      {cvData && <ATSCV cvData={cvData} />}
-    </div>
-  );
+    </ErrorBoundary>
+  )
 }
-
-export default App;
