@@ -80,8 +80,8 @@ Es el camino normal: no pide login ni scraper.
    esos PDF.
 
    `--check` lee los PDF con `pdftotext` de [Poppler](https://poppler.freedesktop.org/), que tiene que estar en el PATH
-   (Git for Windows lo trae en `mingw64/bin`, que PowerShell no tiene en el PATH por defecto). Controla títulos, los 4 empleadores, viñetas separadas,
-   `/Lang` y que sean 2 páginas o menos.
+   (Git for Windows lo trae en `mingw64/bin`, que PowerShell no tiene en el PATH por defecto). Controla títulos, todos los empleadores, viñetas separadas,
+   los proyectos, `/Lang` y que sean 2 páginas o menos.
 
 8. **Commiteá los datos y los PDF:**
 
@@ -102,9 +102,13 @@ cuenta a Guido. Se corre solo a mano, nunca en CI ni programado. Ver [scraper/RE
 
 | Archivo | Qué tiene |
 |---|---|
-| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, niveles de idioma. También `extraLanguages`: `Español / Nativo` no está en el export (`Languages.csv` solo trae inglés) y ningún guard lo ata a una fuente. |
+| `data/overlays/profile.json` | Contacto, URL del sitio, foto, `summary`, `headline`, etiqueta de cada puesto sin empresa, grupos de skills, `projects`, certificaciones destacadas, qué viñetas se muestran y cuáles se omiten, niveles de idioma. También `extraLanguages`: `Español / Nativo` no está en el export (`Languages.csv` solo trae inglés) y ningún guard lo ata a una fuente. |
 | `data/overlays/en.json` | Traducciones, una entrada `{ source, en }` por texto. |
 | `data/ui.es.json`, `data/ui.en.json` | Textos de la interfaz. Los dos tienen que tener las mismas claves. |
+
+`projects` es una lista cerrada: un repo aparece en el sitio y en el PDF solo si está escrito ahí. El guard exige que la
+URL sea `https://github.com/GDelpo/<id>`, sin nada detrás. El comentario de ese bloque explica por qué los demás repos
+quedan afuera por ahora.
 
 El guard solo controla que cada traducción corresponda al texto en español actual, no que esté bien. El campo `status`
 de `en.json` dice `draft-review-by-guido`: son un borrador hasta que Guido las revise. Los títulos de cursos y
@@ -133,11 +137,12 @@ flowchart LR
 
 `verify-dist` falla el build si algo de esto no da:
 
-- `lang`, un solo `h1`, 4 puestos y 16 certificaciones en el HTML, canonical y hreflang en cada página.
+- `lang`, un solo `h1`, y en el HTML tantos puestos, certificaciones, estudios y proyectos como tiene el contenido, más
+  el mapa en sus 4 formas. Canonical y hreflang en cada página.
 - Ningún título de sección en español en `/en`, y ningún `dangerouslySetInnerHTML` en `src/`.
 - `public/cv/manifest.json` coincide con el sha256 de `src/content/{es,en}.json`. Si cambió el contenido y no se
   regeneraron los PDF, no hay build.
-- Presupuestos en gzip: JS 75 KB, CSS 12 KB, cada JSON de idioma 10 KB, fuentes 71 KB, foto 30 KB.
+- Presupuestos en gzip: JS 75 KB, CSS 12 KB, cada JSON de idioma 10 KB, fuentes 91 KB, foto 30 KB.
 
 `SKIP_PDF_CHECK=1` saltea el control del manifest. Lo usa `npm run pdf` para su build interno; un build hecho así no se
 publica.
@@ -146,7 +151,23 @@ El CV impreso es un árbol aparte, `src/components/PrintCV.jsx`, que el navegado
 una columna, sin foto y con todo desplegado. Sus estilos están al final de `src/index.css`.
 
 Los colores y las fuentes son las variables CSS de `src/index.css`, mapeadas en `tailwind.config.js`. La paleta de
-Tailwind está reemplazada por esos tokens, así que otro color no tiene clase.
+Tailwind está reemplazada por esos tokens, así que otro color no tiene clase. `tests/contrast.test.js` lee esas variables
+y calcula el contraste de cada par en los dos temas: 4.5:1 para texto, 3:1 para líneas.
+
+### El mapa
+
+El mapa del encabezado no está dibujado a mano. `layoutTransitMap` en `src/lib/transitMap.js` es una función pura: recibe
+puestos, estudios y grupos de skills, y devuelve coordenadas. Un puesto nuevo en `base.json` entra solo, sin tocar código:
+
+- Los años van a escala. La excepción es un puesto recién empezado, que espera en el borde de la foto para no taparla.
+- Dos puestos que se superponen en el tiempo van en líneas paralelas. Uno que empieza cuando termina otro usa su misma
+  línea.
+- El puesto actual más nuevo es la línea bermellón.
+- Cada grupo de skills es un ramal que sale de la foto. En el celular se pliegan en un solo enlace.
+
+Hay cuatro formas (`wide`, `mid`, `tablet`, `phone`) y el HTML trae las cuatro. El CSS muestra la que entra, así que el
+mapa se ve sin JavaScript. `tests/transit-map.test.js` prueba cada forma con 3, 4, 5 y 6 puestos y con `company` en
+`null`: ninguna etiqueta pisa a otra ni a una línea. Las listas de abajo repiten todo el texto del mapa.
 
 ```
 data/            base.json, overlays y textos de la interfaz (la fuente del contenido)
@@ -156,7 +177,7 @@ scripts/         build-content, prerender, verify-dist, pdf
 public/          404, robots, favicon, og.jpg, img/, cv/
 src/App.jsx      orden de la página
 src/components/  un archivo plano por sección
-src/lib/         fechas, tema, tipos JSDoc
+src/lib/         fechas, tema, tipos JSDoc y la geometría del mapa
 src/content/     generado, no versionado
 tests/           Vitest
 ```
