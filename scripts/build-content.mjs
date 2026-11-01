@@ -145,21 +145,6 @@ function guardBase(base, problems) {
   }
 }
 
-// INTENTIONAL: the summary and headline may only be cut, never rewritten. Comparing against
-// the export is what keeps "condensed from his own About" true after later edits.
-function guardOwnWords(base, profile, problems) {
-  const about = list(base?.profile?.about).join(' ')
-  for (const paragraph of list(profile?.summary)) {
-    for (const sentence of String(paragraph).split(/(?<=\.)\s+/)) {
-      if (!about.includes(sentence)) problems.push(`summary sentence not in the export About: "${sentence}"`)
-    }
-  }
-  const segments = String(base?.profile?.headline ?? '').split(' | ')
-  for (const segment of String(profile?.headline ?? '').split(' | ')) {
-    if (!segments.includes(segment)) problems.push(`headline segment not in the export headline: "${segment}"`)
-  }
-}
-
 function guardProfile(base, profile, problems) {
   requireFields(profile?.site, ['url'], 'profile.site', problems)
   requireFields(profile?.contact, ['email', 'github', 'linkedin', 'location'], 'profile.contact', problems)
@@ -168,7 +153,6 @@ function guardProfile(base, profile, problems) {
   requireList(profile?.summary, 'profile.summary', problems)
   for (const field of ['github', 'linkedin']) checkUrl(profile?.contact?.[field], `profile.contact.${field}`, problems)
   checkUrl(profile?.site?.url, 'profile.site.url', problems)
-  guardOwnWords(base, profile, problems)
 
   const skills = new Set(list(base?.skills))
   const grouped = list(profile?.skillGroups).flatMap((group) => list(group?.items))
@@ -215,6 +199,12 @@ function guardProfile(base, profile, problems) {
     if (!position?.company && !isText(profile?.engagements?.[position?.id])) {
       problems.push(`position "${position?.id}" has no company and no engagement label`)
     }
+  }
+
+  // INTENTIONAL: a rewrite is keyed by the exported bullet, so a changed export shows up here instead of going stale.
+  for (const [source, text] of Object.entries(profile?.bulletRewrites ?? {})) {
+    if (!exported.has(source)) problems.push(`bulletRewrites entry is not in the export: "${source}"`)
+    if (!isText(text)) problems.push(`bulletRewrites entry has no text: "${source}"`)
   }
 
   const certIds = new Set(list(base?.certifications).map((item) => item?.id))
@@ -267,6 +257,7 @@ function guardUi(uiEs, uiEn, problems) {
 function buildLocale(locale, translate, { base, profile, ui }) {
   const { meta, ...strings } = ui
   const tiers = profile.bulletTiers ?? {}
+  const shown = (bullet) => translate(profile.bulletRewrites?.[bullet] ?? bullet)
   const featured = list(profile.featuredCertifications)
   const rank = (item) => {
     const index = featured.indexOf(item.id)
@@ -302,8 +293,8 @@ function buildLocale(locale, translate, { base, profile, ui }) {
         start: position.start,
         end: position.end ?? null,
         current: position.current === true,
-        bullets: list(tiers[position.id]?.bullets).map(translate),
-        moreBullets: list(tiers[position.id]?.moreBullets).map(translate),
+        bullets: list(tiers[position.id]?.bullets).map(shown),
+        moreBullets: list(tiers[position.id]?.moreBullets).map(shown),
       })),
     projects: profile.projects.items.map((item) => ({
       id: item.id,

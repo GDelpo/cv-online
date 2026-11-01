@@ -47,7 +47,7 @@ Es el camino normal: no pide login ni scraper.
    | `skill "X" is neither grouped nor in omit` | Sumalo a un grupo de `skillGroups` o a `omit` en `data/overlays/profile.json`. |
    | `bullet of "id" is neither tiered nor in omitBullets` | Ponelo en `bulletTiers.<id>.bullets` (se ve siempre), en `moreBullets` (dentro de "ver más") o en `omitBullets`, en `profile.json`. |
    | `tiered bullet ... is not in the export`, `omitBullets entry is not in the export`, `skill "X" is not in the export` | El texto cambió o ya no está: actualizá o borrá la entrada en `profile.json`. |
-   | `summary sentence not in the export About`, `headline segment not in the export headline` | `summary` y `headline` de `profile.json` solo pueden recortar lo que dice LinkedIn, no reescribirlo: copiá el texto nuevo. |
+   | `bulletRewrites entry is not in the export` | LinkedIn cambió una viñeta. Actualizá su clave en `bulletRewrites` de `profile.json` y revisá el texto. |
    | `missing translation: "..."` | Agregá `{ "source": "<texto en español>", "en": "..." }` en `data/overlays/en.json`. |
    | `stale translation: "..."` | Ese texto en español ya no se usa: corregí el `source` o borrá la entrada. |
    | `position "id" has no company and no engagement label` | Agregá la etiqueta en `engagements` de `profile.json`. |

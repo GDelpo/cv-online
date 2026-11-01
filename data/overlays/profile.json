@@ -1,29 +1,125 @@
 {
-  "site": { "url": "https://cv-online-puce.vercel.app" },
+  "site": {
+    "url": "https://cv-online-puce.vercel.app"
+  },
   "contact": {
     "email": "guido_delponte@hotmail.com",
     "github": "https://github.com/GDelpo",
     "linkedin": "https://www.linkedin.com/in/guido-delponte-7a26033a4/",
     "location": "Buenos Aires, Argentina"
   },
-  "photo": { "webp": "/img/guido-224.webp", "jpg": "/img/guido-224.jpg", "alt": "Guido Delponte" },
-  "headline": "Python Developer | Analista Técnico Programador | APIs & Automatización",
+  "photo": {
+    "webp": "/img/guido-224.webp",
+    "jpg": "/img/guido-224.jpg",
+    "alt": "Guido Delponte"
+  },
+  "headline": "Desarrollador Python | APIs backend, automatización e integraciones",
   "summary": [
-    "Python Developer & Analista Técnico con más de 3 años de experiencia desarrollando soluciones reales que optimizan procesos y mejoran la operativa del negocio. Me especializo en Python, creando desde automatizaciones y herramientas internas hasta APIs y servicios backend escalables. Trabajo diseñando soluciones integrales: aplicaciones web, sistemas de escritorio y plataformas a medida.",
-    "Manejo un stack versátil: Python, FastAPI, Laravel, Java y React, lo que me permite comprender el ciclo completo de un proyecto, desde el análisis funcional hasta la puesta en producción."
+    "Desarrollo software desde 2018 y lo que más hago es sacarle tareas manuales a un negocio y hacer que sus sistemas se hablen entre sí. Trabajo sobre todo con Python y FastAPI: automatizaciones, herramientas internas, APIs y microservicios.",
+    "Empecé en soporte técnico y redes, y después sumé análisis funcional, sistemas legacy en PHP y puestas en producción. Por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando."
   ],
-  "engagements": { "freelance": "Profesional independiente" },
-  "schoolLabels": { "istea": "ISTEA" },
+  "engagements": {
+    "freelance": "Profesional independiente"
+  },
+  "schoolLabels": {
+    "istea": "ISTEA"
+  },
   "skillGroups": [
-    { "id": "backend", "label": "Backend", "items": ["Python", "FastAPI", "Django", "Flask", "Laravel", "PHP", "Java", "Spring Boot", "Spring Cloud"] },
-    { "id": "frontend", "label": "Frontend", "items": ["React", "JavaScript", "Astro", "HTML5", "CSS3"] },
-    { "id": "databases", "label": "Bases de datos", "items": ["SQL", "pgAdmin", "DBeaver", "MySQL Workbench"] },
-    { "id": "dev-tools", "label": "Herramientas de desarrollo", "items": ["Git", "GitHub", "Docker", "VS Code", "PyCharm", "Postman", "Insomnia"] },
-    { "id": "documentation", "label": "Documentación", "items": ["Docusaurus", "MKdocs"] },
-    { "id": "project-management", "label": "Gestión de proyectos", "items": ["Jira", "ClickUp", "GoodDay"] },
-    { "id": "support", "label": "Soporte e infraestructura", "items": ["Administración de redes y conectividad", "Mantenimiento integral de hardware y software", "Configuración de sistemas de seguridad y cámaras IP"] },
-    { "id": "management-software", "label": "Software de gestión", "items": ["LabWin", "SISE"] },
-    { "id": "office", "label": "Ofimática y comunicación", "items": ["Microsoft Excel", "Microsoft Word", "Microsoft PowerPoint", "Microsoft Teams", "Slack", "Discord"] }
+    {
+      "id": "backend",
+      "label": "Backend",
+      "items": [
+        "Python",
+        "FastAPI",
+        "Django",
+        "Flask",
+        "Laravel",
+        "PHP",
+        "Java",
+        "Spring Boot",
+        "Spring Cloud"
+      ]
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "items": [
+        "React",
+        "JavaScript",
+        "Astro",
+        "HTML5",
+        "CSS3"
+      ]
+    },
+    {
+      "id": "databases",
+      "label": "Bases de datos",
+      "items": [
+        "SQL",
+        "pgAdmin",
+        "DBeaver",
+        "MySQL Workbench"
+      ]
+    },
+    {
+      "id": "dev-tools",
+      "label": "Herramientas de desarrollo",
+      "items": [
+        "Git",
+        "GitHub",
+        "Docker",
+        "VS Code",
+        "PyCharm",
+        "Postman",
+        "Insomnia"
+      ]
+    },
+    {
+      "id": "documentation",
+      "label": "Documentación",
+      "items": [
+        "Docusaurus",
+        "MKdocs"
+      ]
+    },
+    {
+      "id": "project-management",
+      "label": "Gestión de proyectos",
+      "items": [
+        "Jira",
+        "ClickUp",
+        "GoodDay"
+      ]
+    },
+    {
+      "id": "support",
+      "label": "Soporte e infraestructura",
+      "items": [
+        "Administración de redes y conectividad",
+        "Mantenimiento integral de hardware y software",
+        "Configuración de sistemas de seguridad y cámaras IP"
+      ]
+    },
+    {
+      "id": "management-software",
+      "label": "Software de gestión",
+      "items": [
+        "LabWin",
+        "SISE"
+      ]
+    },
+    {
+      "id": "office",
+      "label": "Ofimática y comunicación",
+      "items": [
+        "Microsoft Excel",
+        "Microsoft Word",
+        "Microsoft PowerPoint",
+        "Microsoft Teams",
+        "Slack",
+        "Discord"
+      ]
+    }
   ],
   "projects": {
     "comment": "Allowlist on purpose: a repo reaches the page only by being written here. Check its description against the repo before adding it.",
@@ -103,6 +199,39 @@
   "omitBullets": [
     "Desarrollo de soluciones tecnológicas end-to-end alineadas a requerimientos del negocio."
   ],
-  "languageLevels": { "Full professional proficiency": "Competencia profesional completa" },
-  "extraLanguages": [{ "name": "Español", "level": "Nativo" }]
+  "languageLevels": {
+    "Full professional proficiency": "Competencia profesional completa"
+  },
+  "extraLanguages": [
+    {
+      "name": "Español",
+      "level": "Nativo"
+    }
+  ],
+  "bulletRewrites": {
+    "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores.": "Lideré la implementación y la puesta en producción de NobleOnline, la plataforma digital para productores de seguros.",
+    "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.": "Automaticé procesos de pequeña y gran escala con soluciones propias en Python.",
+    "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.": "Desarrollé APIs y microservicios para integrar sistemas internos y externos.",
+    "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.": "Mantuve, refactoricé y optimicé sistemas legacy en PHP.",
+    "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.": "Relevé requerimientos, analicé sistemas internos y definí sus mejoras.",
+    "Implementación y estructuración de documentación técnica utilizando Docusaurus.": "Armé y ordené la documentación técnica con Docusaurus.",
+    "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.": "Audité, seguí y optimicé los servicios de proveedores externos.",
+    "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos.": "Coordiné con equipos técnicos y áreas de negocio para que cada entrega respondiera a sus objetivos.",
+    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Construí soluciones a medida para optimizar procesos de negocio: aplicaciones web, de escritorio y automatizaciones.",
+    "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
+    "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
+    "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).": "Diseñé y desarrollé plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
+    "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.": "Procesé y analicé grandes volúmenes de datos para apoyar decisiones de negocio.",
+    "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables.": "Asesoré a clientes en la definición e implementación de sus soluciones tecnológicas.",
+    "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa.": "Resolví incidencias y contingencias en carreras masivas de 10K, 21K y 42K para que la operación no se frenara.",
+    "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.": "Coordiné con los equipos de operaciones, logística y staff durante cada evento.",
+    "Atención personalizada y asistencia directa a corredores y participantes, brindando soporte antes, durante y después de la competencia.": "Asistí a corredores y participantes antes, durante y después de la competencia.",
+    "Elaboración de reportes post-evento, análisis de situaciones críticas e implementación de mejoras para futuras ediciones.": "Escribí reportes post-evento, analicé situaciones críticas e implementé mejoras para las ediciones siguientes.",
+    "Administración y mantenimiento integral del parque informático y la infraestructura de redes, asegurando la operatividad continua del laboratorio.": "Administré y mantuve el parque informático y la red del laboratorio.",
+    "Soporte técnico a usuarios, diagnóstico y resolución de incidencias de hardware y software, optimizando tiempos de respuesta.": "Di soporte a usuarios y resolví incidencias de hardware y software.",
+    "Instalación, configuración y mantenimiento de sistemas de seguridad y cámaras IP.": "Instalé, configuré y mantuve sistemas de seguridad y cámaras IP.",
+    "Operación y administración del sistema de gestión interno LabWin, garantizando la correcta carga y actualización de datos.": "Administré LabWin, el sistema de gestión interno, incluida la carga y actualización de datos.",
+    "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.": "Llevé la gestión administrativa y contable: facturación a obras sociales, control de cuentas y cobranzas.",
+    "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos.": "Coordiné la logística del equipo de extraccionistas: rutas y recursos."
+  }
 }

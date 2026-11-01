@@ -1,120 +1,425 @@
 {
   "status": "draft-review-by-guido",
   "entries": [
-    { "source": "Python Developer | Analista Técnico Programador | APIs & Automatización", "en": "Python Developer | Technical Analyst Programmer | APIs & Automation" },
-    { "source": "Python Developer & Analista Técnico con más de 3 años de experiencia desarrollando soluciones reales que optimizan procesos y mejoran la operativa del negocio. Me especializo en Python, creando desde automatizaciones y herramientas internas hasta APIs y servicios backend escalables. Trabajo diseñando soluciones integrales: aplicaciones web, sistemas de escritorio y plataformas a medida.", "en": "Python Developer & Technical Analyst with more than 3 years of experience building real solutions that optimize processes and improve business operations. I specialize in Python, creating everything from automations and internal tools to scalable APIs and backend services. I work designing comprehensive solutions: web applications, desktop systems and custom platforms." },
-    { "source": "Manejo un stack versátil: Python, FastAPI, Laravel, Java y React, lo que me permite comprender el ciclo completo de un proyecto, desde el análisis funcional hasta la puesta en producción.", "en": "I work with a versatile stack: Python, FastAPI, Laravel, Java and React, which lets me understand the full cycle of a project, from functional analysis to production release." },
-
-    { "source": "Profesional independiente", "en": "Self-employed" },
-
-    { "source": "Desarrollador Python & Analista de Sistemas", "en": "Python Developer & Systems Analyst" },
-    { "source": "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores.", "en": "Led the implementation and production release of NobleOnline, a digital platform for producers." },
-    { "source": "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.", "en": "Design and implementation of Python solutions to automate small- and large-scale processes, improving operational efficiency." },
-    { "source": "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.", "en": "Development of APIs and microservices for robust, scalable integration of internal and external systems." },
-    { "source": "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.", "en": "Maintenance, refactoring and optimization of legacy systems built in PHP." },
-    { "source": "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.", "en": "Functional and technical analysis of internal systems, requirements gathering and definition of improvements." },
-    { "source": "Implementación y estructuración de documentación técnica utilizando Docusaurus.", "en": "Implementation and structuring of technical documentation using Docusaurus." },
-    { "source": "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.", "en": "Audit, tracking and optimization of services provided by external vendors." },
-    { "source": "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos.", "en": "Coordination with technical teams and business stakeholders to ensure deliverables aligned with strategic goals." },
-
-    { "source": "Desarrollador de Software & Consultor Tecnológico", "en": "Software Developer & Technology Consultant" },
-    { "source": "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.", "en": "Implementation of custom technology solutions: web and desktop applications and automations aimed at optimizing business processes." },
-    { "source": "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.", "en": "Development of APIs and integration architectures for efficient connection between systems and platforms." },
-    { "source": "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.", "en": "Modernization of legacy systems, technology migrations and integration with new solutions." },
-    { "source": "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).", "en": "Design and development of e-commerce platforms and content management systems (CMS)." },
-    { "source": "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.", "en": "Processing, analysis and handling of large data volumes for strategic decision-making." },
-    { "source": "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables.", "en": "Technical advice and tailored consulting, supporting clients in defining and implementing scalable technology solutions." },
-
-    { "source": "Asistente en Organización de Eventos Deportivos", "en": "Sports Event Organization Assistant" },
-    { "source": "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa.", "en": "Quick handling and resolution of incidents and contingencies at mass sporting events (10K, 21K and 42K), ensuring operational continuity." },
-    { "source": "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.", "en": "Coordination with operations, logistics and staff teams to ensure the event ran correctly." },
-    { "source": "Atención personalizada y asistencia directa a corredores y participantes, brindando soporte antes, durante y después de la competencia.", "en": "Personalized service and direct assistance to runners and participants, providing support before, during and after the race." },
-    { "source": "Elaboración de reportes post-evento, análisis de situaciones críticas e implementación de mejoras para futuras ediciones.", "en": "Preparation of post-event reports, analysis of critical situations and implementation of improvements for future editions." },
-
-    { "source": "Soporte Técnico de Sistemas & Administrativo", "en": "Systems Technical Support & Administrative" },
-    { "source": "Administración y mantenimiento integral del parque informático y la infraestructura de redes, asegurando la operatividad continua del laboratorio.", "en": "Full administration and maintenance of the computer fleet and network infrastructure, ensuring the laboratory's continuous operation." },
-    { "source": "Soporte técnico a usuarios, diagnóstico y resolución de incidencias de hardware y software, optimizando tiempos de respuesta.", "en": "Technical support for users, diagnosis and resolution of hardware and software incidents, optimizing response times." },
-    { "source": "Instalación, configuración y mantenimiento de sistemas de seguridad y cámaras IP.", "en": "Installation, configuration and maintenance of security systems and IP cameras." },
-    { "source": "Operación y administración del sistema de gestión interno LabWin, garantizando la correcta carga y actualización de datos.", "en": "Operation and administration of the LabWin internal management system, ensuring correct data entry and updates." },
-    { "source": "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.", "en": "Administrative and accounting management: billing to health insurers (obras sociales), account control and collections follow-up." },
-    { "source": "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos.", "en": "Logistics coordination of the blood-draw team, organizing routes and optimizing operational resources." },
-
-    { "source": "Desarrollo de Software", "en": "Software Development" },
-    { "source": "Analista en Sistemas", "en": "Systems Analyst" },
-
-    { "source": "FastAPI: The Complete Course (Beginner + Advanced)", "en": "FastAPI: The Complete Course (Beginner + Advanced)" },
-    { "source": "Microservicios con Spring Boot y Spring Cloud Netflix Eureka", "en": "Microservicios con Spring Boot y Spring Cloud Netflix Eureka" },
-    { "source": "API RESTful con Laravel: Guía Definitiva", "en": "API RESTful con Laravel: Guía Definitiva" },
-    { "source": "Universidad Python: De Cero a Experto", "en": "Universidad Python: De Cero a Experto" },
-    { "source": "FrontEnd", "en": "FrontEnd" },
-    { "source": "Certificación Profesional en Inteligencia Artificial", "en": "Certificación Profesional en Inteligencia Artificial" },
-    { "source": "Patrones de Diseño", "en": "Patrones de Diseño" },
-    { "source": "UML y UP: Análisis y Diseño Orientado a Objetos", "en": "UML y UP: Análisis y Diseño Orientado a Objetos" },
-    { "source": "Git: Desarrollo Colaborativo", "en": "Git: Desarrollo Colaborativo" },
-    { "source": "Javascript desde cero", "en": "Javascript desde cero" },
-    { "source": "Introducción al Paradigma de Objetos", "en": "Introducción al Paradigma de Objetos" },
-    { "source": "Introducción a Bases de Datos y SQL", "en": "Introducción a Bases de Datos y SQL" },
-    { "source": "HTML5: Fundamentos Web", "en": "HTML5: Fundamentos Web" },
-    { "source": "Java para no programadores", "en": "Java para no programadores" },
-    { "source": "Análisis Funcional", "en": "Análisis Funcional" },
-    { "source": "Professional Webmaster Desarrollo Web", "en": "Professional Webmaster Desarrollo Web" },
-
-    { "source": "Backend", "en": "Backend" },
-    { "source": "Frontend", "en": "Frontend" },
-    { "source": "Bases de datos", "en": "Databases" },
-    { "source": "Herramientas de desarrollo", "en": "Development tools" },
-    { "source": "Documentación", "en": "Documentation" },
-    { "source": "Gestión de proyectos", "en": "Project management" },
-    { "source": "Soporte e infraestructura", "en": "Support and infrastructure" },
-    { "source": "Software de gestión", "en": "Management software" },
-    { "source": "Ofimática y comunicación", "en": "Office and communication" },
-
-    { "source": "Administración de redes y conectividad", "en": "Network and connectivity administration" },
-    { "source": "Mantenimiento integral de hardware y software", "en": "Full hardware and software maintenance" },
-    { "source": "Configuración de sistemas de seguridad y cámaras IP", "en": "Security system and IP camera setup" },
-    { "source": "Python", "en": "Python" },
-    { "source": "FastAPI", "en": "FastAPI" },
-    { "source": "Django", "en": "Django" },
-    { "source": "Flask", "en": "Flask" },
-    { "source": "Laravel", "en": "Laravel" },
-    { "source": "PHP", "en": "PHP" },
-    { "source": "Java", "en": "Java" },
-    { "source": "Spring Boot", "en": "Spring Boot" },
-    { "source": "Spring Cloud", "en": "Spring Cloud" },
-    { "source": "React", "en": "React" },
-    { "source": "JavaScript", "en": "JavaScript" },
-    { "source": "Astro", "en": "Astro" },
-    { "source": "HTML5", "en": "HTML5" },
-    { "source": "CSS3", "en": "CSS3" },
-    { "source": "SQL", "en": "SQL" },
-    { "source": "pgAdmin", "en": "pgAdmin" },
-    { "source": "DBeaver", "en": "DBeaver" },
-    { "source": "MySQL Workbench", "en": "MySQL Workbench" },
-    { "source": "Git", "en": "Git" },
-    { "source": "GitHub", "en": "GitHub" },
-    { "source": "Docker", "en": "Docker" },
-    { "source": "VS Code", "en": "VS Code" },
-    { "source": "PyCharm", "en": "PyCharm" },
-    { "source": "Postman", "en": "Postman" },
-    { "source": "Insomnia", "en": "Insomnia" },
-    { "source": "Docusaurus", "en": "Docusaurus" },
-    { "source": "MKdocs", "en": "MKdocs" },
-    { "source": "Jira", "en": "Jira" },
-    { "source": "ClickUp", "en": "ClickUp" },
-    { "source": "GoodDay", "en": "GoodDay" },
-    { "source": "LabWin", "en": "LabWin" },
-    { "source": "SISE", "en": "SISE" },
-    { "source": "Microsoft Excel", "en": "Microsoft Excel" },
-    { "source": "Microsoft Word", "en": "Microsoft Word" },
-    { "source": "Microsoft PowerPoint", "en": "Microsoft PowerPoint" },
-    { "source": "Microsoft Teams", "en": "Microsoft Teams" },
-    { "source": "Slack", "en": "Slack" },
-    { "source": "Discord", "en": "Discord" },
-
-    { "source": "Inglés", "en": "English" },
-    { "source": "Español", "en": "Spanish" },
-    { "source": "Nativo", "en": "Native" },
-    {"source": "FastAPI y CLI: DOCX a Markdown con imágenes, Docker", "en": "FastAPI and CLI, DOCX to Markdown with images, Docker"},
-    {"source": "Autenticación LDAP3 y búsqueda de usuarios", "en": "LDAP3 authentication and user lookup"}
+    {
+      "source": "Desarrollador Python | APIs backend, automatización e integraciones",
+      "en": "Python Developer | Backend APIs, Automation & Integrations"
+    },
+    {
+      "source": "Desarrollo software desde 2018 y lo que más hago es sacarle tareas manuales a un negocio y hacer que sus sistemas se hablen entre sí. Trabajo sobre todo con Python y FastAPI: automatizaciones, herramientas internas, APIs y microservicios.",
+      "en": "I've been building software since 2018, and most of my work is taking manual tasks off a business and getting its systems to talk to each other. I mainly use Python and FastAPI to build automations, internal tools, APIs and microservices."
+    },
+    {
+      "source": "Empecé en soporte técnico y redes, y después sumé análisis funcional, sistemas legacy en PHP y puestas en producción. Por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando.",
+      "en": "I started in technical support and networking, then added functional analysis, legacy PHP systems and production releases. That lets me follow a project all the way through: work out what's needed, build it and get it running."
+    },
+    {
+      "source": "Lideré la implementación y la puesta en producción de NobleOnline, la plataforma digital para productores de seguros.",
+      "en": "Led the rollout and production release of NobleOnline, the digital platform for insurance brokers."
+    },
+    {
+      "source": "Automaticé procesos de pequeña y gran escala con soluciones propias en Python.",
+      "en": "Automated small- and large-scale processes with Python solutions I designed and built."
+    },
+    {
+      "source": "Desarrollé APIs y microservicios para integrar sistemas internos y externos.",
+      "en": "Built APIs and microservices that integrate internal and external systems."
+    },
+    {
+      "source": "Mantuve, refactoricé y optimicé sistemas legacy en PHP.",
+      "en": "Maintained, refactored and optimized legacy PHP systems."
+    },
+    {
+      "source": "Relevé requerimientos, analicé sistemas internos y definí sus mejoras.",
+      "en": "Gathered requirements, analyzed internal systems and defined improvements to them."
+    },
+    {
+      "source": "Armé y ordené la documentación técnica con Docusaurus.",
+      "en": "Set up and structured the technical documentation in Docusaurus."
+    },
+    {
+      "source": "Audité, seguí y optimicé los servicios de proveedores externos.",
+      "en": "Audited, tracked and optimized services from external vendors."
+    },
+    {
+      "source": "Coordiné con equipos técnicos y áreas de negocio para que cada entrega respondiera a sus objetivos.",
+      "en": "Worked with technical teams and business stakeholders to keep deliverables tied to their goals."
+    },
+    {
+      "source": "Construí soluciones a medida para optimizar procesos de negocio: aplicaciones web, de escritorio y automatizaciones.",
+      "en": "Built custom web apps, desktop apps and automations to improve business processes."
+    },
+    {
+      "source": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
+      "en": "Built APIs and integration architectures to connect systems and platforms."
+    },
+    {
+      "source": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
+      "en": "Modernized legacy systems, ran technology migrations and integrated them with new solutions."
+    },
+    {
+      "source": "Diseñé y desarrollé plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
+      "en": "Designed and built e-commerce platforms and content management systems (CMS)."
+    },
+    {
+      "source": "Procesé y analicé grandes volúmenes de datos para apoyar decisiones de negocio.",
+      "en": "Processed and analyzed large data volumes to support business decisions."
+    },
+    {
+      "source": "Asesoré a clientes en la definición e implementación de sus soluciones tecnológicas.",
+      "en": "Advised clients on defining and implementing their technology solutions."
+    },
+    {
+      "source": "Resolví incidencias y contingencias en carreras masivas de 10K, 21K y 42K para que la operación no se frenara.",
+      "en": "Resolved incidents and contingencies at mass 10K, 21K and 42K races to keep operations running."
+    },
+    {
+      "source": "Coordiné con los equipos de operaciones, logística y staff durante cada evento.",
+      "en": "Coordinated with operations, logistics and staff teams during each event."
+    },
+    {
+      "source": "Asistí a corredores y participantes antes, durante y después de la competencia.",
+      "en": "Assisted runners and participants before, during and after each race."
+    },
+    {
+      "source": "Escribí reportes post-evento, analicé situaciones críticas e implementé mejoras para las ediciones siguientes.",
+      "en": "Wrote post-event reports, analyzed critical situations and implemented improvements for later editions."
+    },
+    {
+      "source": "Administré y mantuve el parque informático y la red del laboratorio.",
+      "en": "Ran and maintained the laboratory's computers and network."
+    },
+    {
+      "source": "Di soporte a usuarios y resolví incidencias de hardware y software.",
+      "en": "Supported users and resolved hardware and software incidents."
+    },
+    {
+      "source": "Instalé, configuré y mantuve sistemas de seguridad y cámaras IP.",
+      "en": "Installed, configured and maintained security systems and IP cameras."
+    },
+    {
+      "source": "Administré LabWin, el sistema de gestión interno, incluida la carga y actualización de datos.",
+      "en": "Administered LabWin, the internal management system, including data entry and updates."
+    },
+    {
+      "source": "Llevé la gestión administrativa y contable: facturación a obras sociales, control de cuentas y cobranzas.",
+      "en": "Handled administration and accounting: billing to health insurers, account control and collections."
+    },
+    {
+      "source": "Coordiné la logística del equipo de extraccionistas: rutas y recursos.",
+      "en": "Coordinated logistics for the blood-draw team, including routes and resources."
+    },
+    {
+      "source": "Profesional independiente",
+      "en": "Self-employed"
+    },
+    {
+      "source": "Desarrollador Python & Analista de Sistemas",
+      "en": "Python Developer & Systems Analyst"
+    },
+    {
+      "source": "Desarrollador de Software & Consultor Tecnológico",
+      "en": "Software Developer & Technology Consultant"
+    },
+    {
+      "source": "Asistente en Organización de Eventos Deportivos",
+      "en": "Sports Event Operations Assistant"
+    },
+    {
+      "source": "Soporte Técnico de Sistemas & Administrativo",
+      "en": "IT Support & Administration"
+    },
+    {
+      "source": "Desarrollo de Software",
+      "en": "Software Development"
+    },
+    {
+      "source": "Analista en Sistemas",
+      "en": "Systems Analyst"
+    },
+    {
+      "source": "FastAPI: The Complete Course (Beginner + Advanced)",
+      "en": "FastAPI: The Complete Course (Beginner + Advanced)"
+    },
+    {
+      "source": "Microservicios con Spring Boot y Spring Cloud Netflix Eureka",
+      "en": "Microservices with Spring Boot and Spring Cloud Netflix Eureka"
+    },
+    {
+      "source": "API RESTful con Laravel: Guía Definitiva",
+      "en": "RESTful APIs with Laravel: The Definitive Guide"
+    },
+    {
+      "source": "Universidad Python: De Cero a Experto",
+      "en": "Python University: From Zero to Expert"
+    },
+    {
+      "source": "FrontEnd",
+      "en": "Frontend Development"
+    },
+    {
+      "source": "Certificación Profesional en Inteligencia Artificial",
+      "en": "Professional Certificate in Artificial Intelligence"
+    },
+    {
+      "source": "Patrones de Diseño",
+      "en": "Design Patterns"
+    },
+    {
+      "source": "UML y UP: Análisis y Diseño Orientado a Objetos",
+      "en": "UML and UP: Object-Oriented Analysis and Design"
+    },
+    {
+      "source": "Git: Desarrollo Colaborativo",
+      "en": "Git: Collaborative Development"
+    },
+    {
+      "source": "Javascript desde cero",
+      "en": "JavaScript from Scratch"
+    },
+    {
+      "source": "Introducción al Paradigma de Objetos",
+      "en": "Introduction to the Object-Oriented Paradigm"
+    },
+    {
+      "source": "Introducción a Bases de Datos y SQL",
+      "en": "Introduction to Databases and SQL"
+    },
+    {
+      "source": "HTML5: Fundamentos Web",
+      "en": "HTML5: Web Fundamentals"
+    },
+    {
+      "source": "Java para no programadores",
+      "en": "Java for Non-Programmers"
+    },
+    {
+      "source": "Análisis Funcional",
+      "en": "Functional Analysis"
+    },
+    {
+      "source": "Professional Webmaster Desarrollo Web",
+      "en": "Professional Webmaster: Web Development"
+    },
+    {
+      "source": "Backend",
+      "en": "Backend"
+    },
+    {
+      "source": "Frontend",
+      "en": "Frontend"
+    },
+    {
+      "source": "Bases de datos",
+      "en": "Databases"
+    },
+    {
+      "source": "Herramientas de desarrollo",
+      "en": "Development tools"
+    },
+    {
+      "source": "Documentación",
+      "en": "Documentation"
+    },
+    {
+      "source": "Gestión de proyectos",
+      "en": "Project management"
+    },
+    {
+      "source": "Soporte e infraestructura",
+      "en": "Support and infrastructure"
+    },
+    {
+      "source": "Software de gestión",
+      "en": "Management software"
+    },
+    {
+      "source": "Ofimática y comunicación",
+      "en": "Office and communication"
+    },
+    {
+      "source": "Administración de redes y conectividad",
+      "en": "Network and connectivity administration"
+    },
+    {
+      "source": "Mantenimiento integral de hardware y software",
+      "en": "Full hardware and software maintenance"
+    },
+    {
+      "source": "Configuración de sistemas de seguridad y cámaras IP",
+      "en": "Security system and IP camera setup"
+    },
+    {
+      "source": "Python",
+      "en": "Python"
+    },
+    {
+      "source": "FastAPI",
+      "en": "FastAPI"
+    },
+    {
+      "source": "Django",
+      "en": "Django"
+    },
+    {
+      "source": "Flask",
+      "en": "Flask"
+    },
+    {
+      "source": "Laravel",
+      "en": "Laravel"
+    },
+    {
+      "source": "PHP",
+      "en": "PHP"
+    },
+    {
+      "source": "Java",
+      "en": "Java"
+    },
+    {
+      "source": "Spring Boot",
+      "en": "Spring Boot"
+    },
+    {
+      "source": "Spring Cloud",
+      "en": "Spring Cloud"
+    },
+    {
+      "source": "React",
+      "en": "React"
+    },
+    {
+      "source": "JavaScript",
+      "en": "JavaScript"
+    },
+    {
+      "source": "Astro",
+      "en": "Astro"
+    },
+    {
+      "source": "HTML5",
+      "en": "HTML5"
+    },
+    {
+      "source": "CSS3",
+      "en": "CSS3"
+    },
+    {
+      "source": "SQL",
+      "en": "SQL"
+    },
+    {
+      "source": "pgAdmin",
+      "en": "pgAdmin"
+    },
+    {
+      "source": "DBeaver",
+      "en": "DBeaver"
+    },
+    {
+      "source": "MySQL Workbench",
+      "en": "MySQL Workbench"
+    },
+    {
+      "source": "Git",
+      "en": "Git"
+    },
+    {
+      "source": "GitHub",
+      "en": "GitHub"
+    },
+    {
+      "source": "Docker",
+      "en": "Docker"
+    },
+    {
+      "source": "VS Code",
+      "en": "VS Code"
+    },
+    {
+      "source": "PyCharm",
+      "en": "PyCharm"
+    },
+    {
+      "source": "Postman",
+      "en": "Postman"
+    },
+    {
+      "source": "Insomnia",
+      "en": "Insomnia"
+    },
+    {
+      "source": "Docusaurus",
+      "en": "Docusaurus"
+    },
+    {
+      "source": "MKdocs",
+      "en": "MKdocs"
+    },
+    {
+      "source": "Jira",
+      "en": "Jira"
+    },
+    {
+      "source": "ClickUp",
+      "en": "ClickUp"
+    },
+    {
+      "source": "GoodDay",
+      "en": "GoodDay"
+    },
+    {
+      "source": "LabWin",
+      "en": "LabWin"
+    },
+    {
+      "source": "SISE",
+      "en": "SISE"
+    },
+    {
+      "source": "Microsoft Excel",
+      "en": "Microsoft Excel"
+    },
+    {
+      "source": "Microsoft Word",
+      "en": "Microsoft Word"
+    },
+    {
+      "source": "Microsoft PowerPoint",
+      "en": "Microsoft PowerPoint"
+    },
+    {
+      "source": "Microsoft Teams",
+      "en": "Microsoft Teams"
+    },
+    {
+      "source": "Slack",
+      "en": "Slack"
+    },
+    {
+      "source": "Discord",
+      "en": "Discord"
+    },
+    {
+      "source": "Inglés",
+      "en": "English"
+    },
+    {
+      "source": "Español",
+      "en": "Spanish"
+    },
+    {
+      "source": "Nativo",
+      "en": "Native"
+    },
+    {
+      "source": "FastAPI y CLI: DOCX a Markdown con imágenes, Docker",
+      "en": "FastAPI and CLI, DOCX to Markdown with images, Docker"
+    },
+    {
+      "source": "Autenticación LDAP3 y búsqueda de usuarios",
+      "en": "LDAP3 authentication and user lookup"
+    }
   ]
 }

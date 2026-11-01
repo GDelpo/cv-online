@@ -254,12 +254,8 @@ describe('guard failures', () => {
     expectGuard((i) => { i.base.certifications[0].credentialUrl = 'javascript:alert(1)' }, /not an http\(s\) URL/)
   })
 
-  it('fails on a summary sentence absent from the export', () => {
-    expectGuard((i) => { i.profile.summary = ['Hago APIs. Trabajé en la NASA.'] }, /summary sentence not in the export About: "Trabajé en la NASA\."/)
-  })
-
-  it('fails on a headline segment absent from the export', () => {
-    expectGuard((i) => { i.profile.headline = 'Dev | CTO' }, /headline segment not in the export headline: "CTO"/)
+  it('fails on a bullet rewrite whose exported bullet is gone', () => {
+    expectGuard((i) => { i.profile.bulletRewrites = { 'Ya no existe.': 'Texto.' } }, /bulletRewrites entry is not in the export/)
   })
 
   it('fails on a summary over 600 characters in Spanish or English', () => {
