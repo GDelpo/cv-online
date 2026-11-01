@@ -119,6 +119,10 @@ function checkLocale(locale, manifest, problems) {
       if (!flat.includes(flatten(`• ${bullet}`))) problems.push(`${name}: bullet not separate: "${bullet}"`)
     }
   }
+  for (const item of content.projects) {
+    if (!flat.includes(flatten(`• ${item.name}`))) problems.push(`${name}: project "${item.name}" not found`)
+    if (!flat.includes(flatten(item.url))) problems.push(`${name}: project URL "${item.url}" not found`)
+  }
   for (const item of content.education) {
     if (!flat.includes(flatten(item.degree))) problems.push(`${name}: education "${item.degree}" not found`)
   }

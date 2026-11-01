@@ -6,7 +6,9 @@ import Experience from '@/components/Experience'
 import Languages from '@/components/Languages'
 import Masthead from '@/components/Masthead'
 import PrintCV from '@/components/PrintCV'
+import Projects from '@/components/Projects'
 import Skills from '@/components/Skills'
+import Summary from '@/components/Summary'
 import { formatDate } from '@/lib/format'
 
 const subscribeToNothing = () => () => {}
@@ -25,30 +27,45 @@ const useHydrated = () =>
 
 /** @param {{ content: import('@/lib/types').Content }} props */
 function Page({ content }) {
-  const { meta, person, positions, skillGroups, education, certifications, languages, ui } = content
+  const { meta, person, positions, projects, skillGroups, education, certifications, languages, ui } = content
   const hydrated = useHydrated()
   return (
     <>
-      <div className={`mx-auto max-w-page px-5 pb-10 lg:px-10 ${hydrated ? 'print:hidden' : ''}`}>
-        <a
-          href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-5 focus:top-2 focus:bg-bg focus:px-2 focus:py-1"
-        >
+      <div className={`screen ${hydrated ? 'print:hidden' : ''}`}>
+        <a href="#content" className="skip">
           {ui.skipLink}
         </a>
-        <Masthead meta={meta} person={person} ui={ui} />
-        <main id="content" tabIndex={-1} className="outline-none">
+        <Masthead meta={meta} person={person} positions={positions} education={education} skillGroups={skillGroups} ui={ui} />
+        <main id="content" tabIndex={-1}>
+          <Summary person={person} ui={ui} />
           <Experience positions={positions} dataDate={meta.dataDate} ui={ui} />
+          <Projects items={projects} ui={ui} />
           <Skills groups={skillGroups} ui={ui} />
           <Education items={education} ui={ui} />
           <Certifications items={certifications} ui={ui} />
           <Languages items={languages} ui={ui} />
         </main>
-        <footer className="mt-16">
-          <div className="ledger-double" />
-          <p className="ledger-meta pt-3">
-            {ui.updated} <time dateTime={meta.dataDate}>{formatDate(meta.dataDate, ui.months)}</time>
-          </p>
+        <footer className="band-ink foot">
+          <div className="wrap">
+            <a className="foot-mail" href={`mailto:${person.email}`}>
+              {person.email}
+            </a>
+            <ul className="foot-links">
+              <li>
+                <a href={person.github}>GitHub</a>
+              </li>
+              <li>
+                <a href={person.linkedin}>LinkedIn</a>
+              </li>
+              <li>
+                <a href={ui.pdfPath}>{ui.downloadPdf}</a>
+              </li>
+              <li>{person.location}</li>
+              <li>
+                {ui.updated} <time dateTime={meta.dataDate}>{formatDate(meta.dataDate, ui.months)}</time>
+              </li>
+            </ul>
+          </div>
         </footer>
       </div>
       {hydrated ? <PrintCV content={content} /> : null}

@@ -2,7 +2,6 @@ import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import App from '../src/App'
 import PrintCV from '../src/components/PrintCV'
-import TenureRail from '../src/components/TenureRail'
 import en from '../src/content/en.json'
 import es from '../src/content/es.json'
 
@@ -84,24 +83,72 @@ describe.each([
   })
 })
 
-describe('TenureRail', () => {
-  const bars = (positions, dataDate) => {
-    const html = renderToString(<TenureRail positions={positions} dataDate={dataDate} />)
-    return [...html.matchAll(/<rect x="([\d.-]+)%"[^>]* width="([\d.-]+)%"/g)].map(([, x, width]) => ({
-      x: Number(x),
-      width: Number(width),
-    }))
-  }
-  const role = (id, start, end) => ({ id, company: id, start, end, current: end === null })
+describe('the map in the page', () => {
+  describe.each([
+    ['es', es],
+    ['en', en],
+  ])('%s', (_locale, content) => {
+    const html = render(content)
+    const svgs = html.match(/<svg class="tm tm-[\s\S]*?<\/svg>/g)
 
-  it('draws adjacent roles with no gap, because an end month is inclusive', () => {
-    const [next, previous] = bars([role('next', '2020-12', null), role('previous', '2015-04', '2020-11')], '2026-10')
-    expect(previous.x + previous.width).toBeCloseTo(next.x, 1)
+    it('prerenders one drawing per form, each a labelled group', () => {
+      expect(svgs).toHaveLength(4)
+      for (const svg of svgs) expect(svg).toContain(`role="group" aria-label="${content.ui.mapLabel}"`)
+    })
+
+    it('links every station to its entry, by name and period', () => {
+      for (const svg of svgs) {
+        for (const position of content.positions) expect(svg).toContain(`href="#position-${position.id}"`)
+      }
+      for (const position of content.positions) expect(html).toContain(`id="position-${position.id}"`)
+    })
+
+    it('writes its labels as real text', () => {
+      for (const position of content.positions) {
+        const name = renderToString(<>{position.company ?? position.engagement}</>)
+        const words = name.split(' ')
+        for (const svg of svgs) expect(svg).toContain(words[0])
+      }
+    })
+
+    it('links every skill branch to a group that exists', () => {
+      for (const group of content.skillGroups) {
+        expect(svgs[0]).toContain(`href="#skill-${group.id}"`)
+        expect(html).toContain(`id="skill-${group.id}"`)
+      }
+    })
+
+    it('has only one clip path per form, so ids stay unique', () => {
+      for (const name of ['wide', 'mid', 'tablet', 'phone']) expect(count(html, new RegExp(`<clipPath id="tm-face-${name}"`, 'g'))).toBe(1)
+    })
+
+    it('puts the summary right after the header', () => {
+      const header = html.indexOf('</header>')
+      expect(html.indexOf('id="summary"')).toBeGreaterThan(header)
+      expect(html.indexOf('id="summary"')).toBeLessThan(html.indexOf('id="experience"'))
+    })
+
+    it('shows role, place, links and PDF inside the header', () => {
+      const header = html.slice(0, html.indexOf('</header>'))
+      for (const text of [content.person.location, content.person.github, content.person.linkedin, content.ui.pdfPath]) {
+        expect(header).toContain(text)
+      }
+      expect(header).toContain('headline')
+    })
+
+    it('renders the projects with their links', () => {
+      expect(count(html, /data-project="/g)).toBe(content.projects.length)
+      for (const item of content.projects) expect(html).toContain(`href="${item.url}"`)
+    })
   })
 
-  it('runs a current role through the end of the data month', () => {
-    const [current] = bars([role('current', '2020-12', null)], '2026-10')
-    expect(current.x + current.width).toBeCloseTo(100, 1)
+  it('still renders with a fifth current role and no code change', () => {
+    const data = copy(en)
+    data.positions.unshift({ ...data.positions[0], id: 'next', company: 'New Employer', start: data.meta.dataDate })
+    const html = render(data)
+    expect(count(html, /data-position="/g)).toBe(data.positions.length)
+    expect(count(html, /class="tm-st tm-st-/g)).toBe(data.positions.length * 4)
+    expect(html).toContain('New Employer')
   })
 })
 

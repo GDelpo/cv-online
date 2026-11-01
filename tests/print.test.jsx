@@ -59,6 +59,15 @@ describe.each([
     expect(html).not.toMatch(/>(undefined|null)</)
   })
 
+  it('lists the projects with their full URLs', () => {
+    const html = render(content)
+    expect(html).toContain(content.ui.sections.projects)
+    for (const item of content.projects) {
+      expect(html).toContain(plain(item.description))
+      expect(html).toContain(item.url)
+    }
+  })
+
   it('never claims "verified" and shows the full contact URLs as text', () => {
     const html = render(content)
     expect(html.toLowerCase()).not.toMatch(/verified|verificad/)

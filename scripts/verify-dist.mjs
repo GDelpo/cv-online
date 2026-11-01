@@ -8,17 +8,17 @@ import { gzipSync } from 'node:zlib'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
-const POSITIONS = 4
-const CERTIFICATIONS = 16
 const KB = 1024
+const MAP_FORMS = 4
 const BUDGET = {
   js: 75 * KB,
   css: 12 * KB,
   locale: 10 * KB,
-  // INTENTIONAL: the spec's 60 KB does not fit the three files it requires. Fontsource 5.3.0 woff2 sizes are
-  // Newsreader 500 23.6 KB, Plex 400 22.6 KB, Plex 600 24.3 KB (70.5 KB, and woff2 does not gzip further).
-  // Raised to what exists, so growth still fails. Guido decides: keep this, or drop a weight.
-  fonts: 71 * KB,
+  // INTENTIONAL: the spec's 60 KB predates the Signal Map design, which needs a heavy and a medium display weight.
+  // Fontsource 5.3.0 latin woff2: Barlow Condensed 600 22.3 kB and 800 22.5 kB, Plex 400 22.6 kB and 600 24.3 kB, 91.6 kB
+  // or 89.5 KiB, and woff2 does not gzip further. Set to what exists, so growth still fails. Only Barlow 800 and Plex 400
+  // are preloaded; the other two load when first used.
+  fonts: 91 * KB,
   photo: 30 * KB,
 }
 
@@ -36,7 +36,7 @@ function walk(dir) {
   })
 }
 
-function checkPage(file, { locale, canonical, siteUrl, foreignLabels }) {
+function checkPage(file, { locale, canonical, siteUrl, foreignLabels, content }) {
   if (!existsSync(file)) {
     problems.push(`${relative(ROOT, file)} is missing`)
     return
@@ -45,8 +45,21 @@ function checkPage(file, { locale, canonical, siteUrl, foreignLabels }) {
   const name = relative(ROOT, file)
   check(html.includes(`<html lang="${locale}">`), `${name}: lang is not ${locale}`)
   check(count(html, /<h1[\s>]/g) === 1, `${name}: expected exactly one h1`)
-  check(count(html, /data-position="/g) === POSITIONS, `${name}: expected ${POSITIONS} positions`)
-  check(count(html, /data-certification="/g) === CERTIFICATIONS, `${name}: expected ${CERTIFICATIONS} certifications`)
+  // INTENTIONAL: counted against the content, so a new role is a data change and not a code change.
+  for (const [attribute, items] of [
+    ['position', content.positions],
+    ['certification', content.certifications],
+    ['education', content.education],
+    ['project', content.projects],
+  ]) {
+    check(count(html, new RegExp(`data-${attribute}="`, 'g')) === items.length, `${name}: expected ${items.length} ${attribute} entries`)
+  }
+  // The map has to be in the HTML itself: one drawing per form, with its station links, and no JavaScript needed.
+  check(count(html, /<svg class="tm tm-/g) === MAP_FORMS, `${name}: expected ${MAP_FORMS} map forms`)
+  check(count(html, /class="tm-st tm-st-/g) === MAP_FORMS * content.positions.length, `${name}: map stations are missing`)
+  for (const project of content.projects) {
+    check(html.includes(`href="${project.url}"`), `${name}: no link to ${project.url}`)
+  }
   check(html.includes(`<link rel="canonical" href="${canonical}" />`), `${name}: canonical is not ${canonical}`)
   check(html.includes(`hreflang="es" href="${siteUrl}/"`), `${name}: hreflang es`)
   check(html.includes(`hreflang="en" href="${siteUrl}/en"`), `${name}: hreflang en`)
@@ -97,14 +110,16 @@ function checkSource() {
   }
 }
 
-const es = JSON.parse(readFileSync(join(ROOT, 'src', 'content', 'es.json'), 'utf8'))
+const readContent = (locale) => JSON.parse(readFileSync(join(ROOT, 'src', 'content', `${locale}.json`), 'utf8'))
+const es = readContent('es')
 const siteUrl = es.meta.siteUrl
-checkPage(join(DIST, 'index.html'), { locale: 'es', canonical: `${siteUrl}/`, siteUrl, foreignLabels: [] })
+checkPage(join(DIST, 'index.html'), { locale: 'es', canonical: `${siteUrl}/`, siteUrl, foreignLabels: [], content: es })
 checkPage(join(DIST, 'en', 'index.html'), {
   locale: 'en',
   canonical: `${siteUrl}/en`,
   siteUrl,
   foreignLabels: Object.values(es.ui.sections),
+  content: readContent('en'),
 })
 for (const file of ['404.html', 'robots.txt', 'favicon.svg', 'og.jpg', 'sitemap.xml', 'img/guido-224.jpg']) {
   check(existsSync(join(DIST, file)), `dist/${file} is missing`)

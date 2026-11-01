@@ -7,18 +7,14 @@ export default {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      bg: 'var(--bg)',
-      text: 'var(--text)',
+      paper: 'var(--paper)',
+      ink: 'var(--ink)',
       muted: 'var(--muted)',
       accent: 'var(--accent)',
-      rule: 'var(--rule)',
     },
     fontFamily: {
-      display: ['Newsreader', 'Georgia', 'serif'],
+      display: ['"Barlow Condensed"', '"Arial Narrow"', 'Arial', 'sans-serif'],
       sans: ['"IBM Plex Sans"', 'Arial', 'sans-serif'],
-    },
-    extend: {
-      maxWidth: { page: '1120px', prose: '68ch' },
     },
   },
   plugins: [],

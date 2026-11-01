@@ -1,57 +1,71 @@
-import TenureRail from '@/components/TenureRail'
+import StopHead from '@/components/StopHead'
 import { formatDate, formatEnd } from '@/lib/format'
+import { employerOf, layoutRails } from '@/lib/transitMap'
+
+function Rail({ row }) {
+  return (
+    <div className="rail" aria-hidden="true">
+      {row.tracks.map((track) => (
+        <span
+          key={track.id}
+          className={`rail-t rail-t-${track.style} ${track.opens ? 'rail-open' : ''}`}
+          style={{ '--lane': track.lane }}
+        >
+          {track.ends ? <span className="rail-end" /> : null}
+        </span>
+      ))}
+      <span className={`rail-stop rail-stop-${row.style}`} style={{ '--lane': row.lane }}>
+        {row.letter}
+      </span>
+    </div>
+  )
+}
 
 export default function Experience({ positions, dataDate, ui }) {
+  const rails = layoutRails(positions, dataDate, ui)
   return (
-    <section aria-labelledby="experience" className="ledger-section">
-      <h2 id="experience" className="ledger-title">
-        {ui.sections.experience}
-      </h2>
-      <div className="ledger-body">
-        <TenureRail positions={positions} dataDate={dataDate} />
-        {positions.map((position) => (
-          <article
-            key={position.id}
-            data-position={position.id}
-            className="ledger-row border-t border-rule py-5 last:pb-0"
-          >
-            <p className="ledger-meta mb-1 lg:mb-0 lg:pt-0.5">
-              <span className="whitespace-nowrap">{formatDate(position.start, ui.months)} –</span>{' '}
-              <span className="whitespace-nowrap">
-                {position.current ? (
-                  <span aria-hidden="true" className="mr-1.5 inline-block size-1.5 bg-accent align-[0.1em]" />
+    <section aria-labelledby="experience" className="wrap section">
+      <StopHead id="experience">{ui.sections.experience}</StopHead>
+      <div className="jobs" style={{ '--lanes': rails.laneCount }}>
+        {positions.map((position) => {
+          const row = rails.rows.find((item) => item.id === position.id)
+          const employer = employerOf(position)
+          return (
+            <article key={position.id} id={`position-${position.id}`} data-position={position.id} className="job">
+              <Rail row={row} />
+              <div className="job-body">
+                <p className="job-when">
+                  {formatDate(position.start, ui.months)} –{' '}
+                  <span className={position.current ? 'job-now' : undefined}>{formatEnd(position.end, position.current, ui)}</span>
+                </p>
+                <h3 className="job-name">{employer}</h3>
+                <p className="job-role">
+                  {position.title}
+                  {position.location ? <span className="job-place"> · {position.location}</span> : null}
+                </p>
+                <ul className="job-list">
+                  {position.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+                {position.moreBullets.length > 0 ? (
+                  <details className="more">
+                    <summary>
+                      {ui.showMore}
+                      {/* Every role has this control; the hidden text tells them apart for a screen reader. */}
+                      <span className="sr-only">{`: ${employer}`}</span>
+                    </summary>
+                    <ul className="job-list">
+                      {position.moreBullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </details>
                 ) : null}
-                {formatEnd(position.end, position.current, ui)}
-              </span>
-            </p>
-            <div className="min-w-0">
-              <h3 className="font-semibold">{position.title}</h3>
-              <p className="mb-2">
-                {position.company ?? position.engagement}
-                {position.location ? <span className="text-muted"> · {position.location}</span> : null}
-              </p>
-              <ul className="ledger-list">
-                {position.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-              {position.moreBullets.length > 0 ? (
-                <details className="ledger-more">
-                  <summary className="ledger-control">
-                    {ui.showMore}
-                    {/* Every role has this control; the hidden text tells them apart for a screen reader. */}
-                    <span className="sr-only">{`: ${position.company ?? position.engagement}`}</span>
-                  </summary>
-                  <ul className="ledger-list mt-1">
-                    {position.moreBullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </details>
-              ) : null}
-            </div>
-          </article>
-        ))}
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )

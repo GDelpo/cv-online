@@ -40,8 +40,11 @@ function jsonLd(content) {
     mainEntity: {
       '@type': 'Person',
       name: person.name,
-      jobTitle: employer.title,
-      worksFor: { '@type': 'Organization', name: employer.company },
+      // INTENTIONAL: a CV with no current employer leaves these out rather than failing or naming a past one.
+      ...(employer && {
+        jobTitle: employer.title,
+        worksFor: { '@type': 'Organization', name: employer.company },
+      }),
       alumniOf: finished.map((item) => ({ '@type': 'EducationalOrganization', name: item.school })),
       knowsLanguage: languages.map((item) => item.name),
       image: absolute(content, person.photo.jpg),
@@ -84,7 +87,7 @@ function head(content, assets) {
     `<meta property="og:image:alt" content="${escapeHtml(person.name)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<link rel="preload" as="image" type="image/webp" href="${person.photo.webp}" fetchpriority="high" />`,
-    `<link rel="preload" as="font" type="font/woff2" crossorigin href="${findAsset(assets, /^newsreader-latin-500-normal.*\.woff2$/)}" />`,
+    `<link rel="preload" as="font" type="font/woff2" crossorigin href="${findAsset(assets, /^barlow-condensed-latin-800-normal.*\.woff2$/)}" />`,
     `<link rel="preload" as="font" type="font/woff2" crossorigin href="${findAsset(assets, /^ibm-plex-sans-latin-400-normal.*\.woff2$/)}" />`,
     // INTENTIONAL: the locale chunk comes from a dynamic import; preloading it keeps hydration from waiting a round trip.
     `<link rel="modulepreload" href="${findAsset(assets, new RegExp(`^${meta.locale}-[^.]*\\.js$`))}" />`,

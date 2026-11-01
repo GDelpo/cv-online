@@ -7,7 +7,7 @@ const line = (parts) => parts.filter(Boolean).join(' · ')
  * That is why this repeats the screen's data in its own tree instead of restyling it.
  */
 export default function PrintCV({ content }) {
-  const { person, positions, skillGroups, education, certifications, languages, ui } = content
+  const { person, positions, projects, skillGroups, education, certifications, languages, ui } = content
   return (
     <div className="print-cv hidden print:block">
       <h1>{person.name}</h1>
@@ -40,6 +40,15 @@ export default function PrintCV({ content }) {
           </ul>
         </div>
       ))}
+
+      <h2>{ui.sections.projects}</h2>
+      <ul>
+        {projects.map((item) => (
+          <li key={item.id}>
+            {line([item.name, item.description])} · <span className="print-cv-nobreak">{item.url}</span>
+          </li>
+        ))}
+      </ul>
 
       <h2>{ui.sections.skills}</h2>
       {skillGroups.map((group) => (
