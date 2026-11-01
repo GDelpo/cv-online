@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "Guido Delponte, CV",
+    "description": "CV de Guido Delponte, Python Developer y Analista Técnico: automatizaciones, APIs y servicios backend."
+  },
+  "sections": {
+    "summary": "Perfil",
+    "experience": "Experiencia laboral",
+    "education": "Educación",
+    "certifications": "Certificaciones",
+    "skills": "Habilidades",
+    "languages": "Idiomas"
+  },
+  "present": "Actualidad",
+  "months": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
+  "viewCredential": "Ver credencial",
+  "credentialId": "ID de credencial",
+  "inProgress": "En curso",
+  "downloadPdf": "Descargar PDF",
+  "pdfPath": "/cv/Guido-Delponte-CV-es.pdf",
+  "showMore": "Ver más",
+  "skipLink": "Saltar al contenido",
+  "themeDark": "Oscuro",
+  "themeLight": "Claro",
+  "updated": "Actualizado"
+}

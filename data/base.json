@@ -1,0 +1,290 @@
+{
+  "source": "linkedin-export",
+  "dataDate": "2026-10",
+  "profile": {
+    "firstName": "Guido",
+    "lastName": "Delponte",
+    "headline": "Python Developer | Analista Técnico Programador | APIs & Automatización | FastAPI • Laravel • React | Desarrollo Backend & Soluciones a Medida",
+    "about": [
+      "Python Developer & Analista Técnico con más de 3 años de experiencia desarrollando soluciones reales que optimizan procesos y mejoran la operativa del negocio.",
+      "Me especializo en Python, creando desde automatizaciones y herramientas internas hasta APIs y servicios backend escalables. Trabajo diseñando soluciones integrales: aplicaciones web, sistemas de escritorio y plataformas a medida.",
+      "A lo largo de mi experiencia —tanto en empresa como freelance— desarrollé e implementé:",
+      "• APIs y microservicios con FastAPI",
+      "• Plataformas web y e-commerce",
+      "• Sistemas de gestión personalizados",
+      "• Integraciones entre sistemas legacy y soluciones modernas",
+      "Manejo un stack versátil: Python, FastAPI, Laravel, Java y React, lo que me permite comprender el ciclo completo de un proyecto, desde el análisis funcional hasta la puesta en producción.",
+      "Me considero proactivo y resolutivo. Disfruto trabajar en equipo con perfiles técnicos, pero también tengo la capacidad de traducir necesidades del negocio en soluciones técnicas claras y funcionales.",
+      "Me interesa crecer como Analista Técnico Programador o Python Developer, donde pueda aportar soluciones sólidas, escalables y bien diseñadas en entornos desafiantes."
+    ],
+    "geoLocation": "Provincia de Buenos Aires, Argentina"
+  },
+  "positions": [
+    {
+      "id": "noble-seguros",
+      "title": "Desarrollador Python & Analista de Sistemas",
+      "company": "Noble Seguros",
+      "location": null,
+      "start": "2020-12",
+      "end": null,
+      "current": true,
+      "bullets": [
+        "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.",
+        "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.",
+        "Desarrollo de soluciones tecnológicas end-to-end alineadas a requerimientos del negocio.",
+        "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores.",
+        "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.",
+        "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.",
+        "Implementación y estructuración de documentación técnica utilizando Docusaurus.",
+        "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.",
+        "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos."
+      ]
+    },
+    {
+      "id": "freelance",
+      "title": "Desarrollador de Software & Consultor Tecnológico",
+      "company": null,
+      "location": null,
+      "start": "2018-12",
+      "end": null,
+      "current": true,
+      "bullets": [
+        "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.",
+        "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.",
+        "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.",
+        "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
+        "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.",
+        "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables."
+      ]
+    },
+    {
+      "id": "laboratorio-dr-enrique-iovine",
+      "title": "Soporte Técnico de Sistemas & Administrativo",
+      "company": "Laboratorio Dr. Enrique Iovine",
+      "location": null,
+      "start": "2015-04",
+      "end": "2020-11",
+      "current": false,
+      "bullets": [
+        "Administración y mantenimiento integral del parque informático y la infraestructura de redes, asegurando la operatividad continua del laboratorio.",
+        "Soporte técnico a usuarios, diagnóstico y resolución de incidencias de hardware y software, optimizando tiempos de respuesta.",
+        "Instalación, configuración y mantenimiento de sistemas de seguridad y cámaras IP.",
+        "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.",
+        "Operación y administración del sistema de gestión interno LabWin, garantizando la correcta carga y actualización de datos.",
+        "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos."
+      ]
+    },
+    {
+      "id": "maraton-de-buenos-aires",
+      "title": "Asistente en Organización de Eventos Deportivos",
+      "company": "Maratón de Buenos Aires",
+      "location": null,
+      "start": "2017-10",
+      "end": "2019-10",
+      "current": false,
+      "bullets": [
+        "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa.",
+        "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.",
+        "Atención personalizada y asistencia directa a corredores y participantes, brindando soporte antes, durante y después de la competencia.",
+        "Elaboración de reportes post-evento, análisis de situaciones críticas e implementación de mejoras para futuras ediciones."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "istea",
+      "degree": "Desarrollo de Software",
+      "school": "ISTEA - Instituto Superior Tecnologico Empresarial Argentino",
+      "start": "2025",
+      "end": "2027",
+      "inProgress": true
+    },
+    {
+      "id": "ort-argentina",
+      "degree": "Analista en Sistemas",
+      "school": "ORT Argentina",
+      "start": "2019",
+      "end": "2022",
+      "inProgress": false
+    }
+  ],
+  "certifications": [
+    {
+      "id": "fastapi-the-complete-course-beginner-advanced",
+      "title": "FastAPI: The Complete Course (Beginner + Advanced)",
+      "issuer": "Udemy",
+      "date": null,
+      "credentialId": null,
+      "credentialUrl": null
+    },
+    {
+      "id": "microservicios-con-spring-boot-y-spring-cloud-netflix-eureka",
+      "title": "Microservicios con Spring Boot y Spring Cloud Netflix Eureka",
+      "issuer": "Udemy",
+      "date": null,
+      "credentialId": null,
+      "credentialUrl": null
+    },
+    {
+      "id": "api-restful-con-laravel-guia-definitiva",
+      "title": "API RESTful con Laravel: Guía Definitiva",
+      "issuer": "Udemy",
+      "date": null,
+      "credentialId": null,
+      "credentialUrl": null
+    },
+    {
+      "id": "universidad-python-de-cero-a-experto",
+      "title": "Universidad Python: De Cero a Experto",
+      "issuer": "Udemy",
+      "date": null,
+      "credentialId": null,
+      "credentialUrl": null
+    },
+    {
+      "id": "frontend",
+      "title": "FrontEnd",
+      "issuer": "Plataforma 5 - Coding Bootcamp",
+      "date": null,
+      "credentialId": null,
+      "credentialUrl": null
+    },
+    {
+      "id": "certificacion-profesional-en-inteligencia-artificial",
+      "title": "Certificación Profesional en Inteligencia Artificial",
+      "issuer": "ITBA Universidad",
+      "date": "2024",
+      "credentialId": "e6e399dc-b093-4d33-859d-20199a48d76d",
+      "credentialUrl": "https://certtun.vottun.com/badgedetail?id=e6e399dc-b093-4d33-859d-20199a48d76d"
+    },
+    {
+      "id": "patrones-de-diseno",
+      "title": "Patrones de Diseño",
+      "issuer": "EducacionIT",
+      "date": "2023",
+      "credentialId": "39816060846",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/60846"
+    },
+    {
+      "id": "uml-y-up-analisis-y-diseno-orientado-a-objetos",
+      "title": "UML y UP: Análisis y Diseño Orientado a Objetos",
+      "issuer": "EducacionIT",
+      "date": "2023",
+      "credentialId": "39816062198",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/62198"
+    },
+    {
+      "id": "git-desarrollo-colaborativo",
+      "title": "Git: Desarrollo Colaborativo",
+      "issuer": "EducacionIT",
+      "date": "2022",
+      "credentialId": "39816061182",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/61182"
+    },
+    {
+      "id": "javascript-desde-cero",
+      "title": "Javascript desde cero",
+      "issuer": "EducacionIT",
+      "date": "2022",
+      "credentialId": "39816056488",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/56488"
+    },
+    {
+      "id": "introduccion-al-paradigma-de-objetos",
+      "title": "Introducción al Paradigma de Objetos",
+      "issuer": "EducacionIT",
+      "date": "2022",
+      "credentialId": "39816056363",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/56363"
+    },
+    {
+      "id": "introduccion-a-bases-de-datos-y-sql",
+      "title": "Introducción a Bases de Datos y SQL",
+      "issuer": "EducacionIT",
+      "date": null,
+      "credentialId": "39816055954",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/55954"
+    },
+    {
+      "id": "html5-fundamentos-web",
+      "title": "HTML5: Fundamentos Web",
+      "issuer": "EducacionIT",
+      "date": "2022",
+      "credentialId": "39816055693",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/55693"
+    },
+    {
+      "id": "java-para-no-programadores",
+      "title": "Java para no programadores",
+      "issuer": "EducacionIT",
+      "date": "2021",
+      "credentialId": "39816055444",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/55444"
+    },
+    {
+      "id": "analisis-funcional",
+      "title": "Análisis Funcional",
+      "issuer": "EducacionIT",
+      "date": null,
+      "credentialId": "39816048178",
+      "credentialUrl": "https://www.educacionit.com/perfil/guido-delponte-398160/certificado/48178"
+    },
+    {
+      "id": "professional-webmaster-desarrollo-web",
+      "title": "Professional Webmaster Desarrollo Web",
+      "issuer": "Centro de e-Learning UTN FRBA",
+      "date": "2018",
+      "credentialId": null,
+      "credentialUrl": null
+    }
+  ],
+  "skills": [
+    "Configuración de sistemas de seguridad y cámaras IP",
+    "Mantenimiento integral de hardware y software",
+    "Administración de redes y conectividad",
+    "Microsoft Teams",
+    "Discord",
+    "Slack",
+    "LabWin",
+    "SISE",
+    "Microsoft PowerPoint",
+    "Microsoft Word",
+    "Microsoft Excel",
+    "PyCharm",
+    "VS Code",
+    "Docker",
+    "Insomnia",
+    "Postman",
+    "MKdocs",
+    "Docusaurus",
+    "GoodDay",
+    "ClickUp",
+    "Jira",
+    "GitHub",
+    "Git",
+    "pgAdmin",
+    "MySQL Workbench",
+    "DBeaver",
+    "SQL",
+    "CSS3",
+    "HTML5",
+    "Astro",
+    "React",
+    "JavaScript",
+    "Spring Cloud",
+    "Spring Boot",
+    "Java",
+    "Laravel",
+    "PHP",
+    "Flask",
+    "Django",
+    "FastAPI",
+    "Python"
+  ],
+  "languages": [
+    {
+      "name": "Inglés",
+      "proficiency": "Full professional proficiency"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "site": { "url": "https://cv-online-puce.vercel.app" },
+  "contact": {
+    "email": "guido_delponte@hotmail.com",
+    "github": "https://github.com/GDelpo",
+    "linkedin": "https://www.linkedin.com/in/guido-delponte-7a26033a4/",
+    "location": "Buenos Aires, Argentina"
+  },
+  "photo": { "webp": "/img/guido-224.webp", "jpg": "/img/guido-224.jpg", "alt": "Guido Delponte" },
+  "headline": "Python Developer | Analista Técnico Programador | APIs & Automatización",
+  "summary": [
+    "Python Developer & Analista Técnico con más de 3 años de experiencia desarrollando soluciones reales que optimizan procesos y mejoran la operativa del negocio. Me especializo en Python, creando desde automatizaciones y herramientas internas hasta APIs y servicios backend escalables. Trabajo diseñando soluciones integrales: aplicaciones web, sistemas de escritorio y plataformas a medida.",
+    "Manejo un stack versátil: Python, FastAPI, Laravel, Java y React, lo que me permite comprender el ciclo completo de un proyecto, desde el análisis funcional hasta la puesta en producción."
+  ],
+  "engagements": { "freelance": "Profesional independiente" },
+  "schoolLabels": { "istea": "ISTEA" },
+  "skillGroups": [
+    { "id": "backend", "label": "Backend", "items": ["Python", "FastAPI", "Django", "Flask", "Laravel", "PHP", "Java", "Spring Boot", "Spring Cloud"] },
+    { "id": "frontend", "label": "Frontend", "items": ["React", "JavaScript", "Astro", "HTML5", "CSS3"] },
+    { "id": "databases", "label": "Bases de datos", "items": ["SQL", "pgAdmin", "DBeaver", "MySQL Workbench"] },
+    { "id": "dev-tools", "label": "Herramientas de desarrollo", "items": ["Git", "GitHub", "Docker", "VS Code", "PyCharm", "Postman", "Insomnia"] },
+    { "id": "documentation", "label": "Documentación", "items": ["Docusaurus", "MKdocs"] },
+    { "id": "project-management", "label": "Gestión de proyectos", "items": ["Jira", "ClickUp", "GoodDay"] },
+    { "id": "support", "label": "Soporte e infraestructura", "items": ["Administración de redes y conectividad", "Mantenimiento integral de hardware y software", "Configuración de sistemas de seguridad y cámaras IP"] },
+    { "id": "management-software", "label": "Software de gestión", "items": ["LabWin", "SISE"] },
+    { "id": "office", "label": "Ofimática y comunicación", "items": ["Microsoft Excel", "Microsoft Word", "Microsoft PowerPoint", "Microsoft Teams", "Slack", "Discord"] }
+  ],
+  "omit": [],
+  "featuredCertifications": [
+    "certificacion-profesional-en-inteligencia-artificial",
+    "fastapi-the-complete-course-beginner-advanced",
+    "universidad-python-de-cero-a-experto",
+    "patrones-de-diseno",
+    "uml-y-up-analisis-y-diseno-orientado-a-objetos"
+  ],
+  "bulletTiers": {
+    "noble-seguros": {
+      "bullets": [
+        "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores.",
+        "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.",
+        "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.",
+        "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.",
+        "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras."
+      ],
+      "moreBullets": [
+        "Implementación y estructuración de documentación técnica utilizando Docusaurus.",
+        "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.",
+        "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos."
+      ]
+    },
+    "freelance": {
+      "bullets": [
+        "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.",
+        "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.",
+        "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.",
+        "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS)."
+      ],
+      "moreBullets": [
+        "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.",
+        "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables."
+      ]
+    },
+    "maraton-de-buenos-aires": {
+      "bullets": [
+        "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa."
+      ],
+      "moreBullets": [
+        "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.",
+        "Atención personalizada y asistencia directa a corredores y participantes, brindando soporte antes, durante y después de la competencia.",
+        "Elaboración de reportes post-evento, análisis de situaciones críticas e implementación de mejoras para futuras ediciones."
+      ]
+    },
+    "laboratorio-dr-enrique-iovine": {
+      "bullets": [
+        "Administración y mantenimiento integral del parque informático y la infraestructura de redes, asegurando la operatividad continua del laboratorio.",
+        "Soporte técnico a usuarios, diagnóstico y resolución de incidencias de hardware y software, optimizando tiempos de respuesta.",
+        "Instalación, configuración y mantenimiento de sistemas de seguridad y cámaras IP.",
+        "Operación y administración del sistema de gestión interno LabWin, garantizando la correcta carga y actualización de datos."
+      ],
+      "moreBullets": [
+        "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.",
+        "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos."
+      ]
+    }
+  },
+  "omitBullets": [
+    "Desarrollo de soluciones tecnológicas end-to-end alineadas a requerimientos del negocio."
+  ],
+  "languageLevels": { "Full professional proficiency": "Competencia profesional completa" },
+  "extraLanguages": [{ "name": "Español", "level": "Nativo" }]
+}
