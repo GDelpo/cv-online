@@ -23,8 +23,8 @@ export const FORMS = {
     climb: 110, band: 0, bandRight: 0, trunk: 13,
   },
   tablet: {
-    orientation: 'vertical', width: 720, margin: 16, axisRight: 56, eduX: 306, labelX: 324, dotX: 462, rowGap: 31,
-    rowSize: 22, pxYear: 46, laneGap: 26, radius: 62, disc: 19, bigDisc: 23, nameSize: 28, bigSize: 40, dateSize: 15,
+    orientation: 'vertical', width: 720, margin: 16, axisRight: 56, eduX: 306, labelX: 324, dotX: 462, rowGap: 28,
+    rowSize: 22, pxYear: 36, laneGap: 26, radius: 62, disc: 19, bigDisc: 23, nameSize: 28, bigSize: 40, dateSize: 15,
     eduSize: 15, yearSize: 14, climb: 70, trunk: 16,
   },
   phone: {
@@ -121,29 +121,34 @@ function assignStyles(roles) {
   primary.primary = true
 }
 
+/**
+ * INTENTIONAL: a bare year sits on its tick, for roles and studies alike, so "2019 - 2022" spans exactly from tick to
+ * tick as the text says. LinkedIn gives degrees in years, and through December would draw an unknown month as if it were
+ * known. A month inside that same year ("2019-03" to "2019") is past the tick, so the period never runs backward.
+ */
+const endPoint = (end, from) => Math.max(from, end.length > 4 ? toMonthsAfter(end) : toMonths(end))
+
 function buildRoles(positions, now, ui) {
-  const roles = positions.map((position) => ({
-    id: position.id,
-    name: employerOf(position),
-    period: periodOf(position, ui),
-    from: toMonths(position.start),
-    to: position.current ? now : toMonthsAfter(position.end),
-    current: position.current === true,
-  }))
+  const roles = positions.map((position) => {
+    const from = toMonths(position.start)
+    return {
+      id: position.id,
+      name: employerOf(position),
+      period: periodOf(position, ui),
+      from,
+      to: position.current ? now : endPoint(position.end, from),
+      current: position.current === true,
+    }
+  })
   return { roles, ...assignLanes(roles), styled: assignStyles(roles) }
 }
 
-/**
- * INTENTIONAL: a bare year sits on its tick, so "2019 - 2022" spans exactly from tick to tick as the text says. LinkedIn
- * gives degrees in years, and through December would draw an unknown month as if it were known. A partial period is
- * still drawn from what exists; a degree with no dates stays off the map and in the list below it.
- */
+/** A partial period is still drawn from what exists; a degree with no dates stays off the map and in the list below it. */
 function buildStudies(education, now) {
-  const pointAt = (value) => (value.length > 4 ? toMonthsAfter(value) : toMonths(value))
   return education.flatMap((item) => {
     if (!item.start && !item.end) return []
-    const from = item.start ? toMonths(item.start) : pointAt(item.end)
-    const to = item.end ? pointAt(item.end) : item.inProgress ? now : from
+    const from = item.start ? toMonths(item.start) : endPoint(item.end, -Infinity)
+    const to = item.end ? endPoint(item.end, from) : item.inProgress ? now : from
     return [{ id: item.id, degree: item.degree, school: item.school, inProgress: item.inProgress, from, to }]
   })
 }
@@ -301,6 +306,24 @@ function studyParts(study, ui) {
 }
 
 const partsWidth = (parts, size) => parts.reduce((sum, part) => sum + textWidth(part.text, size, 'body'), 0)
+
+/** Like wrapWords, across styled parts. A separator stays with the word after it, so no line ends on a lone dot. */
+function wrapParts(parts, size, maxWidth) {
+  const lines = []
+  for (const { text, className } of parts) {
+    for (const word of text.trim().split(/(?<!·) /)) {
+      const line = lines[lines.length - 1]
+      if (!line || partsWidth(line, size) + textWidth(` ${word}`, size, 'body') > maxWidth) {
+        lines.push([{ text: word, className }])
+      } else if (line[line.length - 1].className === className) {
+        line[line.length - 1].text += ` ${word}`
+      } else {
+        line.push({ text: ` ${word}`, className })
+      }
+    }
+  }
+  return lines
+}
 
 /** Skill branches leave the portrait on a shared trunk and peel off at their row; the first half is the accent side. */
 function buildBranches(form, cx, cy, radius, skillGroups, ui) {
@@ -546,8 +569,6 @@ function layoutHorizontal(input, form, net, extraHeadroom = 0) {
     return {
       id: role.id, index, style: role.style, big, atRim, x: round(x), y: round(y), r: disc,
       letter: Array.from(role.name)[0].toUpperCase(),
-      name: role.name,
-      period: role.period,
       lines: blockLines(best.block, best.left, best.box.y, form),
       frame: best.box,
       leader: needsLeader ? toPath([[x, y], [edgeX, edgeY]]) : null,
@@ -611,6 +632,9 @@ const finishBranches = ({ rows, decor }) => ({
 
 /* ---------- vertical form ---------- */
 
+/** Half a branch, half a dot of the degree line and a little air. */
+const STUDY_CLEARANCE = 13
+
 function layoutVertical(input, form, net) {
   const { skillGroups, ui } = input
   const pxYear = form.pxYear
@@ -664,27 +688,29 @@ function layoutVertical(input, form, net) {
     })
     return station
   })
+  // INTENTIONAL: the second place the map leaves the scale. Every skill branch leaves the portrait across the degree
+  // column, so a degree still running would cross them on its way to its future end. Its dots stop below the fan; the
+  // label still gives the real dates.
+  const fanBottom = Math.max(...[...branches.rows, ...branches.decor].flatMap(({ points }) => points.map(([, y]) => y)))
+  const studyCeiling = fanBottom + STUDY_CLEARANCE
   for (const study of net.studies) {
-    const yTop = yOf(study.to)
     const yBottom = yOf(study.from)
+    const yTop = Math.max(yOf(study.to), Math.min(studyCeiling, yBottom))
     const degree = wrapWords(study.degree, form.eduSize, 'body', labelWidth)
-    const meta = studyParts(study, ui).slice(1)
-    meta[0] = { ...meta[0], text: meta[0].text.replace(/^ · /, '') }
-    const height = (degree.length + 1) * form.eduSize * 1.32
+    const [, school, ...tags] = studyParts(study, ui)
+    const meta = wrapParts([{ ...school, text: study.school }, ...tags], form.eduSize, labelWidth)
+    const height = (degree.length + meta.length) * form.eduSize * 1.32
     const mid = (Math.max(yTop, radius) + yBottom) / 2
     items.push({
       id: study.id, desired: mid - form.eduSize * 0.7, height, study: { yTop, yBottom }, anchor: [form.eduX, mid],
-      width: Math.max(...degree.map((line) => textWidth(line, form.eduSize, 'body')), partsWidth(meta, form.eduSize)),
+      width: Math.max(...degree.map((line) => textWidth(line, form.eduSize, 'body')), ...meta.map((parts) => partsWidth(parts, form.eduSize))),
       build: (top) => ({
         lines: [
-          ...degree.map((text, index) => ({
-            x: form.labelX, y: round(top + form.eduSize * (1.02 + index * 1.32)), size: form.eduSize,
-            parts: [{ text, className: 'tm-edu-strong' }],
-          })),
-          {
-            x: form.labelX, y: round(top + form.eduSize * (1.02 + degree.length * 1.32)), size: form.eduSize, parts: meta,
-          },
-        ],
+          ...degree.map((text) => [{ text, className: 'tm-edu-strong' }]),
+          ...meta,
+        ].map((parts, index) => ({
+          x: form.labelX, y: round(top + form.eduSize * (1.02 + index * 1.32)), size: form.eduSize, parts,
+        })),
       }),
     })
   }
@@ -693,9 +719,9 @@ function layoutVertical(input, form, net) {
   items.sort((a, b) => a.desired - b.desired || a.id.localeCompare(b.id))
   const textBoxes = [{ id: 'now', ...nowBox }]
   let floor = 0
-  const leaders = []
   const placed = new Map()
   for (const item of items) {
+    if (placed.has(item.id)) throw new Error(`the map has two items with the id "${item.id}"`)
     let top = Math.max(item.desired, floor)
     const boxAt = (y) => ({ x: form.labelX, y, w: item.width, h: item.height })
     while (!field.isFree(grow(boxAt(top), 2))) top += 4
@@ -706,30 +732,27 @@ function layoutVertical(input, form, net) {
     const [ax, ay] = item.anchor
     const firstLineY = top + Math.min(item.height, form.nameSize) * 0.45
     const elbow = form.labelX - 12
-    leaders.push({ id: item.id, d: toPath([[ax, ay], [Math.max(ax, elbow - Math.abs(firstLineY - ay)), ay], [elbow, firstLineY], [form.labelX - 5, firstLineY]]) })
-    placed.set(item.id, { item, top, box })
+    const leader = toPath([[ax, ay], [Math.max(ax, elbow - Math.abs(firstLineY - ay)), ay], [elbow, firstLineY], [form.labelX - 5, firstLineY]])
+    placed.set(item.id, { item, top, box, leader })
   }
-  const leaderFor = (id) => leaders.find((leader) => leader.id === id).d
 
   const stations = stationsRaw.map(({ role, index, x, y, disc, big, block, atRim }) => {
-    const { top, box } = placed.get(role.id)
+    const { top, box, leader } = placed.get(role.id)
     return {
       id: role.id, index, style: role.style, big, atRim, x: round(x), y: round(y), r: disc,
       letter: Array.from(role.name)[0].toUpperCase(),
-      name: role.name,
-      period: role.period,
       lines: blockLines(block, form.labelX, top, form),
       frame: box,
-      leader: leaderFor(role.id),
+      leader,
     }
   })
   const studies = net.studies.map((study) => {
-    const { item, top } = placed.get(study.id)
+    const { item, top, leader } = placed.get(study.id)
     return {
       id: study.id,
       d: toPath([[form.eduX, item.study.yTop], [form.eduX, item.study.yBottom]]),
       lines: item.build(top).lines,
-      leader: leaderFor(study.id),
+      leader,
     }
   })
 

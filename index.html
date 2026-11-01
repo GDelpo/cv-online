@@ -15,6 +15,9 @@
         if (dark) document.documentElement.classList.add('dark')
       })()
     </script>
+    <!-- INTENTIONAL: the theme button only works with JavaScript, so without it there is no button to offer. Two classes
+         because the stylesheet comes after this and sets the button's display with one. -->
+    <noscript><style>.bar .bar-theme { display: none; }</style></noscript>
     <!--head-->
   </head>
   <body>

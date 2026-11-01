@@ -138,6 +138,11 @@ function guardBase(base, problems) {
   for (const section of ['positions', 'education', 'certifications']) {
     checkUnique(list(base?.[section]).map((item) => item?.id), `base.${section} id`, problems)
   }
+  // INTENTIONAL: the map places roles and studies in one column and finds each by id, so these two share a namespace.
+  const positionIds = new Set(list(base?.positions).map((item) => item?.id))
+  for (const item of list(base?.education)) {
+    if (item?.id != null && positionIds.has(item.id)) problems.push(`education "${item.id}": id is also a position id`)
+  }
 }
 
 // INTENTIONAL: the summary and headline may only be cut, never rewritten. Comparing against

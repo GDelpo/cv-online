@@ -157,6 +157,10 @@ describe('guard failures', () => {
     expectGuard((i) => { i.translations.entries[0].en = '' }, /entry needs "source" and "en"/)
   })
 
+  it('fails when a position and an education item share an id, because the map keys both by id', () => {
+    expectGuard((i) => { i.base.education[0].id = 'vieja' }, /education "vieja": id is also a position id/)
+  })
+
   it('fails on a duplicate translation source', () => {
     expectGuard((i) => { i.translations.entries.push({ source: 'Tarea.', en: 'Again.' }) }, /duplicate source "Tarea\."/)
   })

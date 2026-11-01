@@ -508,6 +508,15 @@ main:focus {
   }
 }
 
+/* INTENTIONAL: one rule instead of a guard on each transition, so a new one cannot forget it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition: none !important;
+  }
+}
+
 /* ---------- section heads: a stop on the line ---------- */
 .stop-head {
   --ring: 0.52em;
@@ -515,9 +524,12 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 0.22em;
-  font: 800 clamp(46px, 7.4vw, 112px) / 0.95 var(--display);
+  /* INTENTIONAL: the 12.8vw is what keeps "Certificaciones" and its ring inside a 320px screen; body hides overflow-x,
+     so a title that does not fit is cut with no scrollbar to give it away. */
+  font: 800 clamp(min(46px, 12.8vw), 7.4vw, 112px) / 0.95 var(--display);
   text-transform: uppercase;
   letter-spacing: -0.005em;
+  overflow-wrap: anywhere;
   scroll-margin-top: 24px;
 }
 
@@ -683,6 +695,7 @@ main:focus {
   font: 800 clamp(36px, 5.2vw, 84px) / 0.94 var(--display);
   text-transform: uppercase;
   margin-top: 0.08em;
+  overflow-wrap: anywhere;
 }
 
 .job-role {
@@ -799,7 +812,6 @@ main:focus {
   position: relative;
   margin-top: clamp(24px, 3vw, 44px);
   border-left: var(--tr) solid var(--band-line);
-  border-bottom-left-radius: 14px;
 }
 
 .branch {
@@ -881,7 +893,8 @@ main:focus {
 .eduline {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 28px;
+  /* INTENTIONAL: when these stack, each stop hangs 44px above its item, so the row gap has to clear it. */
+  gap: 56px 28px;
   margin-top: 30px;
   padding-top: 32px;
   background: radial-gradient(circle, var(--ink) 3px, transparent 3.6px) 0 -4px / 14px 14px repeat-x;

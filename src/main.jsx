@@ -6,10 +6,10 @@ import '@fontsource/ibm-plex-sans/latin-400.css'
 import '@fontsource/ibm-plex-sans/latin-600.css'
 import './index.css'
 import App from '@/App'
+import { localeFromPath } from '@/lib/locale'
 
 async function start() {
-  // /en/index.html is the same file as /en, so it has to load the same locale or hydration replaces the page.
-  const locale = /^\/en(\/index\.html)?\/*$/.test(location.pathname) ? 'en' : 'es'
+  const locale = localeFromPath(location.pathname)
   // INTENTIONAL: two literal imports, not a template string, so each locale stays its own chunk.
   const { default: content } = await (locale === 'en' ? import('@/content/en.json') : import('@/content/es.json'))
   const root = document.getElementById('root')

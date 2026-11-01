@@ -37,6 +37,20 @@ function buildSite() {
   if (result.status !== 0) throw new Error('pdf: the build failed, no PDF written')
 }
 
+/** The one hydration smoke test: jsdom is out by design, so it runs here, in a real browser on the real build. */
+async function checkHydrated(page, locale) {
+  const { summary } = JSON.parse(readFileSync(contentFile(locale), 'utf8')).ui.sections
+  // A page that loaded the other locale's chunk would have replaced this heading while hydrating.
+  const shown = await page.evaluate(() => document.getElementById('summary').textContent)
+  if (shown !== summary) throw new Error(`pdf: ${locale} page hydrated with "${shown}", not "${summary}"`)
+  const isDark = () => page.evaluate(() => document.documentElement.classList.contains('dark'))
+  const before = await isDark()
+  await page.click('.bar-theme')
+  const switched = await isDark()
+  await page.click('.bar-theme')
+  if (switched === before) throw new Error(`pdf: ${locale} page: the theme button has no handler, hydration did not attach`)
+}
+
 async function printLocale(context, baseUrl, locale) {
   const page = await context.newPage()
   const errors = []
@@ -56,6 +70,7 @@ async function printLocale(context, baseUrl, locale) {
   })
   const lang = await page.evaluate(() => document.documentElement.lang)
   if (lang !== locale) throw new Error(`pdf: ${locale} page has lang="${lang}"`)
+  await checkHydrated(page, locale)
   if (errors.length > 0) throw new Error(`pdf: ${locale} page threw: ${errors.join('; ')}`)
   await page.pdf({ path: pdfFile(locale), preferCSSPageSize: true, tagged: true, outline: true })
   await page.close()

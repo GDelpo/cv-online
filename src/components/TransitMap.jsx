@@ -30,11 +30,11 @@ function Line({ line }) {
 }
 
 function Station({ station, stationClass }) {
-  const { frame, id, index, style, x, y, r, letter, lines, name, period } = station
+  const { frame, id, index, style, x, y, r, letter, lines } = station
   return (
-    <a className={`tm-st tm-st-${index} ${stationClass}`} href={`#position-${id}`} aria-label={`${name}, ${period}`}>
+    <a className={`tm-st tm-st-${index} ${stationClass}`} href={`#position-${id}`}>
       <rect className="tm-frame" x={frame.x - 5} y={frame.y - 4} width={frame.w + 10} height={frame.h + 8} rx="4" />
-      <Label lines={lines} hidden />
+      <Label lines={lines} />
       <g className="tm-disc" aria-hidden="true">
         <circle cx={x} cy={y} r={r} strokeWidth={r * 0.24} className={`tm-disc-${style}`} />
         <text x={x} y={y} dy=".36em" fontSize={r * 1.02} textAnchor="middle" className={`tm-letter tm-letter-${style}`}>
@@ -110,7 +110,8 @@ function Form({ name, layout, photo, label }) {
           <Label lines={study.lines} />
         </g>
       ))}
-      <Label lines={now.lines} />
+      {/* A bare "Present" means nothing read aloud; each current role already says it in its own link. */}
+      <Label lines={now.lines} hidden />
       <circle cx={portrait.x} cy={portrait.y} r={portrait.r} className="tm-portrait" aria-hidden="true" />
       <image
         href={photo.webp}
@@ -134,8 +135,8 @@ function Form({ name, layout, photo, label }) {
 
 /**
  * INTENTIONAL: every form is in the HTML and CSS shows one, so the map is drawn with no JavaScript and hydration never
- * has to know the viewport. A hidden form is display:none, so a screen reader meets only the one on screen. The station
- * text is aria-hidden because each link already carries it in its aria-label, and the lists below repeat all of it.
+ * has to know the viewport. A hidden form is display:none, so a screen reader meets only the one on screen. A station's
+ * link is named by its visible text, not an aria-label, so what is heard and what a voice user reads out are the same.
  */
 export default function TransitMap({ positions, education, skillGroups, dataDate, photo, ui }) {
   const forms = useMemo(

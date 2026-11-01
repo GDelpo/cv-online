@@ -17,7 +17,9 @@ const BUDGET = {
   // INTENTIONAL: the spec's 60 KB predates the Signal Map design, which needs a heavy and a medium display weight.
   // Fontsource 5.3.0 latin woff2: Barlow Condensed 600 22.3 kB and 800 22.5 kB, Plex 400 22.6 kB and 600 24.3 kB, 91.6 kB
   // or 89.5 KiB, and woff2 does not gzip further. Set to what exists, so growth still fails. Only Barlow 800 and Plex 400
-  // are preloaded; the other two load when first used.
+  // are preloaded; the other two load when first used. Spec section 11 still says 60 KB and is not one of the sections
+  // the redesign overrides, so the exception is Guido's to approve. Dropping one weight would not settle it: any three
+  // come to at least 67.4 kB.
   fonts: 91 * KB,
   photo: 30 * KB,
 }
@@ -65,6 +67,7 @@ function checkPage(file, { locale, canonical, siteUrl, foreignLabels, content })
   check(html.includes(`hreflang="en" href="${siteUrl}/en"`), `${name}: hreflang en`)
   check(html.includes(`hreflang="x-default" href="${siteUrl}/"`), `${name}: hreflang x-default`)
   check(!html.includes('<!--head-->') && !html.includes('<!--app-->'), `${name}: placeholder left in the page`)
+  check(html.includes('<noscript><style>.bar .bar-theme'), `${name}: the theme button would show with no JavaScript`)
   for (const label of foreignLabels) check(!html.includes(`>${label}<`), `${name}: Spanish label "${label}"`)
 }
 

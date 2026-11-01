@@ -202,6 +202,57 @@ describe('lanes', () => {
   })
 })
 
+describe('dates on the map', () => {
+  const edgeOf = (map, id) => map.lines.find((line) => line.id === id).points.map(([x]) => x)
+  const tick = (map, year) => map.axis.ticks.find((item) => item.year === year).x
+
+  it('ends a bare-year role on its tick, as a bare-year degree does', () => {
+    const map = layout([role('r', '2019', '2022'), FIVE[1]], 'wide', { education: [{ id: 's', degree: 'D', school: 'S', start: '2019', end: '2022', inProgress: false }] })
+    expect(edgeOf(map, 'r').at(-1)).toBeCloseTo(tick(map, 2022), 0)
+    expect(map.studies[0].d).toMatch(new RegExp(`L${tick(map, 2022)} `))
+  })
+
+  it('never draws a period backward when a month starts the year that ends it', () => {
+    const map = layout([role('r', '2019-03', '2019'), FIVE[1]], 'wide', { education: [{ id: 's', degree: 'D', school: 'S', start: '2019-03', end: '2019', inProgress: false }] })
+    const [from, to] = edgeOf(map, 'r')
+    expect(to).toBeGreaterThanOrEqual(from)
+    const [, x1, x2] = map.studies[0].d.match(/^M([\d.]+) [\d.]+L([\d.]+) /)
+    expect(Number(x2)).toBeGreaterThanOrEqual(Number(x1))
+  })
+})
+
+describe('the vertical forms', () => {
+  const yRange = (d) => [...d.matchAll(/[ML][\d.]+ ([\d.]+)/g)].map((match) => Number(match[1]))
+
+  it.each(['tablet', 'phone'])('keeps the dots of a running degree below the skill branches in %s', (form) => {
+    const map = layout(FIVE, form)
+    const fan = [...map.branches.rows, ...map.branches.decor].flatMap((item) => yRange(item.d))
+    for (const study of map.studies) expect(Math.min(...yRange(study.d))).toBeGreaterThan(Math.max(...fan))
+  })
+
+  it.each(['tablet', 'phone'])('wraps a long school and its tag inside the drawing in %s', (form) => {
+    const education = [{ id: 's', degree: 'Tecnicatura', school: 'Universidad Tecnológica Nacional de la Provincia de Buenos Aires', start: '2025', end: null, inProgress: true }]
+    const map = layout(FIVE, form, { education })
+    const lines = map.studies[0].lines
+    expect(lines.length).toBeGreaterThan(2)
+    const text = lines.flatMap((line) => line.parts.map((part) => part.text)).join(' ').replace(/\s+/g, ' ')
+    expect(text).toContain('Universidad Tecnológica Nacional de la Provincia de Buenos Aires')
+    expect(text).toContain('· En curso')
+    for (const line of lines) {
+      const width = line.parts.reduce((sum, part) => sum + textWidth(part.text, line.size, 'body'), 0)
+      expect(line.x + width).toBeLessThanOrEqual(map.width)
+    }
+    const box = map.textBoxes.find((item) => item.id === 's')
+    expect(box.h).toBeCloseTo(lines.length * lines[0].size * 1.32, 1)
+    expect(lines[1].parts[0].text.startsWith('·')).toBe(false)
+  })
+
+  it.each(['tablet', 'phone'])('fails with a clear message, not a crash, on a shared id in %s', (form) => {
+    const education = [{ id: FIVE[0].id, degree: 'D', school: 'S', start: '2019', end: '2022', inProgress: false }]
+    expect(() => layout(FIVE, form, { education })).toThrow(/two items with the id/)
+  })
+})
+
 describe('education on the map', () => {
   it('draws a bare-year period from tick to tick', () => {
     const map = layout(FIVE, 'wide')

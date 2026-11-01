@@ -26,7 +26,7 @@
     { "id": "office", "label": "Ofimática y comunicación", "items": ["Microsoft Excel", "Microsoft Word", "Microsoft PowerPoint", "Microsoft Teams", "Slack", "Discord"] }
   ],
   "projects": {
-    "comment": "Allowlist on purpose: the other GDelpo repos stay out until the pending leak cleanup is done. Add one only after that cleanup, and check its description against the repo.",
+    "comment": "Allowlist on purpose: a repo reaches the page only by being written here. Check its description against the repo before adding it.",
     "items": [
       {
         "id": "docx-to-markdown",
