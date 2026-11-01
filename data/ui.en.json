@@ -6,6 +6,7 @@
   "sections": {
     "summary": "Summary",
     "experience": "Work Experience",
+    "projects": "Projects",
     "education": "Education",
     "certifications": "Certifications",
     "skills": "Skills",
@@ -22,5 +23,7 @@
   "skipLink": "Skip to content",
   "themeDark": "Dark",
   "themeLight": "Light",
-  "updated": "Updated"
+  "updated": "Updated",
+  "viewRepository": "View on GitHub",
+  "mapLabel": "Career map: jobs and studies to scale by year, with skills as branches"
 }

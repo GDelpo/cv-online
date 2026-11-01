@@ -113,6 +113,8 @@
 
     { "source": "Inglés", "en": "English" },
     { "source": "Español", "en": "Spanish" },
-    { "source": "Nativo", "en": "Native" }
+    { "source": "Nativo", "en": "Native" },
+    {"source": "FastAPI y CLI: DOCX a Markdown con imágenes, Docker", "en": "FastAPI and CLI, DOCX to Markdown with images, Docker"},
+    {"source": "Autenticación LDAP3 y búsqueda de usuarios", "en": "LDAP3 authentication and user lookup"}
   ]
 }

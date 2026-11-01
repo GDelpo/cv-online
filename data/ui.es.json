@@ -6,6 +6,7 @@
   "sections": {
     "summary": "Perfil",
     "experience": "Experiencia laboral",
+    "projects": "Proyectos",
     "education": "Educación",
     "certifications": "Certificaciones",
     "skills": "Habilidades",
@@ -22,5 +23,7 @@
   "skipLink": "Saltar al contenido",
   "themeDark": "Oscuro",
   "themeLight": "Claro",
-  "updated": "Actualizado"
+  "updated": "Actualizado",
+  "viewRepository": "Ver en GitHub",
+  "mapLabel": "Mapa de la carrera: trabajos y estudios a escala de años, y habilidades como ramales"
 }

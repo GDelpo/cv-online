@@ -6,7 +6,7 @@ const ABOUT_SENTENCE = 'Hago APIs.'
 function fixtures() {
   const ui = (present) => ({
     meta: { title: 'T', description: 'D' },
-    sections: { summary: 's', experience: 'e', education: 'e', certifications: 'c', skills: 's', languages: 'l' },
+    sections: { summary: 's', experience: 'e', projects: 'p', education: 'e', certifications: 'c', skills: 's', languages: 'l' },
     present,
     months: Array(12).fill('m'),
     viewCredential: 'v',
@@ -19,6 +19,8 @@ function fixtures() {
     themeDark: 'd',
     themeLight: 'l',
     updated: 'u',
+    viewRepository: 'r',
+    mapLabel: 'm',
   })
   return {
     base: {
@@ -45,6 +47,10 @@ function fixtures() {
       engagements: { freelance: 'Independiente' },
       schoolLabels: { abc: 'ABC' },
       skillGroups: [{ id: 'backend', label: 'Backend', items: ['Python'] }],
+      projects: {
+        comment: 'allowlist',
+        items: [{ id: 'mi-repo', name: 'mi-repo', url: 'https://github.com/GDelpo/mi-repo', description: 'Hace cosas' }],
+      },
       omit: ['Word'],
       featuredCertifications: ['dos'],
       bulletTiers: {
@@ -61,7 +67,7 @@ function fixtures() {
         ['Dev', 'Dev'], [ABOUT_SENTENCE, 'I make APIs.'], ['Soporte', 'Support'], ['Tarea vieja.', 'Old task.'],
         ['Consultora', 'Consultant'], ['Independiente', 'Self-employed'], ['Tarea.', 'Task.'], ['Software', 'Software'],
         ['Curso Uno', 'Course One'], ['Curso Dos', 'Course Two'], ['Backend', 'Backend'], ['Python', 'Python'],
-        ['Inglés', 'English'], ['Latín', 'Latin'], ['Español', 'Spanish'], ['Nativo', 'Native'],
+        ['Inglés', 'English'], ['Latín', 'Latin'], ['Español', 'Spanish'], ['Nativo', 'Native'], ['Hace cosas', 'Does things'],
       ].map(([source, en]) => ({ source, en })),
     },
     uiEs: ui('Actualidad'),
@@ -263,6 +269,31 @@ describe('guard failures', () => {
     expectGuard((i) => { i.translations.entries.find((e) => e.source === ABOUT_SENTENCE).en = long }, /en summary: 601 characters/)
   })
 
+  it.each([
+    ['another account', 'https://github.com/otra-persona/mi-repo'],
+    ['plain http', 'http://github.com/GDelpo/mi-repo'],
+    ['another host', 'https://gitlab.com/GDelpo/mi-repo'],
+    ['a look-alike host', 'https://github.com.evil.example/GDelpo/mi-repo'],
+    ['a deeper path', 'https://github.com/GDelpo/mi-repo/issues'],
+    ['a script', 'javascript:alert(1)'],
+  ])('fails on a project URL at %s', (_name, url) => {
+    expectGuard((i) => { i.profile.projects.items[0].url = url }, /url must be https:\/\/github\.com\/GDelpo\/<repo>/)
+  })
+
+  it('fails on a project whose URL names a different repo', () => {
+    expectGuard((i) => { i.profile.projects.items[0].url = 'https://github.com/GDelpo/otro' }, /points at "otro", not at its id/)
+  })
+
+  it('fails on a missing, incomplete or repeated project', () => {
+    expectGuard((i) => { delete i.profile.projects }, /profile\.projects\.items: missing or empty/)
+    expectGuard((i) => { delete i.profile.projects.items[0].description }, /project "mi-repo": missing required field "description"/)
+    expectGuard((i) => { i.profile.projects.items.push(i.profile.projects.items[0]) }, /project id: duplicate "mi-repo"/)
+  })
+
+  it('fails on a project description with no translation', () => {
+    expectGuard((i) => { i.profile.projects.items[0].description = 'Otra cosa' }, /missing translation: "Otra cosa"/)
+  })
+
   it('fails on a position without company or engagement', () => {
     expectGuard((i) => { i.profile.engagements = {} }, /no company and no engagement label/)
   })
@@ -291,20 +322,34 @@ describe('guard failures', () => {
 describe('real data', () => {
   const { es, en } = buildContent(loadInputs())
 
+  // INTENTIONAL: compared with the export, not with a fixed count, so a new job is a data change and needs no code.
   it('keeps every position, education, certification and skill in both locales', () => {
+    const { base, profile } = loadInputs()
     for (const locale of [es, en]) {
-      expect(locale.positions).toHaveLength(4)
-      expect(locale.education).toHaveLength(2)
-      expect(locale.certifications).toHaveLength(16)
-      expect(locale.certifications.filter((item) => item.featured)).toHaveLength(5)
-      expect(locale.skillGroups.flatMap((group) => group.items)).toHaveLength(41)
+      expect(locale.positions).toHaveLength(base.positions.length)
+      expect(locale.education).toHaveLength(base.education.length)
+      expect(locale.certifications).toHaveLength(base.certifications.length)
+      expect(locale.certifications.filter((item) => item.featured)).toHaveLength(profile.featuredCertifications.length)
+      expect(locale.skillGroups.flatMap((group) => group.items)).toHaveLength(base.skills.length)
     }
   })
 
-  it('orders positions and certifications as the spec says', () => {
-    expect(es.positions.map((position) => position.id)).toEqual([
-      'noble-seguros', 'freelance', 'maraton-de-buenos-aires', 'laboratorio-dr-enrique-iovine',
+  it('allows only the two cleaned repos as projects, in both languages', () => {
+    for (const locale of [es, en]) {
+      expect(locale.projects.map((item) => item.url)).toEqual([
+        'https://github.com/GDelpo/docx-to-markdown',
+        'https://github.com/GDelpo/python-ldap-connector',
+      ])
+    }
+    expect(en.projects.map((item) => item.description)).toEqual([
+      'FastAPI and CLI, DOCX to Markdown with images, Docker',
+      'LDAP3 authentication and user lookup',
     ])
+  })
+
+  it('orders positions and certifications as the spec says', () => {
+    const starts = es.positions.map((position) => position.start)
+    expect(starts).toEqual([...starts].sort((a, b) => b.localeCompare(a)))
     expect(es.certifications[0].id).toBe('certificacion-profesional-en-inteligencia-artificial')
     expect(es.skillGroups[0].items[0]).toBe('Python')
   })

@@ -25,6 +25,23 @@
     { "id": "management-software", "label": "Software de gestión", "items": ["LabWin", "SISE"] },
     { "id": "office", "label": "Ofimática y comunicación", "items": ["Microsoft Excel", "Microsoft Word", "Microsoft PowerPoint", "Microsoft Teams", "Slack", "Discord"] }
   ],
+  "projects": {
+    "comment": "Allowlist on purpose: the other GDelpo repos stay out until the pending leak cleanup is done. Add one only after that cleanup, and check its description against the repo.",
+    "items": [
+      {
+        "id": "docx-to-markdown",
+        "name": "docx-to-markdown",
+        "url": "https://github.com/GDelpo/docx-to-markdown",
+        "description": "FastAPI y CLI: DOCX a Markdown con imágenes, Docker"
+      },
+      {
+        "id": "python-ldap-connector",
+        "name": "python-ldap-connector",
+        "url": "https://github.com/GDelpo/python-ldap-connector",
+        "description": "Autenticación LDAP3 y búsqueda de usuarios"
+      }
+    ]
+  },
   "omit": [],
   "featuredCertifications": [
     "certificacion-profesional-en-inteligencia-artificial",

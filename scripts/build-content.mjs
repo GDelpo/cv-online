@@ -10,12 +10,14 @@ const SUMMARY_MAX = 600
 const DATE = /^\d{4}(-(0[1-9]|1[0-2]))?$/
 const DATA_DATE = /^\d{4}-(0[1-9]|1[0-2])$/
 const URL_PATTERN = /^https?:\/\/\S+$/
+// INTENTIONAL: only Guido's own repos may be linked, and each link names its repo, nothing deeper.
+const PROJECT_URL = /^https:\/\/github\.com\/GDelpo\/([A-Za-z0-9._-]+)$/
 const UI_REQUIRED = [
   'meta.title', 'meta.description',
-  'sections.summary', 'sections.experience', 'sections.education',
+  'sections.summary', 'sections.experience', 'sections.projects', 'sections.education',
   'sections.certifications', 'sections.skills', 'sections.languages',
   'present', 'months', 'viewCredential', 'credentialId', 'inProgress', 'downloadPdf',
-  'pdfPath', 'showMore', 'skipLink', 'themeDark', 'themeLight', 'updated',
+  'pdfPath', 'showMore', 'skipLink', 'themeDark', 'themeLight', 'updated', 'viewRepository', 'mapLabel',
 ]
 
 export class GuardError extends Error {
@@ -225,6 +227,20 @@ function guardProfile(base, profile, problems) {
   checkUnique([...list(profile?.extraLanguages), ...list(base?.languages)].map((item) => item?.name), 'language name', problems)
 }
 
+// INTENTIONAL: an allowlist, not a GitHub import. A repo reaches the page only by being written here on purpose.
+function guardProjects(profile, problems) {
+  const items = profile?.projects?.items
+  requireList(items, 'profile.projects.items', problems)
+  for (const item of list(items)) {
+    const where = `project "${item?.id}"`
+    requireFields(item, ['id', 'name', 'url', 'description'], where, problems)
+    const repo = PROJECT_URL.exec(item?.url ?? '')
+    if (!repo) problems.push(`${where}: url must be https://github.com/GDelpo/<repo>, found "${item?.url}"`)
+    else if (repo[1] !== item.id) problems.push(`${where}: url points at "${repo[1]}", not at its id`)
+  }
+  checkUnique(list(items).map((item) => item?.id), 'project id', problems)
+}
+
 function keyPaths(value, prefix = '') {
   if (Array.isArray(value) || value === null || typeof value !== 'object') return [prefix]
   return Object.entries(value).flatMap(([key, child]) => keyPaths(child, prefix ? `${prefix}.${key}` : key))
@@ -284,6 +300,12 @@ function buildLocale(locale, translate, { base, profile, ui }) {
         bullets: list(tiers[position.id]?.bullets).map(translate),
         moreBullets: list(tiers[position.id]?.moreBullets).map(translate),
       })),
+    projects: profile.projects.items.map((item) => ({
+      id: item.id,
+      name: item.name,
+      url: item.url,
+      description: translate(item.description),
+    })),
     education: base.education.map((item) => ({
       id: item.id,
       degree: translate(item.degree),
@@ -339,6 +361,7 @@ export function buildContent({ base, profile, translations, uiEs, uiEn }) {
   for (const [name, value] of Object.entries(inputs)) findVerified(value, name, problems)
   guardBase(base, problems)
   guardProfile(base, profile, problems)
+  guardProjects(profile, problems)
   guardUi(uiEs, uiEn, problems)
   if (!isText(translations?.status)) problems.push('en.json: missing required field "status"')
   requireList(translations?.entries, 'en.json entries', problems)
