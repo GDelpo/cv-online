@@ -107,8 +107,7 @@ cuenta a Guido. Se corre solo a mano, nunca en CI ni programado. Ver [scraper/RE
 | `data/ui.es.json`, `data/ui.en.json` | Textos de la interfaz. Los dos tienen que tener las mismas claves. |
 
 `projects` es una lista cerrada: un repo aparece en el sitio y en el PDF solo si está escrito ahí. El guard exige que la
-URL sea `https://github.com/GDelpo/<id>`, sin nada detrás. El comentario de ese bloque explica por qué los demás repos
-quedan afuera por ahora.
+URL sea `https://github.com/GDelpo/<id>`, sin nada detrás. Con la lista vacía, la sección no se muestra.
 
 El guard solo controla que cada traducción corresponda al texto en español actual, no que esté bien. El campo `status`
 de `en.json` dice `draft-review-by-guido`: son un borrador hasta que Guido las revise. Los títulos de cursos y

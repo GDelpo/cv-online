@@ -160,11 +160,12 @@ describe('the map in the page', () => {
 
     it('keeps the heading levels: h1 name, h2 sections, h3 entries', () => {
       expect(html).toMatch(new RegExp(`<h1[^>]*>.*${content.person.name.split(' ')[0]}`))
-      for (const [id, label] of Object.entries(content.ui.sections)) {
+      const shown = Object.entries(content.ui.sections).filter(([id]) => id !== 'projects' || content.projects.length > 0)
+      for (const [id, label] of shown) {
         expect(html).toMatch(new RegExp(`<h2 id="${id}"[^>]*>(<span[^>]*></span>)?${label}</h2>`))
         expect(html).toContain(`aria-labelledby="${id}"`)
       }
-      expect(count(html, /<h2[\s>]/g)).toBe(Object.keys(content.ui.sections).length)
+      expect(count(html, /<h2[\s>]/g)).toBe(shown.length)
       expect(count(html, /<h3[\s>]/g)).toBe(content.positions.length + content.projects.length)
     })
 

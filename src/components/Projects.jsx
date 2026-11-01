@@ -1,6 +1,7 @@
 import StopHead from '@/components/StopHead'
 
 export default function Projects({ items, ui }) {
+  if (items.length === 0) return null
   return (
     <section aria-labelledby="projects" className="wrap section section-last">
       <StopHead id="projects">{ui.sections.projects}</StopHead>

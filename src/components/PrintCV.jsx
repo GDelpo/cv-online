@@ -41,14 +41,18 @@ export default function PrintCV({ content }) {
         </div>
       ))}
 
-      <h2>{ui.sections.projects}</h2>
-      <ul>
-        {projects.map((item) => (
-          <li key={item.id}>
-            {line([item.name, item.description])} · <span className="print-cv-nobreak">{item.url}</span>
-          </li>
-        ))}
-      </ul>
+      {projects.length > 0 ? (
+        <>
+          <h2>{ui.sections.projects}</h2>
+          <ul>
+            {projects.map((item) => (
+              <li key={item.id}>
+                {line([item.name, item.description])} · <span className="print-cv-nobreak">{item.url}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
 
       <h2>{ui.sections.skills}</h2>
       {skillGroups.map((group) => (

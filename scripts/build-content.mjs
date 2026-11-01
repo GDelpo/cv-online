@@ -223,9 +223,10 @@ function guardProfile(base, profile, problems) {
 }
 
 // INTENTIONAL: an allowlist, not a GitHub import. A repo reaches the page only by being written here on purpose.
+// An empty list is valid and hides the section; a missing one is still a mistake.
 function guardProjects(profile, problems) {
   const items = profile?.projects?.items
-  requireList(items, 'profile.projects.items', problems)
+  if (!Array.isArray(items)) problems.push('profile.projects.items: missing')
   for (const item of list(items)) {
     const where = `project "${item?.id}"`
     requireFields(item, ['id', 'name', 'url', 'description'], where, problems)

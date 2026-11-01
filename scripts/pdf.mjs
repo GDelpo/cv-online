@@ -123,7 +123,11 @@ function checkLocale(locale, manifest, problems) {
   const flat = flatten(raw)
   if (pages === 0 || pages > MAX_PAGES) problems.push(`${name}: ${pages} pages, the limit is ${MAX_PAGES}`)
 
-  const headings = [content.person.name, ...Object.values(content.ui.sections), ...content.positions.map((p) => p.title)]
+  // The projects section is not printed while the allowlist is empty.
+  const sections = Object.entries(content.ui.sections)
+    .filter(([key]) => key !== 'projects' || content.projects.length > 0)
+    .map(([, heading]) => heading)
+  const headings = [content.person.name, ...sections, ...content.positions.map((p) => p.title)]
   for (const heading of headings) {
     if (!lines.includes(heading)) problems.push(`${name}: heading "${heading}" is not on its own line`)
   }

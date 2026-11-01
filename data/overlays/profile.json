@@ -123,20 +123,7 @@
   ],
   "projects": {
     "comment": "Allowlist on purpose: a repo reaches the page only by being written here. Check its description against the repo before adding it.",
-    "items": [
-      {
-        "id": "docx-to-markdown",
-        "name": "docx-to-markdown",
-        "url": "https://github.com/GDelpo/docx-to-markdown",
-        "description": "FastAPI y CLI: DOCX a Markdown con imágenes, Docker"
-      },
-      {
-        "id": "python-ldap-connector",
-        "name": "python-ldap-connector",
-        "url": "https://github.com/GDelpo/python-ldap-connector",
-        "description": "Autenticación LDAP3 y búsqueda de usuarios"
-      }
-    ]
+    "items": []
   },
   "omit": [],
   "featuredCertifications": [

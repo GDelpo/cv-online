@@ -285,7 +285,7 @@ describe('guard failures', () => {
   })
 
   it('fails on a missing, incomplete or repeated project', () => {
-    expectGuard((i) => { delete i.profile.projects }, /profile\.projects\.items: missing or empty/)
+    expectGuard((i) => { delete i.profile.projects }, /profile\.projects\.items: missing/)
     expectGuard((i) => { delete i.profile.projects.items[0].description }, /project "mi-repo": missing required field "description"/)
     expectGuard((i) => { i.profile.projects.items.push(i.profile.projects.items[0]) }, /project id: duplicate "mi-repo"/)
   })
@@ -334,17 +334,9 @@ describe('real data', () => {
     }
   })
 
-  it('allows only the two cleaned repos as projects, in both languages', () => {
-    for (const locale of [es, en]) {
-      expect(locale.projects.map((item) => item.url)).toEqual([
-        'https://github.com/GDelpo/docx-to-markdown',
-        'https://github.com/GDelpo/python-ldap-connector',
-      ])
-    }
-    expect(en.projects.map((item) => item.description)).toEqual([
-      'FastAPI and CLI, DOCX to Markdown with images, Docker',
-      'LDAP3 authentication and user lookup',
-    ])
+  it('lists no projects until a repo is added to the allowlist', () => {
+    expect(es.projects).toEqual([])
+    expect(en.projects).toEqual([])
   })
 
   it('orders positions and certifications as the spec says', () => {
