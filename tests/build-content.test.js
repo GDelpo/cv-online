@@ -339,9 +339,10 @@ describe('real data', () => {
     }
   })
 
-  it('lists no projects until a repo is added to the allowlist', () => {
-    expect(es.projects).toEqual([])
-    expect(en.projects).toEqual([])
+  it('lists exactly the repos in the allowlist, in both languages', () => {
+    const allowed = ['fastapi-google-drive-api', 'observability-stack']
+    expect(es.projects.map((item) => item.id)).toEqual(allowed)
+    expect(en.projects.map((item) => item.id)).toEqual(allowed)
   })
 
   it('orders positions and certifications as the spec says', () => {

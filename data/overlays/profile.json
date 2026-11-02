@@ -110,7 +110,20 @@
   ],
   "projects": {
     "comment": "Allowlist on purpose: a repo reaches the page only by being written here. Check its description against the repo before adding it.",
-    "items": []
+    "items": [
+      {
+        "id": "fastapi-google-drive-api",
+        "name": "fastapi-google-drive-api",
+        "url": "https://github.com/GDelpo/fastapi-google-drive-api",
+        "description": "Microservicio FastAPI con API REST sobre Google Drive para subir, buscar, descargar y organizar archivos, con OAuth2 o service account, validación de JWT, dashboard web y Docker."
+      },
+      {
+        "id": "observability-stack",
+        "name": "observability-stack",
+        "url": "https://github.com/GDelpo/observability-stack",
+        "description": "Configuración Docker Compose de Loki, Promtail y Grafana para centralizar logs de contenedores, con dashboard provisionado y alertas por email."
+      }
+    ]
   },
   "omit": [
     "Astro",
@@ -152,7 +165,7 @@
       "bullets": [
         "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.",
         "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.",
-        "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
+        "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con exportación a Excel y alertas de vencimiento.",
         "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python con catálogo YAML y una API REST.",
         "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores."
       ],
@@ -170,7 +183,7 @@
         "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.",
         "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (sin desplegar todavía).",
         "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
-        "Construí un motor en Python que genera PDF de marca desde contratos JSON con esquema, con formulario web, Docker y 462 pruebas (sin clientes externos todavía)."
+        "Construí un motor en Python que genera PDF de marca desde contratos JSON validados con esquema, con formulario web, Docker y 462 tests (sin clientes externos todavía)."
       ],
       "moreBullets": [
         "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones."
@@ -193,20 +206,16 @@
     },
     "ciena": {
       "bullets": [
-        "Desarrollé desde cero y mantengo herramientas en Python con tests para equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con ejecución en paralelo sobre flotas, y una de solo lectura para Cisco.",
-        "Reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
-        "Desarrollé un comando en Python para cambiar en lote la availability de equipos en SL1, con plan previo, canario, ejecución explícita y comandos de reversión por corrida.",
-        "Configuré SNMPv3 y cuentas en equipos ópticos de un cliente, en ventanas de cambio, con herramientas propias en Python.",
-        "Validé con eventos de prueba el camino de alarmas hacia SL1 en la red óptica de un cliente y entregué el informe.",
+        "Desarrollé desde cero y mantengo herramientas en Python para operar en paralelo flotas de equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con tests automatizados.",
+        "Automaticé el alta de equipos de clientes en ScienceLogic SL1: reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables, usado en altas reales.",
+        "Desarrollé un comando en Python para cambios de availability en lote en SL1, con plan previo, prueba canario y comandos de reversión.",
+        "Configuré SNMPv3 y cuentas en redes ópticas de clientes, en ventanas de cambio, y validé el camino de alarmas hacia SL1.",
         "Construí y mantengo la base de conocimiento del NOC, en inglés."
       ],
       "moreBullets": [
-        "Estoy construyendo una herramienta en Python que compara las alarmas activas de cada cliente con los eventos de SL1 y marca cada diferencia una sola vez (en piloto).",
+        "Estoy construyendo una herramienta en Python que detecta diferencias entre las alarmas activas de los equipos y los eventos de SL1 (en piloto).",
         "Escribí snippets de Dynamic Apps de SL1 para Waveserver, validados en laboratorio.",
-        "Enrolé equipos en el sistema de backups por pedido de management, con canario previo.",
-        "Desarrollé comandos para limpiar eventos duplicados y vencidos en SL1.",
-        "Armé comandos de reporte de solo lectura sobre monitoreo, backups y credenciales.",
-        "Armé tablas de circuitos por cliente, a partir de capturas de equipos, para la correlación de eventos."
+        "Desarrollé comandos para reportes de monitoreo y backups y para limpiar eventos duplicados y vencidos en SL1."
       ]
     }
   },
@@ -238,12 +247,12 @@
     "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.": "Mantuve, refactoricé y optimicé sistemas legacy en PHP.",
     "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.": "Relevé requerimientos, analicé sistemas internos y definí sus mejoras.",
     "Implementación y estructuración de documentación técnica utilizando Docusaurus.": "Armé y ordené la documentación técnica con Docusaurus.",
-    "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.": "Audité, seguí y optimicé los servicios de proveedores externos.",
+    "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.": "Audité los servicios de proveedores externos, les hice seguimiento y los optimicé.",
     "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos.": "Coordiné con equipos técnicos y áreas de negocio para que cada entrega respondiera a sus objetivos.",
-    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable y 230 tests.",
+    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol, branding configurable y 230 tests.",
     "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
-    "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
-    "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).": "Entregué sitios de cliente con WordPress + Elementor y con React sobre Cloudflare Workers.",
+    "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.": "Modernicé sistemas legacy: los migré de tecnología y los integré con soluciones nuevas.",
+    "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).": "Entregué sitios para clientes con WordPress + Elementor y con React sobre Cloudflare Workers.",
     "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables.": "Asesoré a clientes en la definición e implementación de sus soluciones tecnológicas.",
     "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa.": "Resolví incidencias y contingencias en carreras masivas de 10K, 21K y 42K para que la operación no se frenara.",
     "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.": "Coordiné con los equipos de operaciones, logística y staff durante cada evento.",
@@ -268,18 +277,14 @@
         "end": null,
         "current": true,
         "bullets": [
-          "Desarrollé desde cero y mantengo herramientas en Python con tests para equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con ejecución en paralelo sobre flotas, y una de solo lectura para Cisco.",
-          "Reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
-          "Desarrollé un comando en Python para cambiar en lote la availability de equipos en SL1, con plan previo, canario, ejecución explícita y comandos de reversión por corrida.",
-          "Configuré SNMPv3 y cuentas en equipos ópticos de un cliente, en ventanas de cambio, con herramientas propias en Python.",
-          "Validé con eventos de prueba el camino de alarmas hacia SL1 en la red óptica de un cliente y entregué el informe.",
+          "Desarrollé desde cero y mantengo herramientas en Python para operar en paralelo flotas de equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con tests automatizados.",
+          "Automaticé el alta de equipos de clientes en ScienceLogic SL1: reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables, usado en altas reales.",
+          "Desarrollé un comando en Python para cambios de availability en lote en SL1, con plan previo, prueba canario y comandos de reversión.",
+          "Configuré SNMPv3 y cuentas en redes ópticas de clientes, en ventanas de cambio, y validé el camino de alarmas hacia SL1.",
           "Construí y mantengo la base de conocimiento del NOC, en inglés.",
-          "Estoy construyendo una herramienta en Python que compara las alarmas activas de cada cliente con los eventos de SL1 y marca cada diferencia una sola vez (en piloto).",
+          "Estoy construyendo una herramienta en Python que detecta diferencias entre las alarmas activas de los equipos y los eventos de SL1 (en piloto).",
           "Escribí snippets de Dynamic Apps de SL1 para Waveserver, validados en laboratorio.",
-          "Enrolé equipos en el sistema de backups por pedido de management, con canario previo.",
-          "Desarrollé comandos para limpiar eventos duplicados y vencidos en SL1.",
-          "Armé comandos de reporte de solo lectura sobre monitoreo, backups y credenciales.",
-          "Armé tablas de circuitos por cliente, a partir de capturas de equipos, para la correlación de eventos."
+          "Desarrollé comandos para reportes de monitoreo y backups y para limpiar eventos duplicados y vencidos en SL1."
         ]
       }
     ],
@@ -291,14 +296,14 @@
     },
     "extraBullets": {
       "noble-seguros": [
-        "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
+        "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con exportación a Excel y alertas de vencimiento.",
         "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python con catálogo YAML y una API REST.",
         "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail.",
         "Automaticé la descarga mensual de facturas por SFTP."
       ],
       "freelance": [
         "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (sin desplegar todavía).",
-        "Construí un motor en Python que genera PDF de marca desde contratos JSON con esquema, con formulario web, Docker y 462 pruebas (sin clientes externos todavía)."
+        "Construí un motor en Python que genera PDF de marca desde contratos JSON validados con esquema, con formulario web, Docker y 462 tests (sin clientes externos todavía)."
       ]
     },
     "extraSkills": [
