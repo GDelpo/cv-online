@@ -13,10 +13,10 @@
     "jpg": "/img/guido-224.jpg",
     "alt": "Guido Delponte"
   },
-  "headline": "Desarrollador Python | Automatización de redes y NOC, APIs backend e integraciones",
+  "headline": "Desarrollador Python backend (FastAPI) | Automatización de redes y NOC",
   "summary": [
-    "Desarrollo software desde 2018 y me dedico a automatizar: sacar tareas manuales y hacer que los sistemas se hablen entre sí. Hoy construyo y opero herramientas en Python para el NOC de Ciena, sobre ScienceLogic SL1 y equipos Ciena 6500, SAOS y Waveserver.",
-    "Antes desarrollé servicios FastAPI e integraciones con AFIP y SSN en una aseguradora. Empecé en soporte técnico y redes, y por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando."
+    "Desarrollo software desde 2018 y me dedico a automatizar: sacar tareas manuales y hacer que los sistemas se hablen entre sí. Desde 2026 construyo y opero herramientas en Python para el NOC de Ciena, sobre ScienceLogic SL1 y equipos Ciena 6500, SAOS y Waveserver.",
+    "Antes construí 8 servicios FastAPI e integraciones con AFIP y SSN en una aseguradora. Empecé en soporte técnico y redes, y por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando."
   ],
   "engagements": {
     "freelance": "Profesional independiente"
@@ -32,14 +32,13 @@
         "Python",
         "FastAPI",
         "Pydantic",
+        "SQLAlchemy",
+        "Alembic",
         "SQLModel",
         "Django",
-        "Flask",
+        "ARQ",
         "Laravel",
-        "PHP",
-        "Java",
-        "Spring Boot",
-        "Spring Cloud"
+        "PHP"
       ]
     },
     {
@@ -47,13 +46,14 @@
       "label": "Automatización de redes y monitoreo",
       "items": [
         "ScienceLogic SL1",
+        "SNMPv3",
+        "SSH",
+        "TL1",
+        "Paramiko",
         "PowerFlow",
         "Ciena 6500",
         "Ciena SAOS",
         "Ciena Waveserver",
-        "TL1",
-        "SSH",
-        "SNMPv3",
         "Cisco IOS",
         "Grafana",
         "Loki"
@@ -70,7 +70,8 @@
         "Tailwind CSS",
         "HTML5",
         "CSS3",
-        "WordPress"
+        "WordPress",
+        "Cloudflare Workers"
       ]
     },
     {
@@ -81,17 +82,20 @@
         "PostgreSQL",
         "SQL Server",
         "Redis",
-        "Google Cloud Storage"
+        "Google Cloud Storage",
+        "pandas"
       ]
     },
     {
       "id": "dev-tools",
       "label": "Herramientas de desarrollo",
       "items": [
+        "Docker",
+        "pytest",
+        "GitHub Actions",
         "Git",
         "GitHub",
-        "Docker",
-        "pytest"
+        "Playwright"
       ]
     },
     {
@@ -101,15 +105,6 @@
         "MkDocs",
         "Docusaurus",
         "Jira"
-      ]
-    },
-    {
-      "id": "support",
-      "label": "Soporte e infraestructura",
-      "items": [
-        "Administración de redes y conectividad",
-        "Mantenimiento integral de hardware y software",
-        "Configuración de sistemas de seguridad y cámaras IP"
       ]
     }
   ],
@@ -136,7 +131,14 @@
     "Microsoft PowerPoint",
     "Microsoft Teams",
     "Slack",
-    "Discord"
+    "Discord",
+    "Flask",
+    "Java",
+    "Spring Boot",
+    "Spring Cloud",
+    "Administración de redes y conectividad",
+    "Mantenimiento integral de hardware y software",
+    "Configuración de sistemas de seguridad y cámaras IP"
   ],
   "featuredCertifications": [
     "certificacion-profesional-en-inteligencia-artificial",
@@ -151,40 +153,34 @@
         "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.",
         "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.",
         "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
-        "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python y una API REST.",
+        "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python con catálogo YAML y una API REST.",
         "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores."
       ],
       "moreBullets": [
         "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.",
         "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.",
         "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail.",
+        "Automaticé la descarga mensual de facturas por SFTP.",
         "Implementación y estructuración de documentación técnica utilizando Docusaurus.",
-        "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.",
-        "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos."
+        "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos."
       ]
     },
     "freelance": {
       "bullets": [
         "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.",
-        "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (beta, sin lanzar).",
+        "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (sin desplegar todavía).",
         "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
-        "Construí un motor en Python que genera PDF de marca desde datos JSON, con Docker."
+        "Construí un motor en Python que genera PDF de marca desde contratos JSON con esquema, con formulario web, Docker y 462 pruebas (sin clientes externos todavía)."
       ],
       "moreBullets": [
-        "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.",
-        "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.",
-        "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables."
+        "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones."
       ]
     },
     "maraton-de-buenos-aires": {
       "bullets": [
         "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa."
       ],
-      "moreBullets": [
-        "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.",
-        "Atención personalizada y asistencia directa a corredores y participantes, brindando soporte antes, durante y después de la competencia.",
-        "Elaboración de reportes post-evento, análisis de situaciones críticas e implementación de mejoras para futuras ediciones."
-      ]
+      "moreBullets": []
     },
     "laboratorio-dr-enrique-iovine": {
       "bullets": [
@@ -193,29 +189,38 @@
         "Instalación, configuración y mantenimiento de sistemas de seguridad y cámaras IP.",
         "Operación y administración del sistema de gestión interno LabWin, garantizando la correcta carga y actualización de datos."
       ],
-      "moreBullets": [
-        "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.",
-        "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos."
-      ]
+      "moreBullets": []
     },
     "ciena": {
       "bullets": [
-        "Desarrollo y mantengo herramientas en Python para equipos ópticos y Ethernet de Ciena y para Cisco (TL1, SSH, SNMPv3), con ejecución paralela en flota.",
-        "Refactoricé y amplié scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
-        "Cambié la configuración de monitoreo de 144 equipos de un cliente en menos de 2 minutos y sin fallas, con un flujo de plan, chequeo, ejecución explícita y reversión.",
-        "Configuré decenas de equipos ópticos en ventanas de cambio con un cliente, sin fallas, y corregí la herramienta en el momento ante diferencias de firmware con el laboratorio."
+        "Desarrollé desde cero y mantengo herramientas en Python con tests para equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con ejecución en paralelo sobre flotas, y una de solo lectura para Cisco.",
+        "Reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
+        "Desarrollé un comando en Python para cambiar en lote la availability de equipos en SL1, con plan previo, canario, ejecución explícita y comandos de reversión por corrida.",
+        "Configuré SNMPv3 y cuentas en equipos ópticos de un cliente, en ventanas de cambio, con herramientas propias en Python.",
+        "Validé con eventos de prueba el camino de alarmas hacia SL1 en la red óptica de un cliente y entregué el informe.",
+        "Construí y mantengo la base de conocimiento del NOC, en inglés."
       ],
       "moreBullets": [
-        "Probé de punta a punta el camino de alarmas en una flota: 78 de 80 equipos comprobados.",
-        "Armé 40 comandos de reporte de solo lectura sobre monitoreo, backups y credenciales en 3 regiones.",
-        "Entregué tablas de circuitos de 10 clientes para la correlación de eventos.",
-        "Armé y mantengo la base de conocimiento del NOC, en inglés (188 páginas)."
+        "Estoy construyendo una herramienta en Python que compara las alarmas activas de cada cliente con los eventos de SL1 y marca cada diferencia una sola vez (en piloto).",
+        "Escribí snippets de Dynamic Apps de SL1 para Waveserver, validados en laboratorio.",
+        "Enrolé equipos en el sistema de backups por pedido de management, con canario previo.",
+        "Desarrollé comandos para limpiar eventos duplicados y vencidos en SL1.",
+        "Armé comandos de reporte de solo lectura sobre monitoreo, backups y credenciales.",
+        "Armé tablas de circuitos por cliente, a partir de capturas de equipos, para la correlación de eventos."
       ]
     }
   },
   "omitBullets": [
     "Desarrollo de soluciones tecnológicas end-to-end alineadas a requerimientos del negocio.",
-    "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas."
+    "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.",
+    "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos.",
+    "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.",
+    "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables.",
+    "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.",
+    "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos.",
+    "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.",
+    "Atención personalizada y asistencia directa a corredores y participantes, brindando soporte antes, durante y después de la competencia.",
+    "Elaboración de reportes post-evento, análisis de situaciones críticas e implementación de mejoras para futuras ediciones."
   ],
   "languageLevels": {
     "Full professional proficiency": "Competencia profesional completa"
@@ -235,7 +240,7 @@
     "Implementación y estructuración de documentación técnica utilizando Docusaurus.": "Armé y ordené la documentación técnica con Docusaurus.",
     "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.": "Audité, seguí y optimicé los servicios de proveedores externos.",
     "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos.": "Coordiné con equipos técnicos y áreas de negocio para que cada entrega respondiera a sus objetivos.",
-    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable.",
+    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable y 230 tests.",
     "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
     "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
     "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).": "Entregué sitios de cliente con WordPress + Elementor y con React sobre Cloudflare Workers.",
@@ -256,21 +261,25 @@
     "positions": [
       {
         "id": "ciena",
-        "title": "Automatización de NOC",
+        "title": "Desarrollador de automatización de NOC",
         "company": "Ciena",
         "location": null,
         "start": "2026-04",
         "end": null,
         "current": true,
         "bullets": [
-          "Desarrollo y mantengo herramientas en Python para equipos ópticos y Ethernet de Ciena y para Cisco (TL1, SSH, SNMPv3), con ejecución paralela en flota.",
-          "Refactoricé y amplié scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
-          "Cambié la configuración de monitoreo de 144 equipos de un cliente en menos de 2 minutos y sin fallas, con un flujo de plan, chequeo, ejecución explícita y reversión.",
-          "Configuré decenas de equipos ópticos en ventanas de cambio con un cliente, sin fallas, y corregí la herramienta en el momento ante diferencias de firmware con el laboratorio.",
-          "Probé de punta a punta el camino de alarmas en una flota: 78 de 80 equipos comprobados.",
-          "Armé 40 comandos de reporte de solo lectura sobre monitoreo, backups y credenciales en 3 regiones.",
-          "Entregué tablas de circuitos de 10 clientes para la correlación de eventos.",
-          "Armé y mantengo la base de conocimiento del NOC, en inglés (188 páginas)."
+          "Desarrollé desde cero y mantengo herramientas en Python con tests para equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con ejecución en paralelo sobre flotas, y una de solo lectura para Cisco.",
+          "Reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
+          "Desarrollé un comando en Python para cambiar en lote la availability de equipos en SL1, con plan previo, canario, ejecución explícita y comandos de reversión por corrida.",
+          "Configuré SNMPv3 y cuentas en equipos ópticos de un cliente, en ventanas de cambio, con herramientas propias en Python.",
+          "Validé con eventos de prueba el camino de alarmas hacia SL1 en la red óptica de un cliente y entregué el informe.",
+          "Construí y mantengo la base de conocimiento del NOC, en inglés.",
+          "Estoy construyendo una herramienta en Python que compara las alarmas activas de cada cliente con los eventos de SL1 y marca cada diferencia una sola vez (en piloto).",
+          "Escribí snippets de Dynamic Apps de SL1 para Waveserver, validados en laboratorio.",
+          "Enrolé equipos en el sistema de backups por pedido de management, con canario previo.",
+          "Desarrollé comandos para limpiar eventos duplicados y vencidos en SL1.",
+          "Armé comandos de reporte de solo lectura sobre monitoreo, backups y credenciales.",
+          "Armé tablas de circuitos por cliente, a partir de capturas de equipos, para la correlación de eventos."
         ]
       }
     ],
@@ -283,12 +292,13 @@
     "extraBullets": {
       "noble-seguros": [
         "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
-        "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python y una API REST.",
-        "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail."
+        "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python con catálogo YAML y una API REST.",
+        "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail.",
+        "Automaticé la descarga mensual de facturas por SFTP."
       ],
       "freelance": [
-        "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (beta, sin lanzar).",
-        "Construí un motor en Python que genera PDF de marca desde datos JSON, con Docker."
+        "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (sin desplegar todavía).",
+        "Construí un motor en Python que genera PDF de marca desde contratos JSON con esquema, con formulario web, Docker y 462 pruebas (sin clientes externos todavía)."
       ]
     },
     "extraSkills": [
@@ -314,7 +324,15 @@
       "TypeScript",
       "Tailwind CSS",
       "WordPress",
-      "MkDocs"
+      "MkDocs",
+      "SQLAlchemy",
+      "Alembic",
+      "ARQ",
+      "Paramiko",
+      "Cloudflare Workers",
+      "pandas",
+      "GitHub Actions",
+      "Playwright"
     ]
   }
 }

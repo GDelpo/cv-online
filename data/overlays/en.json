@@ -22,36 +22,12 @@
       "en": "Audited, tracked and optimized services from external vendors."
     },
     {
-      "source": "Coordiné con equipos técnicos y áreas de negocio para que cada entrega respondiera a sus objetivos.",
-      "en": "Worked with technical teams and business stakeholders to keep deliverables tied to their goals."
-    },
-    {
-      "source": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
-      "en": "Built APIs and integration architectures to connect systems and platforms."
-    },
-    {
       "source": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
       "en": "Modernized legacy systems, ran technology migrations and integrated them with new solutions."
     },
     {
-      "source": "Asesoré a clientes en la definición e implementación de sus soluciones tecnológicas.",
-      "en": "Advised clients on defining and implementing their technology solutions."
-    },
-    {
       "source": "Resolví incidencias y contingencias en carreras masivas de 10K, 21K y 42K para que la operación no se frenara.",
       "en": "Resolved incidents and contingencies at mass 10K, 21K and 42K races to keep operations running."
-    },
-    {
-      "source": "Coordiné con los equipos de operaciones, logística y staff durante cada evento.",
-      "en": "Coordinated with operations, logistics and staff teams during each event."
-    },
-    {
-      "source": "Asistí a corredores y participantes antes, durante y después de la competencia.",
-      "en": "Assisted runners and participants before, during and after each race."
-    },
-    {
-      "source": "Escribí reportes post-evento, analicé situaciones críticas e implementé mejoras para las ediciones siguientes.",
-      "en": "Wrote post-event reports, analyzed critical situations and implemented improvements for later editions."
     },
     {
       "source": "Administré y mantuve el parque informático y la red del laboratorio.",
@@ -68,14 +44,6 @@
     {
       "source": "Administré LabWin, el sistema de gestión interno, incluida la carga y actualización de datos.",
       "en": "Administered LabWin, the internal management system, including data entry and updates."
-    },
-    {
-      "source": "Llevé la gestión administrativa y contable: facturación a obras sociales, control de cuentas y cobranzas.",
-      "en": "Handled administration and accounting: billing to health insurers, account control and collections."
-    },
-    {
-      "source": "Coordiné la logística del equipo de extraccionistas: rutas y recursos.",
-      "en": "Coordinated logistics for the blood-draw team, including routes and resources."
     },
     {
       "source": "Profesional independiente",
@@ -182,22 +150,6 @@
       "en": "Development tools"
     },
     {
-      "source": "Soporte e infraestructura",
-      "en": "Support and infrastructure"
-    },
-    {
-      "source": "Administración de redes y conectividad",
-      "en": "Network and connectivity administration"
-    },
-    {
-      "source": "Mantenimiento integral de hardware y software",
-      "en": "Full hardware and software maintenance"
-    },
-    {
-      "source": "Configuración de sistemas de seguridad y cámaras IP",
-      "en": "Security system and IP camera setup"
-    },
-    {
       "source": "Python",
       "en": "Python"
     },
@@ -210,28 +162,12 @@
       "en": "Django"
     },
     {
-      "source": "Flask",
-      "en": "Flask"
-    },
-    {
       "source": "Laravel",
       "en": "Laravel"
     },
     {
       "source": "PHP",
       "en": "PHP"
-    },
-    {
-      "source": "Java",
-      "en": "Java"
-    },
-    {
-      "source": "Spring Boot",
-      "en": "Spring Boot"
-    },
-    {
-      "source": "Spring Cloud",
-      "en": "Spring Cloud"
     },
     {
       "source": "React",
@@ -286,72 +222,12 @@
       "en": "Native"
     },
     {
-      "source": "Desarrollador Python | Automatización de redes y NOC, APIs backend e integraciones",
-      "en": "Python Developer | Network & NOC Automation, Backend APIs and Integrations"
-    },
-    {
-      "source": "Desarrollo software desde 2018 y me dedico a automatizar: sacar tareas manuales y hacer que los sistemas se hablen entre sí. Hoy construyo y opero herramientas en Python para el NOC de Ciena, sobre ScienceLogic SL1 y equipos Ciena 6500, SAOS y Waveserver.",
-      "en": "I've been building software since 2018, and my focus is automation: taking manual tasks away and getting systems to talk to each other. Today I build and run Python tools for Ciena's NOC, on ScienceLogic SL1 and Ciena 6500, SAOS and Waveserver gear."
-    },
-    {
-      "source": "Antes desarrollé servicios FastAPI e integraciones con AFIP y SSN en una aseguradora. Empecé en soporte técnico y redes, y por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando.",
-      "en": "Before that I built FastAPI services and AFIP and SSN integrations at an insurer. I started in technical support and networking, so I can follow a project all the way through: work out what's needed, build it and get it running."
-    },
-    {
-      "source": "Desarrollo y mantengo herramientas en Python para equipos ópticos y Ethernet de Ciena y para Cisco (TL1, SSH, SNMPv3), con ejecución paralela en flota.",
-      "en": "Build and maintain Python tools for Ciena optical and Ethernet gear and for Cisco devices (TL1, SSH, SNMPv3), with parallel fleet execution."
-    },
-    {
-      "source": "Refactoricé y amplié scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
-      "en": "Refactored and extended team scripts into a Python CLI with resumable batches for onboarding devices to ScienceLogic SL1, used in real customer onboardings."
-    },
-    {
-      "source": "Cambié la configuración de monitoreo de 144 equipos de un cliente en menos de 2 minutos y sin fallas, con un flujo de plan, chequeo, ejecución explícita y reversión.",
-      "en": "Changed the monitoring settings of 144 customer devices in under 2 minutes with zero failures, using a plan, check, explicit execute and revert workflow."
-    },
-    {
-      "source": "Configuré decenas de equipos ópticos en ventanas de cambio con un cliente, sin fallas, y corregí la herramienta en el momento ante diferencias de firmware con el laboratorio.",
-      "en": "Configured dozens of optical devices in customer change windows with zero failures, fixing the tooling on the spot when firmware differed from the lab."
-    },
-    {
-      "source": "Probé de punta a punta el camino de alarmas en una flota: 78 de 80 equipos comprobados.",
-      "en": "Tested the alarm path end to end on one fleet: 78 of 80 devices confirmed."
-    },
-    {
-      "source": "Armé 40 comandos de reporte de solo lectura sobre monitoreo, backups y credenciales en 3 regiones.",
-      "en": "Created 40 read-only report commands on monitoring, backups and credentials across 3 regions."
-    },
-    {
-      "source": "Entregué tablas de circuitos de 10 clientes para la correlación de eventos.",
-      "en": "Delivered circuit tables for 10 customers for event correlation."
-    },
-    {
-      "source": "Armé y mantengo la base de conocimiento del NOC, en inglés (188 páginas).",
-      "en": "Built and maintain the NOC knowledge base, in English (188 pages)."
-    },
-    {
       "source": "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
       "en": "Built the Django app that records investment operations and submits them to the SSN regulator's API, with Excel import and deadline alerts."
     },
     {
-      "source": "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python y una API REST.",
-      "en": "Integrated AFIP/ARCA SOAP web services (WSAA, taxpayer registry) into a Python package and a REST API."
-    },
-    {
       "source": "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail.",
       "en": "Set up service observability with Loki, Promtail and Grafana, including email alerts."
-    },
-    {
-      "source": "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (beta, sin lanzar).",
-      "en": "Built saldAR, a multi-currency shared expenses app with FastAPI, Next.js, PostgreSQL, Redis and CI (beta, not launched)."
-    },
-    {
-      "source": "Construí un motor en Python que genera PDF de marca desde datos JSON, con Docker.",
-      "en": "Built a Python engine that generates branded PDFs from JSON data, with Docker."
-    },
-    {
-      "source": "Automatización de NOC",
-      "en": "NOC Automation"
     },
     {
       "source": "Desarrollé la automatización del despacho de pólizas: lectura desde SQL Server, control de PDFs faltantes, sincronización a Google Cloud Storage y envío por mail, con workers async, dry-run y cola de revisión manual.",
@@ -360,10 +236,6 @@
     {
       "source": "Construí 8 servicios FastAPI con Docker, con Redis y autenticación JWT donde hacía falta: identidad con LDAP, mail multiproveedor, almacenamiento, helpdesk y anulaciones.",
       "en": "Built 8 FastAPI services with Docker, adding Redis and JWT auth where needed: identity with LDAP, multi-provider email, storage, helpdesk and cancellations."
-    },
-    {
-      "source": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable.",
-      "en": "Built an installment sales platform for a client (projects, lots, payments) with FastAPI and React, role-based access and configurable branding."
     },
     {
       "source": "Entregué sitios de cliente con WordPress + Elementor y con React sobre Cloudflare Workers.",
@@ -472,6 +344,122 @@
     {
       "source": "MkDocs",
       "en": "MkDocs"
+    },
+    {
+      "source": "Automaticé la descarga mensual de facturas por SFTP.",
+      "en": "Automated the monthly invoice download over SFTP."
+    },
+    {
+      "source": "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (sin desplegar todavía).",
+      "en": "Built saldAR, a multi-currency shared-expenses app with FastAPI, Next.js, PostgreSQL, Redis and CI (not deployed yet)."
+    },
+    {
+      "source": "Construí un motor en Python que genera PDF de marca desde contratos JSON con esquema, con formulario web, Docker y 462 pruebas (sin clientes externos todavía).",
+      "en": "Built a Python engine that generates branded PDFs from schema-validated JSON contracts, with a web form, Docker and 462 tests (no external clients yet)."
+    },
+    {
+      "source": "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python con catálogo YAML y una API REST.",
+      "en": "Integrated the AFIP/ARCA SOAP web services (WSAA, taxpayer registry) into a Python package with a YAML catalog and a REST API."
+    },
+    {
+      "source": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable y 230 tests.",
+      "en": "Built an installment sales platform for a client (projects, lots, payments) with FastAPI and React, role-based access and configurable branding and 230 tests."
+    },
+    {
+      "source": "SQLAlchemy",
+      "en": "SQLAlchemy"
+    },
+    {
+      "source": "Alembic",
+      "en": "Alembic"
+    },
+    {
+      "source": "ARQ",
+      "en": "ARQ"
+    },
+    {
+      "source": "Paramiko",
+      "en": "Paramiko"
+    },
+    {
+      "source": "Cloudflare Workers",
+      "en": "Cloudflare Workers"
+    },
+    {
+      "source": "pandas",
+      "en": "pandas"
+    },
+    {
+      "source": "GitHub Actions",
+      "en": "GitHub Actions"
+    },
+    {
+      "source": "Playwright",
+      "en": "Playwright"
+    },
+    {
+      "source": "Desarrollador Python backend (FastAPI) | Automatización de redes y NOC",
+      "en": "Python Backend Developer (FastAPI) | Network & NOC Automation"
+    },
+    {
+      "source": "Desarrollo software desde 2018 y me dedico a automatizar: sacar tareas manuales y hacer que los sistemas se hablen entre sí. Desde 2026 construyo y opero herramientas en Python para el NOC de Ciena, sobre ScienceLogic SL1 y equipos Ciena 6500, SAOS y Waveserver.",
+      "en": "I've been building software since 2018, and my focus is automation: taking manual tasks away and getting systems to talk to each other. Since 2026 I've been building and running Python tools for Ciena's NOC, on ScienceLogic SL1 and Ciena 6500, SAOS and Waveserver gear."
+    },
+    {
+      "source": "Antes construí 8 servicios FastAPI e integraciones con AFIP y SSN en una aseguradora. Empecé en soporte técnico y redes, y por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando.",
+      "en": "Before that, I built 8 FastAPI services and integrations with Argentina's tax authority and insurance regulator at an insurer. I started in technical support and networking, so I can follow a project all the way through: work out what's needed, build it and get it running."
+    },
+    {
+      "source": "Desarrollador de automatización de NOC",
+      "en": "NOC Automation Developer"
+    },
+    {
+      "source": "Desarrollé desde cero y mantengo herramientas en Python con tests para equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con ejecución en paralelo sobre flotas, y una de solo lectura para Cisco.",
+      "en": "Built from scratch and maintain tested Python tools for Ciena optical and Ethernet devices (TL1, SSH, SNMPv3), with parallel execution across fleets, plus a read-only one for Cisco."
+    },
+    {
+      "source": "Reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
+      "en": "Rebuilt and extended the team's scripts into a Python CLI with resumable batches to onboard devices into ScienceLogic SL1, used in real customer onboardings."
+    },
+    {
+      "source": "Desarrollé un comando en Python para cambiar en lote la availability de equipos en SL1, con plan previo, canario, ejecución explícita y comandos de reversión por corrida.",
+      "en": "Built a Python command to change device availability in bulk in SL1, with a prior plan, canary, explicit run and per-run revert commands."
+    },
+    {
+      "source": "Configuré SNMPv3 y cuentas en equipos ópticos de un cliente, en ventanas de cambio, con herramientas propias en Python.",
+      "en": "Configured SNMPv3 and accounts on a customer's optical devices, in change windows, with my own Python tools."
+    },
+    {
+      "source": "Validé con eventos de prueba el camino de alarmas hacia SL1 en la red óptica de un cliente y entregué el informe.",
+      "en": "Tested the alarm path into SL1 with test events across a customer's optical network and delivered the report."
+    },
+    {
+      "source": "Construí y mantengo la base de conocimiento del NOC, en inglés.",
+      "en": "Built and maintain the NOC knowledge base, in English."
+    },
+    {
+      "source": "Estoy construyendo una herramienta en Python que compara las alarmas activas de cada cliente con los eventos de SL1 y marca cada diferencia una sola vez (en piloto).",
+      "en": "Building a Python tool that compares each customer's active alarms with SL1 events and flags each difference once (in pilot)."
+    },
+    {
+      "source": "Escribí snippets de Dynamic Apps de SL1 para Waveserver, validados en laboratorio.",
+      "en": "Wrote SL1 Dynamic App snippets for Waveserver, validated in the lab."
+    },
+    {
+      "source": "Enrolé equipos en el sistema de backups por pedido de management, con canario previo.",
+      "en": "Enrolled devices in the backup system at management's request, starting with a canary."
+    },
+    {
+      "source": "Desarrollé comandos para limpiar eventos duplicados y vencidos en SL1.",
+      "en": "Built commands to clean up duplicate and expired events in SL1."
+    },
+    {
+      "source": "Armé comandos de reporte de solo lectura sobre monitoreo, backups y credenciales.",
+      "en": "Built read-only report commands on monitoring, backups and credentials."
+    },
+    {
+      "source": "Armé tablas de circuitos por cliente, a partir de capturas de equipos, para la correlación de eventos.",
+      "en": "Built per-customer circuit tables from device captures for event correlation."
     }
   ]
 }
