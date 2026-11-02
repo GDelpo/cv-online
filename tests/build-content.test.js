@@ -371,7 +371,7 @@ describe('real data', () => {
   it('takes the English level from the export and adds only Spanish as native', () => {
     expect(en.languages).toEqual([
       { name: 'Spanish', level: 'Native' },
-      { name: 'English', level: 'Full professional proficiency' },
+      { name: 'English', level: 'Intermediate' },
     ])
   })
 })
