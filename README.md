@@ -40,7 +40,9 @@ both themes: 4.5:1 for text, 3:1 for lines.
 ```mermaid
 flowchart LR
   zip[LinkedIn export ZIP] --> importer[importers/linkedin_zip.py]
+  scraper[scraper, manual and risky] --> from[importers/from_scraper.py]
   importer --> base[data/base.json]
+  from --> base
   hand[manual edit] --> base
   base --> build[scripts/build-content.mjs]
   overlays[data/overlays and data/ui.*.json] --> build
@@ -48,6 +50,37 @@ flowchart LR
   content --> app[React and prerender]
   content --> pdf[scripts/pdf.mjs]
   pdf --> cv[public/cv, committed]
+```
+
+## Two ways to load your data
+
+**1. The official export (recommended).** Download your data archive from LinkedIn and import the ZIP. It needs no login
+from this code and carries no risk for your account. The export doesn't include everything, such as your English profile
+or courses, so the rest goes in the overlays.
+
+```bash
+python importers/linkedin_zip.py "<path-to-export>.zip"
+npm run content
+```
+
+Keep the ZIP outside the repo: it contains your contacts and messages.
+
+**2. The scraper (at your own risk).**
+
+> [!CAUTION]
+> **LinkedIn can restrict or ban your account for this. It already got one of mine blocked.** The scraper logs in with
+> your real credentials and drives a browser, which LinkedIn's terms forbid. Run it only by hand, never in CI or on a
+> schedule.
+
+It's useful when you need something the export lacks. The build and CI don't run it, and only its mapping to
+`data/base.json` has tests, so it can break when LinkedIn changes its pages. Setup is in
+[scraper/README.md](scraper/README.md).
+
+```bash
+pip install -r scraper/requirements.txt
+cp scraper/.env.example scraper/.env    # then fill in the values
+npm run scrape
+npm run content
 ```
 
 ## Run it
@@ -67,10 +100,6 @@ npm run build
 
 [docs/updating.md](docs/updating.md) covers how to update the CV from a new export, what each guard error means, the
 build steps and the deploy.
-
-`scraper/` is a browser scraper from before the export became the data source. It logs in with real credentials, which
-LinkedIn's terms forbid, and it got an account blocked. I keep it isolated and manual only, and I don't recommend it:
-see [scraper/README.md](scraper/README.md).
 
 ## License
 
