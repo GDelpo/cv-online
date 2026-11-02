@@ -154,6 +154,7 @@
     "Configuración de sistemas de seguridad y cámaras IP"
   ],
   "featuredCertifications": [
+    "skylar-one-professional-certification",
     "certificacion-profesional-en-inteligencia-artificial",
     "fastapi-the-complete-course-beginner-advanced",
     "universidad-python-de-cero-a-experto",
@@ -338,6 +339,24 @@
       "pandas",
       "GitHub Actions",
       "Playwright"
+    ],
+    "certifications": [
+      {
+        "id": "skylar-one-professional-certification",
+        "title": "Skylar One Professional Certification (ex SL1)",
+        "issuer": "ScienceLogic",
+        "date": "2026-06",
+        "credentialId": null,
+        "credentialUrl": null
+      },
+      {
+        "id": "iniciacion-al-desarrollo-con-ia",
+        "title": "Curso de Iniciación al Desarrollo con IA (asistencia)",
+        "issuer": "BIG school y MoureDev",
+        "date": "2026-10",
+        "credentialId": null,
+        "credentialUrl": null
+      }
     ]
   }
 }

@@ -364,6 +364,7 @@ export function mergeCareer(base, profile) {
   return {
     ...base,
     positions: [...positions, ...list(career.positions)],
+    certifications: [...list(base.certifications), ...list(career.certifications)],
     skills: [...list(base.skills), ...list(career.extraSkills)],
   }
 }

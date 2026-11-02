@@ -348,7 +348,7 @@ describe('real data', () => {
   it('orders positions and certifications as the spec says', () => {
     const starts = es.positions.map((position) => position.start)
     expect(starts).toEqual([...starts].sort((a, b) => b.localeCompare(a)))
-    expect(es.certifications[0].id).toBe('certificacion-profesional-en-inteligencia-artificial')
+    expect(es.certifications[0].id).toBe('skylar-one-professional-certification')
     expect(es.skillGroups[0].items[0]).toBe('Python')
   })
 
@@ -360,6 +360,7 @@ describe('real data', () => {
   it('fails when the career overlay points at an unknown position or repeats an exported one', () => {
     expectGuard((i) => { i.profile.career = { extraBullets: { nope: ['x'] } } }, /career\.extraBullets\.nope: no such position/)
     expectGuard((i) => { i.profile.career = { positions: [{ ...i.base.positions[0] }] } }, /base\.positions id: duplicate/)
+    expectGuard((i) => { i.profile.career = { certifications: [{ ...i.base.certifications[0] }] } }, /base\.certifications id: duplicate/)
   })
 
   it('has no postal code, stale LinkedIn URL or "verified" anywhere', () => {

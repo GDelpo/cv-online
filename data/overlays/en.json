@@ -452,6 +452,14 @@
     {
       "source": "Configuración Docker Compose de Loki, Promtail y Grafana para centralizar logs de contenedores, con dashboard provisionado y alertas por email.",
       "en": "Docker Compose configuration of Loki, Promtail and Grafana that centralizes container logs, with a provisioned dashboard and email alerts."
+    },
+    {
+      "source": "Skylar One Professional Certification (ex SL1)",
+      "en": "Skylar One Professional Certification (formerly SL1)"
+    },
+    {
+      "source": "Curso de Iniciación al Desarrollo con IA (asistencia)",
+      "en": "Introduction to AI Development Course (attendance)"
     }
   ]
 }
