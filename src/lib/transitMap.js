@@ -29,8 +29,8 @@ export const FORMS = {
   },
   phone: {
     orientation: 'vertical', width: 390, margin: 10, axisRight: 38, eduX: 158, labelX: 172, dotX: 238, rowGap: 34,
-    rowSize: 22, pxYear: 42, laneGap: 18, radius: 46, disc: 15, bigDisc: 17, nameSize: 22, bigSize: 28, dateSize: 13,
-    eduSize: 13, yearSize: 12, climb: 36, trunk: 12, collapseBranches: true,
+    rowSize: 22, pxYear: 42, laneGap: 18, radius: 46, disc: 15, bigDisc: 17, nameSize: 22, bigSize: 28, dateSize: 15,
+    eduSize: 15, yearSize: 13, climb: 36, trunk: 12, collapseBranches: true,
   },
 }
 export const FORM_NAMES = Object.keys(FORMS)

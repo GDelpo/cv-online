@@ -33,7 +33,10 @@ export default function Certifications({ items, ui }) {
       {rest.length > 0 ? (
         <details className="more">
           <summary>
-            {ui.showMore} ({rest.length})
+            <span className="more-closed">
+              {ui.showMore} ({rest.length})
+            </span>
+            <span className="more-opened">{ui.showLess}</span>
           </summary>
           <ul className="certs">
             {rest.map((item) => (

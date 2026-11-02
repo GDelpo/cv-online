@@ -13,10 +13,10 @@
     "jpg": "/img/guido-224.jpg",
     "alt": "Guido Delponte"
   },
-  "headline": "Desarrollador Python | APIs backend, automatización e integraciones",
+  "headline": "Desarrollador Python | Automatización de redes y NOC, APIs backend e integraciones",
   "summary": [
-    "Desarrollo software desde 2018 y lo que más hago es sacarle tareas manuales a un negocio y hacer que sus sistemas se hablen entre sí. Trabajo sobre todo con Python y FastAPI: automatizaciones, herramientas internas, APIs y microservicios.",
-    "Empecé en soporte técnico y redes, y después sumé análisis funcional, sistemas legacy en PHP y puestas en producción. Por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando."
+    "Desarrollo software desde 2018 y me dedico a automatizar: sacar tareas manuales y hacer que los sistemas se hablen entre sí. Hoy construyo y opero herramientas en Python para el NOC de Ciena, sobre ScienceLogic SL1 y equipos Ciena 6500, SAOS y Waveserver.",
+    "Antes desarrollé servicios FastAPI e integraciones con AFIP y SSN en una aseguradora. Empecé en soporte técnico y redes, y por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando."
   ],
   "engagements": {
     "freelance": "Profesional independiente"
@@ -31,6 +31,8 @@
       "items": [
         "Python",
         "FastAPI",
+        "Pydantic",
+        "SQLModel",
         "Django",
         "Flask",
         "Laravel",
@@ -41,24 +43,45 @@
       ]
     },
     {
+      "id": "network",
+      "label": "Automatización de redes y monitoreo",
+      "items": [
+        "ScienceLogic SL1",
+        "PowerFlow",
+        "Ciena 6500",
+        "Ciena SAOS",
+        "Ciena Waveserver",
+        "TL1",
+        "SSH",
+        "SNMPv3",
+        "Cisco IOS",
+        "Grafana",
+        "Loki"
+      ]
+    },
+    {
       "id": "frontend",
       "label": "Frontend",
       "items": [
         "React",
+        "Next.js",
+        "TypeScript",
         "JavaScript",
-        "Astro",
+        "Tailwind CSS",
         "HTML5",
-        "CSS3"
+        "CSS3",
+        "WordPress"
       ]
     },
     {
       "id": "databases",
-      "label": "Bases de datos",
+      "label": "Datos y bases de datos",
       "items": [
         "SQL",
-        "pgAdmin",
-        "DBeaver",
-        "MySQL Workbench"
+        "PostgreSQL",
+        "SQL Server",
+        "Redis",
+        "Google Cloud Storage"
       ]
     },
     {
@@ -68,27 +91,16 @@
         "Git",
         "GitHub",
         "Docker",
-        "VS Code",
-        "PyCharm",
-        "Postman",
-        "Insomnia"
+        "pytest"
       ]
     },
     {
       "id": "documentation",
-      "label": "Documentación",
+      "label": "Documentación y gestión",
       "items": [
+        "MkDocs",
         "Docusaurus",
-        "MKdocs"
-      ]
-    },
-    {
-      "id": "project-management",
-      "label": "Gestión de proyectos",
-      "items": [
-        "Jira",
-        "ClickUp",
-        "GoodDay"
+        "Jira"
       ]
     },
     {
@@ -99,33 +111,33 @@
         "Mantenimiento integral de hardware y software",
         "Configuración de sistemas de seguridad y cámaras IP"
       ]
-    },
-    {
-      "id": "management-software",
-      "label": "Software de gestión",
-      "items": [
-        "LabWin",
-        "SISE"
-      ]
-    },
-    {
-      "id": "office",
-      "label": "Ofimática y comunicación",
-      "items": [
-        "Microsoft Excel",
-        "Microsoft Word",
-        "Microsoft PowerPoint",
-        "Microsoft Teams",
-        "Slack",
-        "Discord"
-      ]
     }
   ],
   "projects": {
     "comment": "Allowlist on purpose: a repo reaches the page only by being written here. Check its description against the repo before adding it.",
     "items": []
   },
-  "omit": [],
+  "omit": [
+    "Astro",
+    "pgAdmin",
+    "DBeaver",
+    "MySQL Workbench",
+    "VS Code",
+    "PyCharm",
+    "Postman",
+    "Insomnia",
+    "MKdocs",
+    "ClickUp",
+    "GoodDay",
+    "LabWin",
+    "SISE",
+    "Microsoft Excel",
+    "Microsoft Word",
+    "Microsoft PowerPoint",
+    "Microsoft Teams",
+    "Slack",
+    "Discord"
+  ],
   "featuredCertifications": [
     "certificacion-profesional-en-inteligencia-artificial",
     "fastapi-the-complete-course-beginner-advanced",
@@ -136,13 +148,16 @@
   "bulletTiers": {
     "noble-seguros": {
       "bullets": [
-        "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores.",
         "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.",
         "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.",
-        "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.",
-        "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras."
+        "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
+        "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python y una API REST.",
+        "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores."
       ],
       "moreBullets": [
+        "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.",
+        "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.",
+        "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail.",
         "Implementación y estructuración de documentación técnica utilizando Docusaurus.",
         "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.",
         "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos."
@@ -151,12 +166,13 @@
     "freelance": {
       "bullets": [
         "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.",
-        "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.",
-        "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.",
-        "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS)."
+        "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (beta, sin lanzar).",
+        "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
+        "Construí un motor en Python que genera PDF de marca desde datos JSON, con Docker."
       ],
       "moreBullets": [
-        "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.",
+        "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.",
+        "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.",
         "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables."
       ]
     },
@@ -181,10 +197,25 @@
         "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.",
         "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos."
       ]
+    },
+    "ciena": {
+      "bullets": [
+        "Desarrollo y mantengo herramientas en Python para equipos ópticos y Ethernet de Ciena y para Cisco (TL1, SSH, SNMPv3), con ejecución paralela en flota.",
+        "Refactoricé y amplié scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
+        "Cambié la configuración de monitoreo de 144 equipos de un cliente en menos de 2 minutos y sin fallas, con un flujo de plan, chequeo, ejecución explícita y reversión.",
+        "Configuré decenas de equipos ópticos en ventanas de cambio con un cliente, sin fallas, y corregí la herramienta en el momento ante diferencias de firmware con el laboratorio."
+      ],
+      "moreBullets": [
+        "Probé de punta a punta el camino de alarmas en una flota: 78 de 80 equipos comprobados.",
+        "Armé 40 comandos de reporte de solo lectura sobre monitoreo, backups y credenciales en 3 regiones.",
+        "Entregué tablas de circuitos de 10 clientes para la correlación de eventos.",
+        "Armé y mantengo la base de conocimiento del NOC, en inglés (188 páginas)."
+      ]
     }
   },
   "omitBullets": [
-    "Desarrollo de soluciones tecnológicas end-to-end alineadas a requerimientos del negocio."
+    "Desarrollo de soluciones tecnológicas end-to-end alineadas a requerimientos del negocio.",
+    "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas."
   ],
   "languageLevels": {
     "Full professional proficiency": "Competencia profesional completa"
@@ -197,18 +228,17 @@
   ],
   "bulletRewrites": {
     "Liderazgo en la implementación y puesta en producción de NobleOnline, plataforma digital para productores.": "Lideré la implementación y la puesta en producción de NobleOnline, la plataforma digital para productores de seguros.",
-    "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.": "Automaticé procesos de pequeña y gran escala con soluciones propias en Python.",
-    "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.": "Desarrollé APIs y microservicios para integrar sistemas internos y externos.",
+    "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.": "Desarrollé la automatización del despacho de pólizas: lectura desde SQL Server, control de PDFs faltantes, sincronización a Google Cloud Storage y envío por mail, con workers async, dry-run y cola de revisión manual.",
+    "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.": "Construí 8 servicios FastAPI con Docker, con Redis y autenticación JWT donde hacía falta: identidad con LDAP, mail multiproveedor, almacenamiento, helpdesk y anulaciones.",
     "Mantenimiento, refactorización y optimización de sistemas legacy desarrollados en PHP.": "Mantuve, refactoricé y optimicé sistemas legacy en PHP.",
     "Análisis funcional y técnico de sistemas internos, relevamiento de requerimientos y definición de mejoras.": "Relevé requerimientos, analicé sistemas internos y definí sus mejoras.",
     "Implementación y estructuración de documentación técnica utilizando Docusaurus.": "Armé y ordené la documentación técnica con Docusaurus.",
     "Auditoría, seguimiento y optimización de servicios brindados por proveedores externos.": "Audité, seguí y optimicé los servicios de proveedores externos.",
     "Coordinación con equipos técnicos y stakeholders del negocio para asegurar entregables alineados a objetivos estratégicos.": "Coordiné con equipos técnicos y áreas de negocio para que cada entrega respondiera a sus objetivos.",
-    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Construí soluciones a medida para optimizar procesos de negocio: aplicaciones web, de escritorio y automatizaciones.",
+    "Implementación de soluciones tecnológicas a medida: aplicaciones web, de escritorio y automatizaciones orientadas a optimizar procesos de negocio.": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable.",
     "Desarrollo de APIs y arquitecturas de integración para la conexión eficiente entre sistemas y plataformas.": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
     "Modernización de sistemas legacy, migraciones tecnológicas e integración con nuevas soluciones.": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
-    "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).": "Diseñé y desarrollé plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
-    "Procesamiento, análisis y manejo de grandes volúmenes de datos para la toma de decisiones estratégicas.": "Procesé y analicé grandes volúmenes de datos para apoyar decisiones de negocio.",
+    "Diseño y desarrollo de plataformas e-commerce y sistemas de gestión de contenidos (CMS).": "Entregué sitios de cliente con WordPress + Elementor y con React sobre Cloudflare Workers.",
     "Asesoramiento técnico y consultoría personalizada, acompañando a clientes en la definición e implementación de soluciones tecnológicas escalables.": "Asesoré a clientes en la definición e implementación de sus soluciones tecnológicas.",
     "Gestión y resolución ágil de incidencias y contingencias en eventos deportivos masivos (10K, 21K y 42K), garantizando la continuidad operativa.": "Resolví incidencias y contingencias en carreras masivas de 10K, 21K y 42K para que la operación no se frenara.",
     "Coordinación con equipos operativos, logística y staff para asegurar el correcto desarrollo del evento.": "Coordiné con los equipos de operaciones, logística y staff durante cada evento.",
@@ -220,5 +250,71 @@
     "Operación y administración del sistema de gestión interno LabWin, garantizando la correcta carga y actualización de datos.": "Administré LabWin, el sistema de gestión interno, incluida la carga y actualización de datos.",
     "Gestión administrativa y contable: facturación a obras sociales, control de cuentas y seguimiento de cobranzas.": "Llevé la gestión administrativa y contable: facturación a obras sociales, control de cuentas y cobranzas.",
     "Coordinación logística del equipo de extraccionistas, organizando rutas y optimizando recursos operativos.": "Coordiné la logística del equipo de extraccionistas: rutas y recursos."
+  },
+  "career": {
+    "comment": "What the LinkedIn export does not have yet. A position here that later appears in the export fails the build as a duplicate id, so it gets removed on purpose.",
+    "positions": [
+      {
+        "id": "ciena",
+        "title": "Automatización de NOC",
+        "company": "Ciena",
+        "location": null,
+        "start": "2026-04",
+        "end": null,
+        "current": true,
+        "bullets": [
+          "Desarrollo y mantengo herramientas en Python para equipos ópticos y Ethernet de Ciena y para Cisco (TL1, SSH, SNMPv3), con ejecución paralela en flota.",
+          "Refactoricé y amplié scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
+          "Cambié la configuración de monitoreo de 144 equipos de un cliente en menos de 2 minutos y sin fallas, con un flujo de plan, chequeo, ejecución explícita y reversión.",
+          "Configuré decenas de equipos ópticos en ventanas de cambio con un cliente, sin fallas, y corregí la herramienta en el momento ante diferencias de firmware con el laboratorio.",
+          "Probé de punta a punta el camino de alarmas en una flota: 78 de 80 equipos comprobados.",
+          "Armé 40 comandos de reporte de solo lectura sobre monitoreo, backups y credenciales en 3 regiones.",
+          "Entregué tablas de circuitos de 10 clientes para la correlación de eventos.",
+          "Armé y mantengo la base de conocimiento del NOC, en inglés (188 páginas)."
+        ]
+      }
+    ],
+    "positionOverrides": {
+      "noble-seguros": {
+        "end": "2026-04",
+        "current": false
+      }
+    },
+    "extraBullets": {
+      "noble-seguros": [
+        "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
+        "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python y una API REST.",
+        "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail."
+      ],
+      "freelance": [
+        "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (beta, sin lanzar).",
+        "Construí un motor en Python que genera PDF de marca desde datos JSON, con Docker."
+      ]
+    },
+    "extraSkills": [
+      "ScienceLogic SL1",
+      "PowerFlow",
+      "Ciena 6500",
+      "Ciena SAOS",
+      "Ciena Waveserver",
+      "TL1",
+      "SSH",
+      "SNMPv3",
+      "Cisco IOS",
+      "PostgreSQL",
+      "Redis",
+      "SQL Server",
+      "Pydantic",
+      "SQLModel",
+      "pytest",
+      "Grafana",
+      "Loki",
+      "Google Cloud Storage",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "WordPress",
+      "MkDocs"
+    ]
   }
 }

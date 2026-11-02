@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Guido Delponte, CV",
-    "description": "CV of Guido Delponte, Python developer: backend APIs, automation and integrations."
+    "description": "CV of Guido Delponte, Python developer: network and NOC automation, backend APIs and integrations."
   },
   "sections": {
     "summary": "Summary",
@@ -14,12 +14,14 @@
   },
   "present": "Present",
   "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "monthsFull": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   "viewCredential": "View credential",
   "credentialId": "Credential ID",
   "inProgress": "In progress",
   "downloadPdf": "Download PDF",
   "pdfPath": "/cv/Guido-Delponte-CV-en.pdf",
   "showMore": "Show more",
+  "showLess": "Show less",
   "skipLink": "Skip to content",
   "themeDark": "Dark",
   "themeLight": "Light",

@@ -17,7 +17,7 @@ const UI_REQUIRED = [
   'sections.summary', 'sections.experience', 'sections.projects', 'sections.education',
   'sections.certifications', 'sections.skills', 'sections.languages',
   'present', 'months', 'viewCredential', 'credentialId', 'inProgress', 'downloadPdf',
-  'pdfPath', 'showMore', 'skipLink', 'themeDark', 'themeLight', 'updated', 'viewRepository', 'mapLabel',
+  'pdfPath', 'showMore', 'showLess', 'monthsFull', 'skipLink', 'themeDark', 'themeLight', 'updated', 'viewRepository', 'mapLabel',
 ]
 
 export class GuardError extends Error {
@@ -251,7 +251,9 @@ function guardUi(uiEs, uiEn, problems) {
     for (const key of UI_REQUIRED) {
       if (!keys.has(key)) problems.push(`ui.${locale}: missing required key "${key}"`)
     }
-    if (list(ui?.months).length !== 12) problems.push(`ui.${locale}.months: must have 12 entries`)
+    for (const field of ['months', 'monthsFull']) {
+      if (list(ui?.[field]).length !== 12) problems.push(`ui.${locale}.${field}: must have 12 entries`)
+    }
   }
 }
 
@@ -347,15 +349,46 @@ function guardSummaryLength(locale, content, problems) {
   if (length > SUMMARY_MAX) problems.push(`${locale} summary: ${length} characters, the limit is ${SUMMARY_MAX}`)
 }
 
+/**
+ * INTENTIONAL: the export lags behind reality, so what it lacks lives in profile.career and is merged before any guard
+ * runs. Merged data passes the same guards, and an id repeated by a later export fails as a duplicate.
+ */
+export function mergeCareer(base, profile) {
+  const career = profile?.career
+  if (!career || !base) return base
+  const positions = list(base.positions).map((position) => ({
+    ...position,
+    ...career.positionOverrides?.[position.id],
+    bullets: [...list(position.bullets), ...list(career.extraBullets?.[position.id])],
+  }))
+  return {
+    ...base,
+    positions: [...positions, ...list(career.positions)],
+    skills: [...list(base.skills), ...list(career.extraSkills)],
+  }
+}
+
+function guardCareer(base, career, problems) {
+  const ids = new Set(list(base?.positions).map((position) => position?.id))
+  for (const section of ['positionOverrides', 'extraBullets']) {
+    for (const id of Object.keys(career?.[section] ?? {})) {
+      if (!ids.has(id)) problems.push(`career.${section}.${id}: no such position`)
+    }
+  }
+  checkUnique([...list(base?.skills), ...list(career?.extraSkills)], 'skill', problems)
+}
+
 function failIfAny(problems) {
   if (problems.length > 0) throw new GuardError(problems)
 }
 
 /** Validate all inputs and return both locales. Throws GuardError listing every problem found. */
-export function buildContent({ base, profile, translations, uiEs, uiEn }) {
+export function buildContent({ base: exported, profile, translations, uiEs, uiEn }) {
   const problems = []
-  const inputs = { base, profile, translations, uiEs, uiEn }
+  const inputs = { base: exported, profile, translations, uiEs, uiEn }
   for (const [name, value] of Object.entries(inputs)) findVerified(value, name, problems)
+  guardCareer(exported, profile?.career, problems)
+  const base = mergeCareer(exported, profile)
   guardBase(base, problems)
   guardProfile(base, profile, problems)
   guardProjects(profile, problems)

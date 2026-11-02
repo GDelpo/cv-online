@@ -50,7 +50,15 @@ function Branch({ row, form }) {
   const dot = form === 'wide' ? 9 : 8
   return (
     <a className="tm-br" href={row.href}>
-      <rect className="tm-frame" x={row.frame.x} y={row.frame.y} width={row.frame.w} height={row.frame.h} rx="4" />
+      {/* INTENTIONAL: only the drawn rect grows on phones; row.frame also feeds the collision checks. */}
+      <rect
+        className="tm-frame"
+        x={row.frame.x}
+        y={row.frame.y - (form === 'phone' ? 8 : 0)}
+        width={row.frame.w}
+        height={row.frame.h + (form === 'phone' ? 16 : 0)}
+        rx="4"
+      />
       <circle className="tm-dot" cx={dotX} cy={dotY} r={dot} />
       <text x={row.label.x} y={row.label.y} dy=".34em" fontSize={row.size} className="tm-row">
         {row.text}

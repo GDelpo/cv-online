@@ -1,6 +1,6 @@
 // Make the CV PDFs from the real print tree, or check the ones already made.
 //   npm run pdf             builds with SKIP_PDF_CHECK=1, prints both locales, writes public/cv/ and its manifest.
-//   npm run pdf -- --check  reads public/cv/ back with pdftotext. Needs Poppler on PATH.
+//   npm run pdf -- --check  reads public/cv/ back with pdftotext (Poppler or Xpdf) on PATH.
 // Local only: Chrome talks to the preview server on this machine and nothing else.
 
 /* global document -- used inside the callbacks that run in the page */

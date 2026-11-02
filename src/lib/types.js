@@ -10,7 +10,7 @@
  * @typedef {{ id: string, label: string, items: string[] }} SkillGroup
  * @typedef {{ name: string, level: string | null }} Language
  * @typedef {{ id: string, name: string, url: string, description: string }} Project
- * @typedef {{ sections: Record<'summary' | 'experience' | 'projects' | 'education' | 'certifications' | 'skills' | 'languages', string>, present: string, months: string[], viewCredential: string, credentialId: string, inProgress: string, downloadPdf: string, pdfPath: string, showMore: string, skipLink: string, themeDark: string, themeLight: string, updated: string, viewRepository: string, mapLabel: string }} Ui
+ * @typedef {{ sections: Record<'summary' | 'experience' | 'projects' | 'education' | 'certifications' | 'skills' | 'languages', string>, present: string, months: string[], viewCredential: string, credentialId: string, inProgress: string, downloadPdf: string, pdfPath: string, showMore: string, showLess: string, monthsFull: string[], skipLink: string, themeDark: string, themeLight: string, updated: string, viewRepository: string, mapLabel: string }} Ui
  * @typedef {{ meta: Meta, person: Person, positions: Position[], projects: Project[], education: EducationItem[], certifications: Certification[], skillGroups: SkillGroup[], languages: Language[], ui: Ui }} Content
  */
 

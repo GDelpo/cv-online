@@ -2,28 +2,8 @@
   "status": "draft-review-by-guido",
   "entries": [
     {
-      "source": "Desarrollador Python | APIs backend, automatización e integraciones",
-      "en": "Python Developer | Backend APIs, Automation & Integrations"
-    },
-    {
-      "source": "Desarrollo software desde 2018 y lo que más hago es sacarle tareas manuales a un negocio y hacer que sus sistemas se hablen entre sí. Trabajo sobre todo con Python y FastAPI: automatizaciones, herramientas internas, APIs y microservicios.",
-      "en": "I've been building software since 2018, and most of my work is taking manual tasks off a business and getting its systems to talk to each other. I mainly use Python and FastAPI to build automations, internal tools, APIs and microservices."
-    },
-    {
-      "source": "Empecé en soporte técnico y redes, y después sumé análisis funcional, sistemas legacy en PHP y puestas en producción. Por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando.",
-      "en": "I started in technical support and networking, then added functional analysis, legacy PHP systems and production releases. That lets me follow a project all the way through: work out what's needed, build it and get it running."
-    },
-    {
       "source": "Lideré la implementación y la puesta en producción de NobleOnline, la plataforma digital para productores de seguros.",
       "en": "Led the rollout and production release of NobleOnline, the digital platform for insurance brokers."
-    },
-    {
-      "source": "Automaticé procesos de pequeña y gran escala con soluciones propias en Python.",
-      "en": "Automated small- and large-scale processes with Python solutions I designed and built."
-    },
-    {
-      "source": "Desarrollé APIs y microservicios para integrar sistemas internos y externos.",
-      "en": "Built APIs and microservices that integrate internal and external systems."
     },
     {
       "source": "Mantuve, refactoricé y optimicé sistemas legacy en PHP.",
@@ -46,24 +26,12 @@
       "en": "Worked with technical teams and business stakeholders to keep deliverables tied to their goals."
     },
     {
-      "source": "Construí soluciones a medida para optimizar procesos de negocio: aplicaciones web, de escritorio y automatizaciones.",
-      "en": "Built custom web apps, desktop apps and automations to improve business processes."
-    },
-    {
       "source": "Desarrollé APIs y arquitecturas de integración para conectar sistemas y plataformas.",
       "en": "Built APIs and integration architectures to connect systems and platforms."
     },
     {
       "source": "Modernicé sistemas legacy, hice migraciones tecnológicas y los integré con soluciones nuevas.",
       "en": "Modernized legacy systems, ran technology migrations and integrated them with new solutions."
-    },
-    {
-      "source": "Diseñé y desarrollé plataformas e-commerce y sistemas de gestión de contenidos (CMS).",
-      "en": "Designed and built e-commerce platforms and content management systems (CMS)."
-    },
-    {
-      "source": "Procesé y analicé grandes volúmenes de datos para apoyar decisiones de negocio.",
-      "en": "Processed and analyzed large data volumes to support business decisions."
     },
     {
       "source": "Asesoré a clientes en la definición e implementación de sus soluciones tecnológicas.",
@@ -210,32 +178,12 @@
       "en": "Frontend"
     },
     {
-      "source": "Bases de datos",
-      "en": "Databases"
-    },
-    {
       "source": "Herramientas de desarrollo",
       "en": "Development tools"
     },
     {
-      "source": "Documentación",
-      "en": "Documentation"
-    },
-    {
-      "source": "Gestión de proyectos",
-      "en": "Project management"
-    },
-    {
       "source": "Soporte e infraestructura",
       "en": "Support and infrastructure"
-    },
-    {
-      "source": "Software de gestión",
-      "en": "Management software"
-    },
-    {
-      "source": "Ofimática y comunicación",
-      "en": "Office and communication"
     },
     {
       "source": "Administración de redes y conectividad",
@@ -294,10 +242,6 @@
       "en": "JavaScript"
     },
     {
-      "source": "Astro",
-      "en": "Astro"
-    },
-    {
       "source": "HTML5",
       "en": "HTML5"
     },
@@ -308,18 +252,6 @@
     {
       "source": "SQL",
       "en": "SQL"
-    },
-    {
-      "source": "pgAdmin",
-      "en": "pgAdmin"
-    },
-    {
-      "source": "DBeaver",
-      "en": "DBeaver"
-    },
-    {
-      "source": "MySQL Workbench",
-      "en": "MySQL Workbench"
     },
     {
       "source": "Git",
@@ -334,72 +266,12 @@
       "en": "Docker"
     },
     {
-      "source": "VS Code",
-      "en": "VS Code"
-    },
-    {
-      "source": "PyCharm",
-      "en": "PyCharm"
-    },
-    {
-      "source": "Postman",
-      "en": "Postman"
-    },
-    {
-      "source": "Insomnia",
-      "en": "Insomnia"
-    },
-    {
       "source": "Docusaurus",
       "en": "Docusaurus"
     },
     {
-      "source": "MKdocs",
-      "en": "MKdocs"
-    },
-    {
       "source": "Jira",
       "en": "Jira"
-    },
-    {
-      "source": "ClickUp",
-      "en": "ClickUp"
-    },
-    {
-      "source": "GoodDay",
-      "en": "GoodDay"
-    },
-    {
-      "source": "LabWin",
-      "en": "LabWin"
-    },
-    {
-      "source": "SISE",
-      "en": "SISE"
-    },
-    {
-      "source": "Microsoft Excel",
-      "en": "Microsoft Excel"
-    },
-    {
-      "source": "Microsoft Word",
-      "en": "Microsoft Word"
-    },
-    {
-      "source": "Microsoft PowerPoint",
-      "en": "Microsoft PowerPoint"
-    },
-    {
-      "source": "Microsoft Teams",
-      "en": "Microsoft Teams"
-    },
-    {
-      "source": "Slack",
-      "en": "Slack"
-    },
-    {
-      "source": "Discord",
-      "en": "Discord"
     },
     {
       "source": "Inglés",
@@ -412,6 +284,194 @@
     {
       "source": "Nativo",
       "en": "Native"
+    },
+    {
+      "source": "Desarrollador Python | Automatización de redes y NOC, APIs backend e integraciones",
+      "en": "Python Developer | Network & NOC Automation, Backend APIs and Integrations"
+    },
+    {
+      "source": "Desarrollo software desde 2018 y me dedico a automatizar: sacar tareas manuales y hacer que los sistemas se hablen entre sí. Hoy construyo y opero herramientas en Python para el NOC de Ciena, sobre ScienceLogic SL1 y equipos Ciena 6500, SAOS y Waveserver.",
+      "en": "I've been building software since 2018, and my focus is automation: taking manual tasks away and getting systems to talk to each other. Today I build and run Python tools for Ciena's NOC, on ScienceLogic SL1 and Ciena 6500, SAOS and Waveserver gear."
+    },
+    {
+      "source": "Antes desarrollé servicios FastAPI e integraciones con AFIP y SSN en una aseguradora. Empecé en soporte técnico y redes, y por eso puedo seguir un proyecto entero: relevar lo que hace falta, construirlo y dejarlo andando.",
+      "en": "Before that I built FastAPI services and AFIP and SSN integrations at an insurer. I started in technical support and networking, so I can follow a project all the way through: work out what's needed, build it and get it running."
+    },
+    {
+      "source": "Desarrollo y mantengo herramientas en Python para equipos ópticos y Ethernet de Ciena y para Cisco (TL1, SSH, SNMPv3), con ejecución paralela en flota.",
+      "en": "Build and maintain Python tools for Ciena optical and Ethernet gear and for Cisco devices (TL1, SSH, SNMPv3), with parallel fleet execution."
+    },
+    {
+      "source": "Refactoricé y amplié scripts del equipo en un CLI de Python con lotes reanudables para dar de alta equipos en ScienceLogic SL1, usado en altas reales con clientes.",
+      "en": "Refactored and extended team scripts into a Python CLI with resumable batches for onboarding devices to ScienceLogic SL1, used in real customer onboardings."
+    },
+    {
+      "source": "Cambié la configuración de monitoreo de 144 equipos de un cliente en menos de 2 minutos y sin fallas, con un flujo de plan, chequeo, ejecución explícita y reversión.",
+      "en": "Changed the monitoring settings of 144 customer devices in under 2 minutes with zero failures, using a plan, check, explicit execute and revert workflow."
+    },
+    {
+      "source": "Configuré decenas de equipos ópticos en ventanas de cambio con un cliente, sin fallas, y corregí la herramienta en el momento ante diferencias de firmware con el laboratorio.",
+      "en": "Configured dozens of optical devices in customer change windows with zero failures, fixing the tooling on the spot when firmware differed from the lab."
+    },
+    {
+      "source": "Probé de punta a punta el camino de alarmas en una flota: 78 de 80 equipos comprobados.",
+      "en": "Tested the alarm path end to end on one fleet: 78 of 80 devices confirmed."
+    },
+    {
+      "source": "Armé 40 comandos de reporte de solo lectura sobre monitoreo, backups y credenciales en 3 regiones.",
+      "en": "Created 40 read-only report commands on monitoring, backups and credentials across 3 regions."
+    },
+    {
+      "source": "Entregué tablas de circuitos de 10 clientes para la correlación de eventos.",
+      "en": "Delivered circuit tables for 10 customers for event correlation."
+    },
+    {
+      "source": "Armé y mantengo la base de conocimiento del NOC, en inglés (188 páginas).",
+      "en": "Built and maintain the NOC knowledge base, in English (188 pages)."
+    },
+    {
+      "source": "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con importación de Excel y alertas de vencimiento.",
+      "en": "Built the Django app that records investment operations and submits them to the SSN regulator's API, with Excel import and deadline alerts."
+    },
+    {
+      "source": "Integré los web services SOAP de AFIP/ARCA (WSAA, padrón) en un paquete Python y una API REST.",
+      "en": "Integrated AFIP/ARCA SOAP web services (WSAA, taxpayer registry) into a Python package and a REST API."
+    },
+    {
+      "source": "Monté la observabilidad de los servicios con Loki, Promtail y Grafana, con alertas por mail.",
+      "en": "Set up service observability with Loki, Promtail and Grafana, including email alerts."
+    },
+    {
+      "source": "Desarrollé saldAR, app de gastos compartidos multimoneda con FastAPI, Next.js, PostgreSQL, Redis y CI (beta, sin lanzar).",
+      "en": "Built saldAR, a multi-currency shared expenses app with FastAPI, Next.js, PostgreSQL, Redis and CI (beta, not launched)."
+    },
+    {
+      "source": "Construí un motor en Python que genera PDF de marca desde datos JSON, con Docker.",
+      "en": "Built a Python engine that generates branded PDFs from JSON data, with Docker."
+    },
+    {
+      "source": "Automatización de NOC",
+      "en": "NOC Automation"
+    },
+    {
+      "source": "Desarrollé la automatización del despacho de pólizas: lectura desde SQL Server, control de PDFs faltantes, sincronización a Google Cloud Storage y envío por mail, con workers async, dry-run y cola de revisión manual.",
+      "en": "Built policy delivery automation: SQL Server reads, missing-PDF checks, Google Cloud Storage sync and email, with async workers, dry-run and a manual review queue."
+    },
+    {
+      "source": "Construí 8 servicios FastAPI con Docker, con Redis y autenticación JWT donde hacía falta: identidad con LDAP, mail multiproveedor, almacenamiento, helpdesk y anulaciones.",
+      "en": "Built 8 FastAPI services with Docker, adding Redis and JWT auth where needed: identity with LDAP, multi-provider email, storage, helpdesk and cancellations."
+    },
+    {
+      "source": "Desarrollé una plataforma de venta en cuotas para un cliente (proyectos, lotes, pagos) con FastAPI y React, permisos por rol y branding configurable.",
+      "en": "Built an installment sales platform for a client (projects, lots, payments) with FastAPI and React, role-based access and configurable branding."
+    },
+    {
+      "source": "Entregué sitios de cliente con WordPress + Elementor y con React sobre Cloudflare Workers.",
+      "en": "Delivered client sites with WordPress + Elementor and with React on Cloudflare Workers."
+    },
+    {
+      "source": "Automatización de redes y monitoreo",
+      "en": "Network automation and monitoring"
+    },
+    {
+      "source": "Datos y bases de datos",
+      "en": "Data and databases"
+    },
+    {
+      "source": "Documentación y gestión",
+      "en": "Documentation and project management"
+    },
+    {
+      "source": "ScienceLogic SL1",
+      "en": "ScienceLogic SL1"
+    },
+    {
+      "source": "PowerFlow",
+      "en": "PowerFlow"
+    },
+    {
+      "source": "Ciena 6500",
+      "en": "Ciena 6500"
+    },
+    {
+      "source": "Ciena SAOS",
+      "en": "Ciena SAOS"
+    },
+    {
+      "source": "Ciena Waveserver",
+      "en": "Ciena Waveserver"
+    },
+    {
+      "source": "TL1",
+      "en": "TL1"
+    },
+    {
+      "source": "SSH",
+      "en": "SSH"
+    },
+    {
+      "source": "SNMPv3",
+      "en": "SNMPv3"
+    },
+    {
+      "source": "Cisco IOS",
+      "en": "Cisco IOS"
+    },
+    {
+      "source": "PostgreSQL",
+      "en": "PostgreSQL"
+    },
+    {
+      "source": "Redis",
+      "en": "Redis"
+    },
+    {
+      "source": "SQL Server",
+      "en": "SQL Server"
+    },
+    {
+      "source": "Pydantic",
+      "en": "Pydantic"
+    },
+    {
+      "source": "SQLModel",
+      "en": "SQLModel"
+    },
+    {
+      "source": "pytest",
+      "en": "pytest"
+    },
+    {
+      "source": "Grafana",
+      "en": "Grafana"
+    },
+    {
+      "source": "Loki",
+      "en": "Loki"
+    },
+    {
+      "source": "Google Cloud Storage",
+      "en": "Google Cloud Storage"
+    },
+    {
+      "source": "Next.js",
+      "en": "Next.js"
+    },
+    {
+      "source": "TypeScript",
+      "en": "TypeScript"
+    },
+    {
+      "source": "Tailwind CSS",
+      "en": "Tailwind CSS"
+    },
+    {
+      "source": "WordPress",
+      "en": "WordPress"
+    },
+    {
+      "source": "MkDocs",
+      "en": "MkDocs"
     }
   ]
 }

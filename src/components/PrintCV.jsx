@@ -13,8 +13,14 @@ export default function PrintCV({ content }) {
       <h1>{person.name}</h1>
       <p>{person.headline}</p>
       <p>
-        {line([person.location, person.email])} · <span className="print-cv-nobreak">{person.github}</span> ·{' '}
-        <span className="print-cv-nobreak">{person.linkedin}</span>
+        {person.location} · <a href={`mailto:${person.email}`}>{person.email}</a> ·{' '}
+        <a className="print-cv-nobreak" href={person.github}>
+          {person.github}
+        </a>{' '}
+        ·{' '}
+        <a className="print-cv-nobreak" href={person.linkedin}>
+          {person.linkedin}
+        </a>
       </p>
 
       <h2>{ui.sections.summary}</h2>
@@ -30,7 +36,7 @@ export default function PrintCV({ content }) {
             {line([
               position.company ?? position.engagement,
               position.location,
-              `${formatDate(position.start, ui.months)} – ${formatEnd(position.end, position.current, ui)}`,
+              `${formatDate(position.start, ui.monthsFull)} – ${formatEnd(position.end, position.current, { ...ui, months: ui.monthsFull })}`,
             ])}
           </p>
           <ul>
@@ -54,12 +60,14 @@ export default function PrintCV({ content }) {
         </>
       ) : null}
 
-      <h2>{ui.sections.skills}</h2>
-      {skillGroups.map((group) => (
-        <p key={group.id}>
-          <strong>{group.label}:</strong> {group.items.join(', ')}
-        </p>
-      ))}
+      <div className="print-cv-keep">
+        <h2>{ui.sections.skills}</h2>
+        {skillGroups.map((group) => (
+          <p key={group.id}>
+            <strong>{group.label}:</strong> {group.items.join(', ')}
+          </p>
+        ))}
+      </div>
 
       <h2>{ui.sections.education}</h2>
       <ul>
@@ -68,7 +76,7 @@ export default function PrintCV({ content }) {
             {line([
               item.degree,
               item.school,
-              formatPeriod(item.start, item.end, ui.months),
+              formatPeriod(item.start, item.end, ui.monthsFull),
               item.inProgress ? ui.inProgress : null,
             ])}
           </li>
@@ -79,19 +87,10 @@ export default function PrintCV({ content }) {
       <ul>
         {certifications.map((item) => (
           <li key={item.id}>
-            {line([item.title, item.issuer, item.date ? formatDate(item.date, ui.months) : null])}
-            {item.credentialId ? (
-              <>
-                {' · '}
-                {ui.credentialId}: <span className="print-cv-nobreak">{item.credentialId}</span>
-              </>
-            ) : null}
-            {item.credentialUrl ? (
-              <>
-                {' · '}
-                <span className="print-cv-nobreak">{item.credentialUrl}</span>
-              </>
-            ) : null}
+            {/* INTENTIONAL: credential IDs and URLs were a third of the text and read as phone numbers; the link keeps them reachable. */}
+            {item.credentialUrl ? <a href={item.credentialUrl}>{item.title}</a> : item.title}
+            {' · '}
+            {line([item.issuer, item.date ? formatDate(item.date, ui.monthsFull) : null])}
           </li>
         ))}
       </ul>

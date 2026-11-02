@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildContent, GuardError, loadInputs } from '../scripts/build-content.mjs'
+import { buildContent, GuardError, loadInputs, mergeCareer } from '../scripts/build-content.mjs'
 
 const ABOUT_SENTENCE = 'Hago APIs.'
 
@@ -9,12 +9,14 @@ function fixtures() {
     sections: { summary: 's', experience: 'e', projects: 'p', education: 'e', certifications: 'c', skills: 's', languages: 'l' },
     present,
     months: Array(12).fill('m'),
+    monthsFull: Array(12).fill('mes'),
     viewCredential: 'v',
     credentialId: 'c',
     inProgress: 'i',
     downloadPdf: 'd',
     pdfPath: '/cv/x.pdf',
     showMore: 's',
+    showLess: 's',
     skipLink: 's',
     themeDark: 'd',
     themeLight: 'l',
@@ -180,6 +182,7 @@ describe('guard failures', () => {
 
   it('fails without 12 months', () => {
     expectGuard((i) => { i.uiEs.months = ['ene'] }, /ui\.es\.months/)
+    expectGuard((i) => { i.uiEs.monthsFull = ['enero'] }, /ui\.es\.monthsFull/)
   })
 
   it('fails on a skill neither grouped nor omitted', () => {
@@ -324,13 +327,15 @@ describe('real data', () => {
 
   // INTENTIONAL: compared with the export, not with a fixed count, so a new job is a data change and needs no code.
   it('keeps every position, education, certification and skill in both locales', () => {
-    const { base, profile } = loadInputs()
+    const inputs = loadInputs()
+    const { profile } = inputs
+    const base = mergeCareer(inputs.base, profile)
     for (const locale of [es, en]) {
       expect(locale.positions).toHaveLength(base.positions.length)
       expect(locale.education).toHaveLength(base.education.length)
       expect(locale.certifications).toHaveLength(base.certifications.length)
       expect(locale.certifications.filter((item) => item.featured)).toHaveLength(profile.featuredCertifications.length)
-      expect(locale.skillGroups.flatMap((group) => group.items)).toHaveLength(base.skills.length)
+      expect(locale.skillGroups.flatMap((group) => group.items)).toHaveLength(base.skills.length - profile.omit.length)
     }
   })
 
@@ -346,9 +351,19 @@ describe('real data', () => {
     expect(es.skillGroups[0].items[0]).toBe('Python')
   })
 
-  it('has no postal code, stale LinkedIn URL, Ciena or "verified" anywhere', () => {
+  it('merges the career overlay: Ciena is current and Noble has ended', () => {
+    expect(es.positions[0]).toMatchObject({ id: 'ciena', company: 'Ciena', current: true, end: null })
+    expect(es.positions.find((item) => item.id === 'noble-seguros')).toMatchObject({ current: false, end: '2026-04' })
+  })
+
+  it('fails when the career overlay points at an unknown position or repeats an exported one', () => {
+    expectGuard((i) => { i.profile.career = { extraBullets: { nope: ['x'] } } }, /career\.extraBullets\.nope: no such position/)
+    expectGuard((i) => { i.profile.career = { positions: [{ ...i.base.positions[0] }] } }, /base\.positions id: duplicate/)
+  })
+
+  it('has no postal code, stale LinkedIn URL or "verified" anywhere', () => {
     const text = JSON.stringify([es, en])
-    expect(text).not.toMatch(/C1429|in\/guido-delponte\/|Ciena|verified/i)
+    expect(text).not.toMatch(/C1429|in\/guido-delponte\/|verified/i)
     expect(es.person.linkedin).toBe('https://www.linkedin.com/in/guido-delponte-7a26033a4/')
   })
 

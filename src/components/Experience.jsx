@@ -51,7 +51,8 @@ export default function Experience({ positions, dataDate, ui }) {
                 {position.moreBullets.length > 0 ? (
                   <details className="more">
                     <summary>
-                      {ui.showMore}
+                      <span className="more-closed">{ui.showMore}</span>
+                      <span className="more-opened">{ui.showLess}</span>
                       {/* Every role has this control; the hidden text tells them apart for a screen reader. */}
                       <span className="sr-only">{`: ${employer}`}</span>
                     </summary>

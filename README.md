@@ -106,6 +106,10 @@ cuenta a Guido. Se corre solo a mano, nunca en CI ni programado. Ver [scraper/RE
 | `data/overlays/en.json` | Traducciones, una entrada `{ source, en }` por texto. |
 | `data/ui.es.json`, `data/ui.en.json` | Textos de la interfaz. Los dos tienen que tener las mismas claves. |
 
+`career`, dentro de `profile.json`, guarda lo que el export todavía no trae: puestos nuevos (`positions`), cambios a un puesto
+exportado (`positionOverrides`), viñetas (`extraBullets`) y habilidades (`extraSkills`). Se mezcla antes de los guards, así
+que pasa por los mismos controles. Si un export futuro trae ese puesto, el build falla por id repetido y se saca de `career`.
+
 `projects` es una lista cerrada: un repo aparece en el sitio y en el PDF solo si está escrito ahí. El guard exige que la
 URL sea `https://github.com/GDelpo/<id>`, sin nada detrás. Con la lista vacía, la sección no se muestra.
 
