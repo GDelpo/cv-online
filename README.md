@@ -28,9 +28,10 @@ that turns jobs, studies and skill groups into coordinates, so a new job needs n
 responsive layouts and CSS picks one, which means the map renders without JavaScript. Tests run every layout with 3 to 6
 jobs and check that no label overlaps another label or a line.
 
-**ATS-friendly PDFs.** Printing uses a separate tree, `src/components/PrintCV.jsx`: one column, no photo, everything
-expanded. `npm run pdf -- --check` reads the text back with `pdftotext` and checks titles, employers, bullets, projects,
-`/Lang` and a limit of 2 pages.
+**One-page, ATS-friendly PDFs.** Printing uses a separate tree, `src/components/PrintCV.jsx`: one column, no photo. The
+site shows every bullet, while the PDF prints a subset chosen in the data: a few bullets per recent role and a one-line
+summary for older ones. `npm run pdf -- --check` reads the text back with `pdftotext` and checks titles, employers, the
+printed bullets, projects, `/Lang` and a limit of 1 page.
 
 **Accessible colors by test.** `tests/contrast.test.js` reads the CSS variables and computes the contrast of each pair in
 both themes: 4.5:1 for text, 3:1 for lines.

@@ -49,6 +49,9 @@ This is the normal path. It needs no login and no scraper.
    | `end ... is before start`, `... is after the data date` | Impossible date: check `data/base.json` or LinkedIn. Only a degree in progress can end after the export date. |
    | `company must be text or null` | Blank company: use `null` and add the label to `engagements`. |
    | `language name: duplicate` | The language appears twice: in the export and in `extraLanguages` in `profile.json`, or repeated. |
+   | `print: position "id" is neither in print.positions nor in print.omitPositions` | A new position: give it a `summary`, `bullets` or both in `print.positions`, or list it in `print.omitPositions`. |
+   | `print: bullet of "id" is not one of its tiered bullets` | `print.positions.<id>.bullets` takes the exported text of a bullet in its `bulletTiers`, not the rewritten one. |
+   | `pdf --check failed: ... pages, the limit is 1` | The PDF no longer fits on one page: print fewer bullets or a shorter summary in `print`. |
 
 6. **Check it locally:**
 
@@ -104,6 +107,10 @@ blocked. Run it only by hand, never in CI or on a schedule. See [scraper/README.
 exported position (`positionOverrides`), bullets (`extraBullets`), skills (`extraSkills`) and certifications
 (`certifications`). It's merged before the guards, so it goes through the same checks. If a future export brings that
 item, the build fails on a duplicate id and you remove it from `career`.
+
+`print` chooses what the one-page PDF shows. `print.positions.<id>` takes a `summary` (a new text, translated in
+`en.json`), `bullets` (exported bullets already in `bulletTiers`) or both. Every position is either there or in
+`print.omitPositions`, and `print.certifications` lists the certification ids to print. The site still shows everything.
 
 `projects` is a closed list: a repo appears on the site and in the PDF only if it's written there. The guard requires the
 URL to be `https://github.com/GDelpo/<id>` and nothing after it. With an empty list, the section isn't shown.

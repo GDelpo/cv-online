@@ -62,6 +62,11 @@ function fixtures() {
       omitBullets: ['Relleno.'],
       languageLevels: { 'Full professional proficiency': 'Competencia completa' },
       extraLanguages: [{ name: 'Español', level: 'Nativo' }],
+      print: {
+        positions: { freelance: { summary: 'Resumen corto.', bullets: ['Tarea.'] } },
+        omitPositions: ['vieja'],
+        certifications: ['dos'],
+      },
     },
     translations: {
       status: 'draft-review-by-guido',
@@ -69,7 +74,7 @@ function fixtures() {
         ['Dev', 'Dev'], [ABOUT_SENTENCE, 'I make APIs.'], ['Soporte', 'Support'], ['Tarea vieja.', 'Old task.'],
         ['Consultora', 'Consultant'], ['Independiente', 'Self-employed'], ['Tarea.', 'Task.'], ['Software', 'Software'],
         ['Curso Uno', 'Course One'], ['Curso Dos', 'Course Two'], ['Backend', 'Backend'], ['Python', 'Python'],
-        ['Inglés', 'English'], ['Latín', 'Latin'], ['Español', 'Spanish'], ['Nativo', 'Native'], ['Hace cosas', 'Does things'],
+        ['Inglés', 'English'], ['Latín', 'Latin'], ['Español', 'Spanish'], ['Nativo', 'Native'], ['Hace cosas', 'Does things'], ['Resumen corto.', 'Short summary.'],
       ].map(([source, en]) => ({ source, en })),
     },
     uiEs: ui('Actualidad'),
@@ -307,6 +312,26 @@ describe('guard failures', () => {
 
   it('fails on an export language level without a Spanish label', () => {
     expectGuard((i) => { i.profile.languageLevels = {} }, /no entry in languageLevels/)
+  })
+
+  it('builds the print subset: summary, chosen bullets, omitted positions and printed certifications', () => {
+    const { es, en } = buildContent(fixtures())
+    expect(es.positions.find((p) => p.id === 'freelance').print).toEqual({ summary: 'Resumen corto.', bullets: ['Tarea.'] })
+    expect(en.positions.find((p) => p.id === 'freelance').print).toEqual({ summary: 'Short summary.', bullets: ['Task.'] })
+    expect(es.positions.find((p) => p.id === 'vieja').print).toBeNull()
+    expect(es.certifications.filter((c) => c.print).map((c) => c.id)).toEqual(['dos'])
+  })
+
+  it('fails when the print overlay is missing, incomplete or points at something unknown', () => {
+    expectGuard((i) => { delete i.profile.print }, /profile\.print: missing/)
+    expectGuard((i) => { i.profile.print.omitPositions = [] }, /print: position "vieja" is neither in print\.positions nor in print\.omitPositions/)
+    expectGuard((i) => { i.profile.print.omitPositions.push('freelance') }, /print: position "freelance" is both printed and omitted/)
+    expectGuard((i) => { i.profile.print.omitPositions.push('nope') }, /print: no such position "nope"/)
+    expectGuard((i) => { i.profile.print.positions.freelance = {} }, /print: position "freelance" needs a summary or bullets/)
+    expectGuard((i) => { i.profile.print.positions.freelance.bullets = ['Relleno.'] }, /print: bullet of "freelance" is not one of its tiered bullets/)
+    expectGuard((i) => { i.profile.print.certifications = [] }, /print\.certifications: must list at least one/)
+    expectGuard((i) => { i.profile.print.certifications.push('fantasma') }, /print certification "fantasma" is not in the export/)
+    expectGuard((i) => { i.profile.print.positions.freelance.summary = 'Sin traducir.' }, /missing translation: "Sin traducir\."/)
   })
 
   it('reports every problem at once', () => {

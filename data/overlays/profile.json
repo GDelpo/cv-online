@@ -358,5 +358,39 @@
         "credentialUrl": null
       }
     ]
+  },
+  "print": {
+    "comment": "One-page PDF: per position a summary, some of its tiered bullets, or both. Every position is listed or omitted.",
+    "positions": {
+      "ciena": {
+        "bullets": [
+          "Desarrollé desde cero y mantengo herramientas en Python para operar en paralelo flotas de equipos ópticos y Ethernet de Ciena (TL1, SSH, SNMPv3), con tests automatizados.",
+          "Automaticé el alta de equipos de clientes en ScienceLogic SL1: reconstruí y amplié los scripts del equipo en un CLI de Python con lotes reanudables, usado en altas reales.",
+          "Desarrollé un comando en Python para cambios de availability en lote en SL1, con plan previo, prueba canario y comandos de reversión."
+        ]
+      },
+      "noble-seguros": {
+        "bullets": [
+          "Diseño e implementación de soluciones en Python para la automatización de procesos de pequeña y gran escala, mejorando eficiencia operativa.",
+          "Desarrollo de APIs y microservicios para la integración robusta y escalable de sistemas internos y externos.",
+          "Desarrollé la app Django que registra operaciones de inversión y las presenta a la API de la SSN, con exportación a Excel y alertas de vencimiento."
+        ]
+      },
+      "freelance": {
+        "summary": "Desarrollo backend y aplicaciones para clientes con FastAPI, React y Next.js, entre ellas una plataforma de venta en cuotas con 230 tests, y sitios con WordPress."
+      },
+      "laboratorio-dr-enrique-iovine": {
+        "summary": "Soporte técnico a usuarios y administración del parque informático y la red del laboratorio."
+      }
+    },
+    "omitPositions": [
+      "maraton-de-buenos-aires"
+    ],
+    "certifications": [
+      "skylar-one-professional-certification",
+      "certificacion-profesional-en-inteligencia-artificial",
+      "fastapi-the-complete-course-beginner-advanced",
+      "universidad-python-de-cero-a-experto"
+    ]
   }
 }

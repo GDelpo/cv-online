@@ -1189,7 +1189,7 @@ main:focus {
 /* ---------- print ---------- */
 @page {
   size: A4;
-  margin: 13mm 16mm;
+  margin: 10mm 14mm;
 }
 
 @media print {
@@ -1213,8 +1213,8 @@ main:focus {
   }
 
   html {
-    font-size: 10pt;
-    line-height: 1.3;
+    font-size: 9.5pt;
+    line-height: 1.25;
     scroll-behavior: auto;
   }
 
@@ -1250,20 +1250,21 @@ main:focus {
 }
 
 .print-cv h1 {
-  font-size: 18pt;
+  font-size: 16pt;
   font-weight: 600;
   line-height: 1.2;
 }
 
 .print-cv h2 {
-  margin-top: 8pt;
+  margin-top: 5pt;
+  margin-bottom: 1pt;
   border-bottom: 1px solid #999;
   font-size: 11.5pt;
   font-weight: 600;
 }
 
 .print-cv h3 {
-  margin-top: 5pt;
+  margin-top: 3pt;
   font-weight: 600;
 }
 

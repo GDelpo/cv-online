@@ -237,6 +237,50 @@ function guardProjects(profile, problems) {
   checkUnique(list(items).map((item) => item?.id), 'project id', problems)
 }
 
+/**
+ * INTENTIONAL: the PDF is one page, so it prints a chosen subset: per position a short summary, a few of its bullets,
+ * or both. Every position must be listed or omitted on purpose, so a new job never vanishes from the PDF unnoticed.
+ */
+function guardPrint(base, profile, problems) {
+  const print = profile?.print
+  if (!print || typeof print !== 'object') {
+    problems.push('profile.print: missing')
+    return
+  }
+  const entries = print.positions ?? {}
+  const omitted = list(print.omitPositions)
+  const ids = new Set(list(base?.positions).map((position) => position?.id))
+  for (const id of [...Object.keys(entries), ...omitted]) {
+    if (!ids.has(id)) problems.push(`print: no such position "${id}"`)
+  }
+  checkUnique(omitted, 'print.omitPositions entry', problems)
+  for (const position of list(base?.positions)) {
+    const id = position?.id
+    const entry = entries[id]
+    if (entry && omitted.includes(id)) problems.push(`print: position "${id}" is both printed and omitted`)
+    if (!entry) {
+      if (!omitted.includes(id)) problems.push(`print: position "${id}" is neither in print.positions nor in print.omitPositions`)
+      continue
+    }
+    const tier = profile?.bulletTiers?.[id]
+    const tiered = [...list(tier?.bullets), ...list(tier?.moreBullets)]
+    const bullets = list(entry.bullets)
+    if (!isText(entry.summary) && bullets.length === 0) problems.push(`print: position "${id}" needs a summary or bullets`)
+    if (entry.summary !== undefined && entry.summary !== null && !isText(entry.summary)) {
+      problems.push(`print: position "${id}" has an empty summary`)
+    }
+    checkUnique(bullets, `print position "${id}" bullet`, problems)
+    for (const bullet of bullets) {
+      if (!tiered.includes(bullet)) problems.push(`print: bullet of "${id}" is not one of its tiered bullets: "${bullet}"`)
+    }
+  }
+  const certIds = new Set(list(base?.certifications).map((item) => item?.id))
+  const certs = list(print.certifications)
+  if (certs.length === 0) problems.push('print.certifications: must list at least one')
+  checkUnique(certs, 'print certification', problems)
+  for (const id of certs) if (!certIds.has(id)) problems.push(`print certification "${id}" is not in the export`)
+}
+
 function keyPaths(value, prefix = '') {
   if (Array.isArray(value) || value === null || typeof value !== 'object') return [prefix]
   return Object.entries(value).flatMap(([key, child]) => keyPaths(child, prefix ? `${prefix}.${key}` : key))
@@ -262,6 +306,12 @@ function buildLocale(locale, translate, { base, profile, ui }) {
   const tiers = profile.bulletTiers ?? {}
   const shown = (bullet) => translate(profile.bulletRewrites?.[bullet] ?? bullet)
   const featured = list(profile.featuredCertifications)
+  const printed = list(profile.print.certifications)
+  const printEntry = (id) => {
+    const entry = profile.print.positions?.[id]
+    if (!entry) return null
+    return { summary: isText(entry.summary) ? translate(entry.summary) : null, bullets: list(entry.bullets).map(shown) }
+  }
   const rank = (item) => {
     const index = featured.indexOf(item.id)
     return index === -1 ? featured.length : index
@@ -298,6 +348,7 @@ function buildLocale(locale, translate, { base, profile, ui }) {
         current: position.current === true,
         bullets: list(tiers[position.id]?.bullets).map(shown),
         moreBullets: list(tiers[position.id]?.moreBullets).map(shown),
+        print: printEntry(position.id),
       })),
     projects: profile.projects.items.map((item) => ({
       id: item.id,
@@ -323,6 +374,7 @@ function buildLocale(locale, translate, { base, profile, ui }) {
         credentialId: item.credentialId ?? null,
         credentialUrl: item.credentialUrl ?? null,
         featured: featured.includes(item.id),
+        print: printed.includes(item.id),
       })),
     skillGroups: profile.skillGroups.map((group) => ({
       id: group.id,
@@ -393,6 +445,7 @@ export function buildContent({ base: exported, profile, translations, uiEs, uiEn
   guardBase(base, problems)
   guardProfile(base, profile, problems)
   guardProjects(profile, problems)
+  guardPrint(base, profile, problems)
   guardUi(uiEs, uiEn, problems)
   if (!isText(translations?.status)) problems.push('en.json: missing required field "status"')
   requireList(translations?.entries, 'en.json entries', problems)

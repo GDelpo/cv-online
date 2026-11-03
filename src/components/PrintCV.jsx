@@ -29,23 +29,29 @@ export default function PrintCV({ content }) {
       ))}
 
       <h2>{ui.sections.experience}</h2>
-      {positions.map((position) => (
-        <div key={position.id}>
-          <h3>{position.title}</h3>
-          <p>
-            {line([
-              position.company ?? position.engagement,
-              position.location,
-              `${formatDate(position.start, ui.monthsFull)} – ${formatEnd(position.end, position.current, { ...ui, months: ui.monthsFull })}`,
-            ])}
-          </p>
-          <ul>
-            {[...position.bullets, ...position.moreBullets].map((bullet) => (
-              <li key={bullet}>{bullet}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {/* INTENTIONAL: one page, so each position prints only its chosen summary and bullets (profile.print). */}
+      {positions
+        .filter((position) => position.print)
+        .map((position) => (
+          <div key={position.id}>
+            <h3>{position.title}</h3>
+            <p>
+              {line([
+                position.company ?? position.engagement,
+                position.location,
+                `${formatDate(position.start, ui.monthsFull)} – ${formatEnd(position.end, position.current, { ...ui, months: ui.monthsFull })}`,
+              ])}
+            </p>
+            {position.print.summary ? <p>{position.print.summary}</p> : null}
+            {position.print.bullets.length > 0 ? (
+              <ul>
+                {position.print.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        ))}
 
       {projects.length > 0 ? (
         <>
@@ -85,7 +91,7 @@ export default function PrintCV({ content }) {
 
       <h2>{ui.sections.certifications}</h2>
       <ul>
-        {certifications.map((item) => (
+        {certifications.filter((item) => item.print).map((item) => (
           <li key={item.id}>
             {/* INTENTIONAL: credential IDs and URLs were a third of the text and read as phone numbers; the link keeps them reachable. */}
             {item.credentialUrl ? <a href={item.credentialUrl}>{item.title}</a> : item.title}
@@ -96,11 +102,7 @@ export default function PrintCV({ content }) {
       </ul>
 
       <h2>{ui.sections.languages}</h2>
-      <ul>
-        {languages.map((item) => (
-          <li key={item.name}>{line([item.name, item.level])}</li>
-        ))}
-      </ul>
+      <p>{languages.map((item) => line([item.name, item.level])).join(' | ')}</p>
     </div>
   )
 }

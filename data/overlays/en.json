@@ -460,6 +460,14 @@
     {
       "source": "Curso de Iniciación al Desarrollo con IA (asistencia)",
       "en": "Introduction to AI Development Course (attendance)"
+    },
+    {
+      "source": "Desarrollo backend y aplicaciones para clientes con FastAPI, React y Next.js, entre ellas una plataforma de venta en cuotas con 230 tests, y sitios con WordPress.",
+      "en": "Backend and app development for clients with FastAPI, React and Next.js, including an installment sales platform with 230 tests, and WordPress sites."
+    },
+    {
+      "source": "Soporte técnico a usuarios y administración del parque informático y la red del laboratorio.",
+      "en": "User support and management of the lab's computers and network."
     }
   ]
 }

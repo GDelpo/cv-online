@@ -13,18 +13,25 @@ describe.each([
   ['es', es],
   ['en', en],
 ])('PrintCV in %s', (_locale, content) => {
-  it('has one h1, a h2 per section and a h3 per position', () => {
+  it('has one h1, a h2 per section and a h3 per printed position', () => {
     const html = render(content)
     expect(count(html, /<h1[\s>]/g)).toBe(1)
     const hidden = content.projects.length === 0 ? 1 : 0
     expect(count(html, /<h2[\s>]/g)).toBe(Object.keys(content.ui.sections).length - hidden)
-    expect(count(html, /<h3[\s>]/g)).toBe(content.positions.length)
+    expect(count(html, /<h3[\s>]/g)).toBe(content.positions.filter((position) => position.print).length)
   })
 
-  it('keeps every bullet, including the ones the screen collapses', () => {
+  it('prints only the chosen summary and bullets of each position, and leaves omitted positions out', () => {
     const html = render(content)
     for (const position of content.positions) {
-      for (const bullet of [...position.bullets, ...position.moreBullets]) expect(html).toContain(plain(bullet))
+      if (!position.print) {
+        expect(html).not.toContain(plain(position.title))
+        continue
+      }
+      if (position.print.summary) expect(html).toContain(plain(position.print.summary))
+      for (const bullet of position.print.bullets) expect(html).toContain(plain(bullet))
+      const unprinted = [...position.bullets, ...position.moreBullets].filter((bullet) => !position.print.bullets.includes(bullet))
+      for (const bullet of unprinted) expect(html).not.toContain(plain(bullet))
     }
   })
 
@@ -34,9 +41,13 @@ describe.each([
     expect(html).toContain(content.ui.inProgress)
   })
 
-  it('lists each certification, with its ID and URL only when present', () => {
+  it('lists only the printed certifications, with their URL only when present', () => {
     const html = render(content)
     for (const item of content.certifications) {
+      if (!item.print) {
+        expect(html).not.toContain(plain(item.title))
+        continue
+      }
       expect(html).toContain(plain(item.title))
       if (item.credentialUrl) expect(html).toContain(plain(item.credentialUrl))
     }

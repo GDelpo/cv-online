@@ -18,7 +18,7 @@ const OUT = join(ROOT, 'public', 'cv')
 const MANIFEST = join(OUT, 'manifest.json')
 const LOCALES = ['es', 'en']
 const PRINT_PATH = { es: '/', en: '/en' }
-const MAX_PAGES = 2
+const MAX_PAGES = 1
 
 const contentFile = (locale) => join(ROOT, 'src', 'content', `${locale}.json`)
 const pdfFile = (locale) => join(OUT, `Guido-Delponte-CV-${locale}.pdf`)
@@ -127,14 +127,19 @@ function checkLocale(locale, manifest, problems) {
   const sections = Object.entries(content.ui.sections)
     .filter(([key]) => key !== 'projects' || content.projects.length > 0)
     .map(([, heading]) => heading)
-  const headings = [content.person.name, ...sections, ...content.positions.map((p) => p.title)]
+  // The PDF prints the subset chosen in profile.print, so that subset is what has to be there.
+  const printed = content.positions.filter((position) => position.print)
+  const headings = [content.person.name, ...sections, ...printed.map((p) => p.title)]
   for (const heading of headings) {
     if (!lines.includes(heading)) problems.push(`${name}: heading "${heading}" is not on its own line`)
   }
-  for (const position of content.positions) {
+  for (const position of printed) {
     const employer = position.company ?? position.engagement
     if (!flat.includes(flatten(employer))) problems.push(`${name}: employer "${employer}" not found`)
-    for (const bullet of [...position.bullets, ...position.moreBullets]) {
+    if (position.print.summary && !flat.includes(flatten(position.print.summary))) {
+      problems.push(`${name}: summary of "${position.id}" not found`)
+    }
+    for (const bullet of position.print.bullets) {
       if (!flat.includes(flatten(`• ${bullet}`))) problems.push(`${name}: bullet not separate: "${bullet}"`)
     }
   }
@@ -145,7 +150,7 @@ function checkLocale(locale, manifest, problems) {
   for (const item of content.education) {
     if (!flat.includes(flatten(item.degree))) problems.push(`${name}: education "${item.degree}" not found`)
   }
-  for (const item of content.certifications) {
+  for (const item of content.certifications.filter((cert) => cert.print)) {
     if (!flat.includes(flatten(`• ${item.title}`))) problems.push(`${name}: certification "${item.title}" not found`)
   }
   // The catalog is plain text in Chrome's output; a future Chrome that compresses it fails here and gets looked at.
