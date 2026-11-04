@@ -180,8 +180,8 @@ generated before pushing: with stale PDFs, `verify-dist` stops the deploy.
 To check a deploy:
 
 ```bash
-curl -I https://cv-online-puce.vercel.app/en      # 200, no redirect loop
-curl -I https://cv-online-puce.vercel.app/nope    # 404
+curl -I https://guido.is-a.dev/en      # 200, no redirect loop
+curl -I https://guido.is-a.dev/nope    # 404
 ```
 
 The source of `/en` has to contain the content and `lang="en"`.

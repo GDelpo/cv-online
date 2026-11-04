@@ -3,11 +3,11 @@
 The source of my CV: a static site in Spanish and English, plus a PDF per language, generated from the official
 LinkedIn data export. The build fails if the data is incomplete or the published pages and PDFs don't match it.
 
-**Live:** [Spanish](https://cv-online-puce.vercel.app) · [English](https://cv-online-puce.vercel.app/en) ·
-[PDF (ES)](https://cv-online-puce.vercel.app/cv/Guido-Delponte-CV-es.pdf) ·
-[PDF (EN)](https://cv-online-puce.vercel.app/cv/Guido-Delponte-CV-en.pdf)
+**Live:** [Spanish](https://guido.is-a.dev) · [English](https://guido.is-a.dev/en) ·
+[PDF (ES)](https://guido.is-a.dev/cv/Guido-Delponte-CV-es.pdf) ·
+[PDF (EN)](https://guido.is-a.dev/cv/Guido-Delponte-CV-en.pdf)
 
-[![The CV header: a transit map of jobs and studies over time, with skill groups branching out of the photo](public/og.jpg)](https://cv-online-puce.vercel.app/en)
+[![The CV header: a transit map of jobs and studies over time, with skill groups branching out of the photo](public/og.jpg)](https://guido.is-a.dev/en)
 
 **Stack:** React 18, Vite 6 and Tailwind 3, prerendered to HTML and hydrated in the browser. Python 3 importer with no
 dependencies. Playwright and Chrome for the PDFs. Vitest and `unittest` for tests. Deployed on Vercel.

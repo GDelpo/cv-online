@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cv-online-puce.vercel.app/sitemap.xml
+Sitemap: https://guido.is-a.dev/sitemap.xml
