@@ -53,11 +53,11 @@ export default function PrintCV({ content }) {
           </div>
         ))}
 
-      {projects.length > 0 ? (
+      {projects.some((item) => item.print) ? (
         <>
           <h2>{ui.sections.projects}</h2>
           <ul>
-            {projects.map((item) => (
+            {projects.filter((item) => item.print).map((item) => (
               <li key={item.id}>
                 {line([item.name, item.description])} · <span className="print-cv-nobreak">{item.url}</span>
               </li>

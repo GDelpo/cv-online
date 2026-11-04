@@ -22,6 +22,7 @@ function fixtures() {
     themeLight: 'l',
     updated: 'u',
     viewRepository: 'r',
+    allRepositories: 'a',
     mapLabel: 'm',
   })
   return {
@@ -66,6 +67,7 @@ function fixtures() {
         positions: { freelance: { summary: 'Resumen corto.', bullets: ['Tarea.'] } },
         omitPositions: ['vieja'],
         certifications: ['dos'],
+        projects: ['mi-repo'],
       },
     },
     translations: {
@@ -331,6 +333,7 @@ describe('guard failures', () => {
     expectGuard((i) => { i.profile.print.positions.freelance.bullets = ['Relleno.'] }, /print: bullet of "freelance" is not one of its tiered bullets/)
     expectGuard((i) => { i.profile.print.certifications = [] }, /print\.certifications: must list at least one/)
     expectGuard((i) => { i.profile.print.certifications.push('fantasma') }, /print certification "fantasma" is not in the export/)
+    expectGuard((i) => { i.profile.print.projects.push('otro') }, /print project "otro" is not in profile\.projects/)
     expectGuard((i) => { i.profile.print.positions.freelance.summary = 'Sin traducir.' }, /missing translation: "Sin traducir\."/)
   })
 
@@ -365,7 +368,7 @@ describe('real data', () => {
   })
 
   it('lists exactly the repos in the allowlist, in both languages', () => {
-    const allowed = ['fastapi-google-drive-api', 'observability-stack']
+    const allowed = ['fastapi-google-drive-api', 'observability-stack', 'cv-online']
     expect(es.projects.map((item) => item.id)).toEqual(allowed)
     expect(en.projects.map((item) => item.id)).toEqual(allowed)
   })

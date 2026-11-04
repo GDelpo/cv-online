@@ -186,6 +186,8 @@ describe('the map in the page', () => {
     it('renders the projects with their links', () => {
       expect(count(html, /data-project="/g)).toBe(content.projects.length)
       for (const item of content.projects) expect(html).toContain(`href="${item.url}"`)
+      expect(html).toContain(`href="${content.person.github}?tab=repositories"`)
+      expect(html).toContain(content.ui.allRepositories)
     })
   })
 

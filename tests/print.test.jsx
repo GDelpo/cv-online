@@ -16,7 +16,7 @@ describe.each([
   it('has one h1, a h2 per section and a h3 per printed position', () => {
     const html = render(content)
     expect(count(html, /<h1[\s>]/g)).toBe(1)
-    const hidden = content.projects.length === 0 ? 1 : 0
+    const hidden = content.projects.some((item) => item.print) ? 0 : 1
     expect(count(html, /<h2[\s>]/g)).toBe(Object.keys(content.ui.sections).length - hidden)
     expect(count(html, /<h3[\s>]/g)).toBe(content.positions.filter((position) => position.print).length)
   })
@@ -72,7 +72,7 @@ describe.each([
   })
 
   it('lists the projects with their full URLs', () => {
-    const item = { id: 'mi-repo', name: 'mi-repo', url: 'https://github.com/GDelpo/mi-repo', description: 'Descripción' }
+    const item = { id: 'mi-repo', name: 'mi-repo', url: 'https://github.com/GDelpo/mi-repo', description: 'Descripción', print: true }
     const html = render({ ...content, projects: [item] })
     expect(html).toContain(`<h2>${content.ui.sections.projects}</h2>`)
     expect(html).toContain(plain(item.description))
@@ -82,6 +82,14 @@ describe.each([
   it('leaves out the projects heading when the list is empty', () => {
     const html = render({ ...content, projects: [] })
     expect(html).not.toContain(`<h2>${content.ui.sections.projects}</h2>`)
+  })
+
+  it('prints only the projects chosen for print', () => {
+    const html = render(content)
+    for (const item of content.projects) {
+      if (item.print) expect(html).toContain(item.url)
+      else expect(html).not.toContain(item.url)
+    }
   })
 
   it('never claims "verified" and shows the full contact URLs as text', () => {

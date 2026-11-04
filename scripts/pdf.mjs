@@ -125,7 +125,7 @@ function checkLocale(locale, manifest, problems) {
 
   // The projects section is not printed while the allowlist is empty.
   const sections = Object.entries(content.ui.sections)
-    .filter(([key]) => key !== 'projects' || content.projects.length > 0)
+    .filter(([key]) => key !== 'projects' || content.projects.some((item) => item.print))
     .map(([, heading]) => heading)
   // The PDF prints the subset chosen in profile.print, so that subset is what has to be there.
   const printed = content.positions.filter((position) => position.print)
@@ -143,7 +143,7 @@ function checkLocale(locale, manifest, problems) {
       if (!flat.includes(flatten(`• ${bullet}`))) problems.push(`${name}: bullet not separate: "${bullet}"`)
     }
   }
-  for (const item of content.projects) {
+  for (const item of content.projects.filter((project) => project.print)) {
     if (!flat.includes(flatten(`• ${item.name}`))) problems.push(`${name}: project "${item.name}" not found`)
     if (!flat.includes(flatten(item.url))) problems.push(`${name}: project URL "${item.url}" not found`)
   }

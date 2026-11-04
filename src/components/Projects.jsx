@@ -1,6 +1,6 @@
 import StopHead from '@/components/StopHead'
 
-export default function Projects({ items, ui }) {
+export default function Projects({ items, github, ui }) {
   if (items.length === 0) return null
   return (
     <section aria-labelledby="projects" className="wrap section section-last">
@@ -16,6 +16,10 @@ export default function Projects({ items, ui }) {
           </li>
         ))}
       </ul>
+      {/* INTENTIONAL: the list is a reviewed selection, so the rest of the repos stay one click away. */}
+      <a className="projects-all" href={`${github}?tab=repositories`}>
+        {ui.allRepositories}
+      </a>
     </section>
   )
 }

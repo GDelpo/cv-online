@@ -468,6 +468,10 @@
     {
       "source": "Soporte técnico a usuarios y administración del parque informático y la red del laboratorio.",
       "en": "User support and management of the lab's computers and network."
+    },
+    {
+      "source": "Este CV: sitio estático en español e inglés generado desde el export de LinkedIn, con guards de datos y un build que verifica sus páginas y PDF.",
+      "en": "This CV: a static site in Spanish and English generated from the LinkedIn export, with data guards and a build that checks its pages and PDFs."
     }
   ]
 }

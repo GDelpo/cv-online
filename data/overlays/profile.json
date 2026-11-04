@@ -122,6 +122,12 @@
         "name": "observability-stack",
         "url": "https://github.com/GDelpo/observability-stack",
         "description": "Configuración Docker Compose de Loki, Promtail y Grafana para centralizar logs de contenedores, con dashboard provisionado y alertas por email."
+      },
+      {
+        "id": "cv-online",
+        "name": "cv-online",
+        "url": "https://github.com/GDelpo/cv-online",
+        "description": "Este CV: sitio estático en español e inglés generado desde el export de LinkedIn, con guards de datos y un build que verifica sus páginas y PDF."
       }
     ]
   },
@@ -391,6 +397,10 @@
       "certificacion-profesional-en-inteligencia-artificial",
       "fastapi-the-complete-course-beginner-advanced",
       "universidad-python-de-cero-a-experto"
+    ],
+    "projects": [
+      "fastapi-google-drive-api",
+      "observability-stack"
     ]
   }
 }

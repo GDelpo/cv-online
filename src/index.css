@@ -804,6 +804,15 @@ main:focus {
   max-width: 52ch;
 }
 
+.projects-all {
+  display: inline-block;
+  margin-top: clamp(24px, 3vw, 40px);
+  padding-block: 6px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .project-link {
   display: inline-block;
   margin-top: 6px;

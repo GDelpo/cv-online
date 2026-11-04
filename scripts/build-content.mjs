@@ -17,7 +17,7 @@ const UI_REQUIRED = [
   'sections.summary', 'sections.experience', 'sections.projects', 'sections.education',
   'sections.certifications', 'sections.skills', 'sections.languages',
   'present', 'months', 'viewCredential', 'credentialId', 'inProgress', 'downloadPdf',
-  'pdfPath', 'showMore', 'showLess', 'monthsFull', 'skipLink', 'themeDark', 'themeLight', 'updated', 'viewRepository', 'mapLabel',
+  'pdfPath', 'showMore', 'showLess', 'monthsFull', 'skipLink', 'themeDark', 'themeLight', 'updated', 'viewRepository', 'allRepositories', 'mapLabel',
 ]
 
 export class GuardError extends Error {
@@ -279,6 +279,10 @@ function guardPrint(base, profile, problems) {
   if (certs.length === 0) problems.push('print.certifications: must list at least one')
   checkUnique(certs, 'print certification', problems)
   for (const id of certs) if (!certIds.has(id)) problems.push(`print certification "${id}" is not in the export`)
+  const projectIds = new Set(list(profile?.projects?.items).map((item) => item?.id))
+  const projects = list(print.projects)
+  checkUnique(projects, 'print project', problems)
+  for (const id of projects) if (!projectIds.has(id)) problems.push(`print project "${id}" is not in profile.projects`)
 }
 
 function keyPaths(value, prefix = '') {
@@ -355,6 +359,7 @@ function buildLocale(locale, translate, { base, profile, ui }) {
       name: item.name,
       url: item.url,
       description: translate(item.description),
+      print: list(profile.print.projects).includes(item.id),
     })),
     education: base.education.map((item) => ({
       id: item.id,

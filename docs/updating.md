@@ -110,7 +110,7 @@ item, the build fails on a duplicate id and you remove it from `career`.
 
 `print` chooses what the one-page PDF shows. `print.positions.<id>` takes a `summary` (a new text, translated in
 `en.json`), `bullets` (exported bullets already in `bulletTiers`) or both. Every position is either there or in
-`print.omitPositions`, and `print.certifications` lists the certification ids to print. The site still shows everything.
+`print.omitPositions`, and `print.certifications` and `print.projects` list the certification and project ids to print. The site still shows everything.
 
 `projects` is a closed list: a repo appears on the site and in the PDF only if it's written there. The guard requires the
 URL to be `https://github.com/GDelpo/<id>` and nothing after it. With an empty list, the section isn't shown.

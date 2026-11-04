@@ -6,15 +6,41 @@
   "sections": {
     "summary": "Perfil",
     "experience": "Experiencia laboral",
-    "projects": "Proyectos",
+    "projects": "Proyectos destacados",
     "education": "Educación",
     "certifications": "Certificaciones",
     "skills": "Habilidades",
     "languages": "Idiomas"
   },
   "present": "Actualidad",
-  "months": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
-  "monthsFull": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+  "months": [
+    "ene",
+    "feb",
+    "mar",
+    "abr",
+    "may",
+    "jun",
+    "jul",
+    "ago",
+    "sep",
+    "oct",
+    "nov",
+    "dic"
+  ],
+  "monthsFull": [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre"
+  ],
   "viewCredential": "Ver credencial",
   "credentialId": "ID de credencial",
   "inProgress": "En curso",
@@ -27,5 +53,6 @@
   "themeLight": "Claro",
   "updated": "Actualizado",
   "viewRepository": "Ver en GitHub",
+  "allRepositories": "Ver todos mis repos en GitHub",
   "mapLabel": "Mapa de la carrera: trabajos y estudios a escala de años, y habilidades como ramales"
 }

@@ -6,15 +6,41 @@
   "sections": {
     "summary": "Summary",
     "experience": "Work Experience",
-    "projects": "Projects",
+    "projects": "Featured projects",
     "education": "Education",
     "certifications": "Certifications",
     "skills": "Skills",
     "languages": "Languages"
   },
   "present": "Present",
-  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  "monthsFull": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
+  "monthsFull": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
   "viewCredential": "View credential",
   "credentialId": "Credential ID",
   "inProgress": "In progress",
@@ -27,5 +53,6 @@
   "themeLight": "Light",
   "updated": "Updated",
   "viewRepository": "View on GitHub",
+  "allRepositories": "See all my repos on GitHub",
   "mapLabel": "Career map: jobs and studies to scale by year, with skills as branches"
 }

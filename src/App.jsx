@@ -39,7 +39,7 @@ function Page({ content }) {
         <main id="content" tabIndex={-1}>
           <Summary person={person} ui={ui} />
           <Experience positions={positions} dataDate={meta.dataDate} ui={ui} />
-          <Projects items={projects} ui={ui} />
+          <Projects items={projects} github={person.github} ui={ui} />
           <Skills groups={skillGroups} ui={ui} />
           <Education items={education} ui={ui} />
           <Certifications items={certifications} ui={ui} />
