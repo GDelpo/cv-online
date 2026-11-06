@@ -2,6 +2,9 @@
   "user": "GDelpo",
   "pinned": [
     "cv-online",
+    "afip-services",
+    "palo-alto-stats-collector",
+    "fastapi-identity-service",
     "fastapi-google-drive-api",
     "observability-stack"
   ],
