@@ -429,7 +429,7 @@
         "id": "skylar-one-professional-certification",
         "title": "Skylar One Professional Certification (ex SL1)",
         "issuer": "ScienceLogic",
-        "date": "2026-06",
+        "date": "2026",
         "credentialId": null,
         "credentialUrl": null
       },
@@ -437,7 +437,7 @@
         "id": "iniciacion-al-desarrollo-con-ia",
         "title": "Curso de Iniciación al Desarrollo con IA (asistencia)",
         "issuer": "BIG school y MoureDev",
-        "date": "2026-10",
+        "date": "2026",
         "credentialId": null,
         "credentialUrl": null
       }
