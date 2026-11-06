@@ -188,6 +188,12 @@
         "name": "docx-to-markdown",
         "url": "https://github.com/GDelpo/docx-to-markdown",
         "description": "Webapp y CLI que convierte .docx a Markdown conservando las imágenes."
+      },
+      {
+        "id": "fastapi-insurance-policies",
+        "name": "fastapi-insurance-policies",
+        "url": "https://github.com/GDelpo/fastapi-insurance-policies",
+        "description": "Microservicio FastAPI de consulta de pólizas sobre un core de seguros en SQL Server, con caché en Redis, resolución de PDFs y dashboard de administración."
       }
     ],
     "omit": [

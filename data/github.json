@@ -25,6 +25,7 @@
     "fastapi-google-drive-api",
     "fastapi-helpdesk-tickets",
     "fastapi-identity-service",
+    "fastapi-insurance-policies",
     "moodle-usuarios-masivos",
     "observability-stack",
     "palo-alto-stats-collector",

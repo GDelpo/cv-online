@@ -512,6 +512,10 @@
     {
       "source": "Webapp y CLI que convierte .docx a Markdown conservando las imágenes.",
       "en": "Webapp and CLI that converts .docx files to Markdown, keeping the images."
+    },
+    {
+      "source": "Microservicio FastAPI de consulta de pólizas sobre un core de seguros en SQL Server, con caché en Redis, resolución de PDFs y dashboard de administración.",
+      "en": "FastAPI service for insurance policy lookup over a SQL Server core system, with Redis caching, PDF resolution and an admin dashboard."
     }
   ]
 }
