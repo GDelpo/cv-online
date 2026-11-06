@@ -496,6 +496,14 @@
     {
       "source": "Microservicio para gestionar buckets de Google Cloud Storage, con URLs firmadas y dashboard de administración.",
       "en": "Microservice for managing Google Cloud Storage buckets with signed URLs and an admin dashboard."
+    },
+    {
+      "source": "Mesa de ayuda en FastAPI con tickets, colas, adjuntos, recordatorios y portal de usuario, con la auth delegada al servicio de identidad.",
+      "en": "FastAPI helpdesk with tickets, queues, attachments, reminders and a user portal, delegating auth to the identity service."
+    },
+    {
+      "source": "Conector Python para Active Directory que autentica y lista usuarios, con filtros escapados y validación de certificados TLS.",
+      "en": "Python connector for Active Directory: user authentication and listing with escaped filters and TLS certificate validation."
     }
   ]
 }

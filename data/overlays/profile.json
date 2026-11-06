@@ -164,6 +164,18 @@
         "name": "fastapi-gcs-manager",
         "url": "https://github.com/GDelpo/fastapi-gcs-manager",
         "description": "Microservicio para gestionar buckets de Google Cloud Storage, con URLs firmadas y dashboard de administración."
+      },
+      {
+        "id": "fastapi-helpdesk-tickets",
+        "name": "fastapi-helpdesk-tickets",
+        "url": "https://github.com/GDelpo/fastapi-helpdesk-tickets",
+        "description": "Mesa de ayuda en FastAPI con tickets, colas, adjuntos, recordatorios y portal de usuario, con la auth delegada al servicio de identidad."
+      },
+      {
+        "id": "python-ldap-connector",
+        "name": "python-ldap-connector",
+        "url": "https://github.com/GDelpo/python-ldap-connector",
+        "description": "Conector Python para Active Directory que autentica y lista usuarios, con filtros escapados y validación de certificados TLS."
       }
     ],
     "omit": [
@@ -175,10 +187,8 @@
       "django-ssn",
       "docusaurus-docs-template",
       "docx-to-markdown",
-      "fastapi-helpdesk-tickets",
       "moodle-usuarios-masivos",
       "pdf-batch-renamer",
-      "python-ldap-connector",
       "python_gps_dashboard",
       "react-link-in-bio"
     ]
