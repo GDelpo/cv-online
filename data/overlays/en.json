@@ -504,6 +504,14 @@
     {
       "source": "Conector Python para Active Directory que autentica y lista usuarios, con filtros escapados y validación de certificados TLS.",
       "en": "Python connector for Active Directory: user authentication and listing with escaped filters and TLS certificate validation."
+    },
+    {
+      "source": "App Django para gestionar y presentar operaciones ante la API de la SSN.",
+      "en": "Django app to manage and submit financial operations to the Argentine SSN API."
+    },
+    {
+      "source": "Webapp y CLI que convierte .docx a Markdown conservando las imágenes.",
+      "en": "Webapp and CLI that converts .docx files to Markdown, keeping the images."
     }
   ]
 }

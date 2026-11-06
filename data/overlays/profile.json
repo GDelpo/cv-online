@@ -176,6 +176,18 @@
         "name": "python-ldap-connector",
         "url": "https://github.com/GDelpo/python-ldap-connector",
         "description": "Conector Python para Active Directory que autentica y lista usuarios, con filtros escapados y validación de certificados TLS."
+      },
+      {
+        "id": "django-ssn",
+        "name": "django-ssn",
+        "url": "https://github.com/GDelpo/django-ssn",
+        "description": "App Django para gestionar y presentar operaciones ante la API de la SSN."
+      },
+      {
+        "id": "docx-to-markdown",
+        "name": "docx-to-markdown",
+        "url": "https://github.com/GDelpo/docx-to-markdown",
+        "description": "Webapp y CLI que convierte .docx a Markdown conservando las imágenes."
       }
     ],
     "omit": [
@@ -184,9 +196,7 @@
       "afip-services-applied",
       "copy-files",
       "directory-inventory-reporter",
-      "django-ssn",
       "docusaurus-docs-template",
-      "docx-to-markdown",
       "moodle-usuarios-masivos",
       "pdf-batch-renamer",
       "python_gps_dashboard",
