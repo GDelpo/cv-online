@@ -224,9 +224,29 @@ function guardProfile(base, profile, problems) {
 
 // INTENTIONAL: an allowlist, not a GitHub import. A repo reaches the page only by being written here on purpose.
 // An empty list is valid and hides the section; a missing one is still a mistake.
-function guardProjects(profile, problems) {
+// data/github.json (npm run sync:projects) lists the public repos and pins: each repo must be shown or omitted on
+// purpose, so a new repo never appears or vanishes unnoticed, and the pins come first.
+function guardProjects(profile, github, problems) {
   const items = profile?.projects?.items
   if (!Array.isArray(items)) problems.push('profile.projects.items: missing')
+  const repos = list(github?.repos)
+  if (repos.length === 0) problems.push('data/github.json: no repos, run npm run sync:projects')
+  if (!Array.isArray(github?.pinned)) problems.push('data/github.json: no pinned list, run npm run sync:projects')
+  const shown = list(items).map((item) => item?.id)
+  const omitted = list(profile?.projects?.omit)
+  checkUnique(omitted, 'projects.omit entry', problems)
+  for (const id of [...shown, ...omitted]) {
+    if (repos.length > 0 && !repos.includes(id)) problems.push(`project "${id}" is not a public repo in data/github.json`)
+  }
+  for (const id of shown) if (omitted.includes(id)) problems.push(`project "${id}" is both shown and in projects.omit`)
+  for (const repo of repos) {
+    if (!shown.includes(repo) && !omitted.includes(repo)) {
+      problems.push(`repo "${repo}" is neither in projects.items nor in projects.omit`)
+    }
+  }
+  for (const repo of list(github?.pinned)) {
+    if (!shown.includes(repo)) problems.push(`pinned repo "${repo}" has no entry in projects.items`)
+  }
   for (const item of list(items)) {
     const where = `project "${item?.id}"`
     requireFields(item, ['id', 'name', 'url', 'description'], where, problems)
@@ -305,12 +325,14 @@ function guardUi(uiEs, uiEn, problems) {
   }
 }
 
-function buildLocale(locale, translate, { base, profile, ui }) {
+function buildLocale(locale, translate, { base, profile, github, ui }) {
   const { meta, ...strings } = ui
   const tiers = profile.bulletTiers ?? {}
   const shown = (bullet) => translate(profile.bulletRewrites?.[bullet] ?? bullet)
   const featured = list(profile.featuredCertifications)
   const printed = list(profile.print.certifications)
+  const pinned = list(github.pinned)
+  const pinRank = (id) => (pinned.includes(id) ? pinned.indexOf(id) : pinned.length)
   const printEntry = (id) => {
     const entry = profile.print.positions?.[id]
     if (!entry) return null
@@ -354,13 +376,17 @@ function buildLocale(locale, translate, { base, profile, ui }) {
         moreBullets: list(tiers[position.id]?.moreBullets).map(shown),
         print: printEntry(position.id),
       })),
-    projects: profile.projects.items.map((item) => ({
-      id: item.id,
-      name: item.name,
-      url: item.url,
-      description: translate(item.description),
-      print: list(profile.print.projects).includes(item.id),
-    })),
+    // Pins first, in their GitHub order; the rest keep the order of profile.projects.items.
+    projects: [...profile.projects.items]
+      .sort((a, b) => pinRank(a.id) - pinRank(b.id))
+      .map((item) => ({
+        id: item.id,
+        name: item.name,
+        url: item.url,
+        description: translate(item.description),
+        featured: pinned.includes(item.id),
+        print: list(profile.print.projects).includes(item.id),
+      })),
     education: base.education.map((item) => ({
       id: item.id,
       degree: translate(item.degree),
@@ -441,15 +467,15 @@ function failIfAny(problems) {
 }
 
 /** Validate all inputs and return both locales. Throws GuardError listing every problem found. */
-export function buildContent({ base: exported, profile, translations, uiEs, uiEn }) {
+export function buildContent({ base: exported, profile, github, translations, uiEs, uiEn }) {
   const problems = []
-  const inputs = { base: exported, profile, translations, uiEs, uiEn }
+  const inputs = { base: exported, profile, github, translations, uiEs, uiEn }
   for (const [name, value] of Object.entries(inputs)) findVerified(value, name, problems)
   guardCareer(exported, profile?.career, problems)
   const base = mergeCareer(exported, profile)
   guardBase(base, problems)
   guardProfile(base, profile, problems)
-  guardProjects(profile, problems)
+  guardProjects(profile, github, problems)
   guardPrint(base, profile, problems)
   guardUi(uiEs, uiEn, problems)
   if (!isText(translations?.status)) problems.push('en.json: missing required field "status"')
@@ -458,7 +484,7 @@ export function buildContent({ base: exported, profile, translations, uiEs, uiEn
 
   // Building the Spanish locale records every string the English one has to translate.
   const used = new Set()
-  const es = buildLocale('es', (text) => (used.add(text), text), { base, profile, ui: uiEs })
+  const es = buildLocale('es', (text) => (used.add(text), text), { base, profile, github, ui: uiEs })
 
   const entries = new Map()
   for (const entry of translations.entries) {
@@ -475,7 +501,7 @@ export function buildContent({ base: exported, profile, translations, uiEs, uiEn
   guardSummaryLength('es', es, problems)
   failIfAny(problems)
 
-  const en = buildLocale('en', (text) => entries.get(text), { base, profile, ui: uiEn })
+  const en = buildLocale('en', (text) => entries.get(text), { base, profile, github, ui: uiEn })
   guardSummaryLength('en', en, problems)
   failIfAny(problems)
   return { es, en }
@@ -489,6 +515,7 @@ export function loadInputs() {
   return {
     base: readJson('data/base.json'),
     profile: readJson('data/overlays/profile.json'),
+    github: readJson('data/github.json'),
     translations: readJson('data/overlays/en.json'),
     uiEs: readJson('data/ui.es.json'),
     uiEn: readJson('data/ui.en.json'),

@@ -472,6 +472,30 @@
     {
       "source": "Este CV: sitio estático en español e inglés generado desde el export de LinkedIn, con guards de datos y un build que verifica sus páginas y PDF.",
       "en": "This CV: a static site in Spanish and English generated from the LinkedIn export, with data guards and a build that checks its pages and PDFs."
+    },
+    {
+      "source": "Cliente Python para los web services SOAP de AFIP/ARCA (autenticación WSAA, padrón e inscripción), extensible con un catálogo YAML.",
+      "en": "Python client for AFIP/ARCA SOAP web services (WSAA auth, padron and inscription lookups), extensible through a YAML catalog."
+    },
+    {
+      "source": "API REST en FastAPI que expone los servicios de AFIP/ARCA, con JWT, rate limiting e imagen Docker.",
+      "en": "FastAPI REST service exposing the AFIP/ARCA web services with JWT auth, rate limiting and a Docker image."
+    },
+    {
+      "source": "Relevamiento de firewalls Palo Alto por la API XML de PAN-OS (versiones, licencias y release preferido) con exportación a Excel.",
+      "en": "Inventories Palo Alto firewalls through the PAN-OS XML API (versions, licenses, preferred release) and exports to Excel."
+    },
+    {
+      "source": "Microservicio de autenticación con JWT por rol, LDAP/Active Directory opcional, bloqueo de cuenta y flujos de email.",
+      "en": "Authentication microservice with role-based JWTs, optional LDAP/Active Directory, account lockout and email flows."
+    },
+    {
+      "source": "Microservicio de envío de email con colas ARQ, SMTP/SendGrid/Mailchimp, envíos masivos, lista de supresión y webhooks firmados.",
+      "en": "Email microservice with ARQ queues, SMTP/SendGrid/Mailchimp providers, bulk batches, a suppression list and signed webhooks."
+    },
+    {
+      "source": "Microservicio para gestionar buckets de Google Cloud Storage, con URLs firmadas y dashboard de administración.",
+      "en": "Microservice for managing Google Cloud Storage buckets with signed URLs and an admin dashboard."
     }
   ]
 }

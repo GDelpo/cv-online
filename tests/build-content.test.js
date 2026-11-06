@@ -53,6 +53,7 @@ function fixtures() {
       projects: {
         comment: 'allowlist',
         items: [{ id: 'mi-repo', name: 'mi-repo', url: 'https://github.com/GDelpo/mi-repo', description: 'Hace cosas' }],
+        omit: ['otro-repo'],
       },
       omit: ['Word'],
       featuredCertifications: ['dos'],
@@ -79,6 +80,7 @@ function fixtures() {
         ['Inglés', 'English'], ['Latín', 'Latin'], ['Español', 'Spanish'], ['Nativo', 'Native'], ['Hace cosas', 'Does things'], ['Resumen corto.', 'Short summary.'],
       ].map(([source, en]) => ({ source, en })),
     },
+    github: { user: 'GDelpo', pinned: ['mi-repo'], repos: ['mi-repo', 'otro-repo'] },
     uiEs: ui('Actualidad'),
     uiEn: ui('Present'),
   }
@@ -337,6 +339,23 @@ describe('guard failures', () => {
     expectGuard((i) => { i.profile.print.positions.freelance.summary = 'Sin traducir.' }, /missing translation: "Sin traducir\."/)
   })
 
+  it('puts pinned repos first and marks them featured', () => {
+    const inputs = fixtures()
+    inputs.profile.projects.items.push({ id: 'otro-repo', name: 'otro-repo', url: 'https://github.com/GDelpo/otro-repo', description: 'Hace cosas' })
+    inputs.profile.projects.omit = []
+    inputs.github.pinned = ['otro-repo']
+    const { es } = buildContent(inputs)
+    expect(es.projects.map((item) => [item.id, item.featured])).toEqual([['otro-repo', true], ['mi-repo', false]])
+  })
+
+  it('fails when a public repo is neither shown nor omitted, or the lists point at unknown repos', () => {
+    expectGuard((i) => { i.github.repos.push('nuevo') }, /repo "nuevo" is neither in projects\.items nor in projects\.omit/)
+    expectGuard((i) => { i.profile.projects.omit.push('fantasma') }, /project "fantasma" is not a public repo/)
+    expectGuard((i) => { i.profile.projects.omit.push('mi-repo') }, /project "mi-repo" is both shown and in projects\.omit/)
+    expectGuard((i) => { i.github.pinned = ['otro-repo'] }, /pinned repo "otro-repo" has no entry in projects\.items/)
+    expectGuard((i) => { delete i.github }, /data\/github\.json: no repos/)
+  })
+
   it('reports every problem at once', () => {
     const inputs = fixtures()
     inputs.base.skills.push('Rust')
@@ -368,9 +387,12 @@ describe('real data', () => {
   })
 
   it('lists exactly the repos in the allowlist, in both languages', () => {
-    const allowed = ['fastapi-google-drive-api', 'observability-stack', 'cv-online']
-    expect(es.projects.map((item) => item.id)).toEqual(allowed)
-    expect(en.projects.map((item) => item.id)).toEqual(allowed)
+    const { github, profile } = loadInputs()
+    const ids = profile.projects.items.map((item) => item.id)
+    for (const locale of [es, en]) {
+      expect([...locale.projects.map((item) => item.id)].sort()).toEqual([...ids].sort())
+      expect(locale.projects.filter((item) => item.featured).map((item) => item.id)).toEqual(github.pinned)
+    }
   })
 
   it('orders positions and certifications as the spec says', () => {

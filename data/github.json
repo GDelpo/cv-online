@@ -1,0 +1,33 @@
+{
+  "user": "GDelpo",
+  "pinned": [
+    "cv-online",
+    "fastapi-google-drive-api",
+    "observability-stack"
+  ],
+  "repos": [
+    "afip-cuil-lookup",
+    "afip-iva-checker",
+    "afip-services",
+    "afip-services-api",
+    "afip-services-applied",
+    "copy-files",
+    "cv-online",
+    "directory-inventory-reporter",
+    "django-ssn",
+    "docusaurus-docs-template",
+    "docx-to-markdown",
+    "fastapi-email-service",
+    "fastapi-gcs-manager",
+    "fastapi-google-drive-api",
+    "fastapi-helpdesk-tickets",
+    "fastapi-identity-service",
+    "moodle-usuarios-masivos",
+    "observability-stack",
+    "palo-alto-stats-collector",
+    "pdf-batch-renamer",
+    "python-ldap-connector",
+    "python_gps_dashboard",
+    "react-link-in-bio"
+  ]
+}

@@ -109,7 +109,7 @@
     }
   ],
   "projects": {
-    "comment": "Allowlist on purpose: a repo reaches the page only by being written here. Check its description against the repo before adding it.",
+    "comment": "Shown repos, reviewed by hand. Every public repo in data/github.json is here or in omit; pins come first.",
     "items": [
       {
         "id": "fastapi-google-drive-api",
@@ -128,7 +128,59 @@
         "name": "cv-online",
         "url": "https://github.com/GDelpo/cv-online",
         "description": "Este CV: sitio estático en español e inglés generado desde el export de LinkedIn, con guards de datos y un build que verifica sus páginas y PDF."
+      },
+      {
+        "id": "afip-services",
+        "name": "afip-services",
+        "url": "https://github.com/GDelpo/afip-services",
+        "description": "Cliente Python para los web services SOAP de AFIP/ARCA (autenticación WSAA, padrón e inscripción), extensible con un catálogo YAML."
+      },
+      {
+        "id": "afip-services-api",
+        "name": "afip-services-api",
+        "url": "https://github.com/GDelpo/afip-services-api",
+        "description": "API REST en FastAPI que expone los servicios de AFIP/ARCA, con JWT, rate limiting e imagen Docker."
+      },
+      {
+        "id": "palo-alto-stats-collector",
+        "name": "palo-alto-stats-collector",
+        "url": "https://github.com/GDelpo/palo-alto-stats-collector",
+        "description": "Relevamiento de firewalls Palo Alto por la API XML de PAN-OS (versiones, licencias y release preferido) con exportación a Excel."
+      },
+      {
+        "id": "fastapi-identity-service",
+        "name": "fastapi-identity-service",
+        "url": "https://github.com/GDelpo/fastapi-identity-service",
+        "description": "Microservicio de autenticación con JWT por rol, LDAP/Active Directory opcional, bloqueo de cuenta y flujos de email."
+      },
+      {
+        "id": "fastapi-email-service",
+        "name": "fastapi-email-service",
+        "url": "https://github.com/GDelpo/fastapi-email-service",
+        "description": "Microservicio de envío de email con colas ARQ, SMTP/SendGrid/Mailchimp, envíos masivos, lista de supresión y webhooks firmados."
+      },
+      {
+        "id": "fastapi-gcs-manager",
+        "name": "fastapi-gcs-manager",
+        "url": "https://github.com/GDelpo/fastapi-gcs-manager",
+        "description": "Microservicio para gestionar buckets de Google Cloud Storage, con URLs firmadas y dashboard de administración."
       }
+    ],
+    "omit": [
+      "afip-cuil-lookup",
+      "afip-iva-checker",
+      "afip-services-applied",
+      "copy-files",
+      "directory-inventory-reporter",
+      "django-ssn",
+      "docusaurus-docs-template",
+      "docx-to-markdown",
+      "fastapi-helpdesk-tickets",
+      "moodle-usuarios-masivos",
+      "pdf-batch-renamer",
+      "python-ldap-connector",
+      "python_gps_dashboard",
+      "react-link-in-bio"
     ]
   },
   "omit": [
@@ -399,8 +451,8 @@
       "universidad-python-de-cero-a-experto"
     ],
     "projects": [
-      "fastapi-google-drive-api",
-      "observability-stack"
+      "afip-services",
+      "palo-alto-stats-collector"
     ]
   }
 }

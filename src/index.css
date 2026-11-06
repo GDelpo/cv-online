@@ -972,6 +972,10 @@ main:focus {
   margin-top: 8px;
 }
 
+.more > .projects {
+  margin-top: 24px;
+}
+
 .cert {
   position: relative;
   display: grid;

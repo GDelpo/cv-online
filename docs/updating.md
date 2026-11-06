@@ -115,6 +115,27 @@ item, the build fails on a duplicate id and you remove it from `career`.
 `projects` is a closed list: a repo appears on the site and in the PDF only if it's written there. The guard requires the
 URL to be `https://github.com/GDelpo/<id>` and nothing after it. With an empty list, the section isn't shown.
 
+### Projects and GitHub
+
+`data/github.json` lists the public repos of the account and its pinned repos. It's written by a local command, through
+the GitHub CLI (`gh auth login` once), and committed; the build never calls GitHub:
+
+```bash
+npm run sync:projects
+npm run content
+```
+
+Run it after you create, delete or pin a repo. The guard then fails until every public repo is in `projects.items`
+(shown, with a Spanish description translated in `en.json`) or in `projects.omit`, and every pinned repo is shown. The
+site shows the pinned repos first, in their GitHub order, puts the other shown repos under "see more" and ends with a
+link to all the repos on GitHub. The PDF prints only `print.projects`.
+
+| Message | What to do |
+|---|---|
+| `repo "X" is neither in projects.items nor in projects.omit` | A new public repo: add it to `projects.items` with a description, or to `projects.omit`. |
+| `pinned repo "X" has no entry in projects.items` | You pinned a repo the CV doesn't show: add it to `projects.items`, or unpin it. |
+| `project "X" is not a public repo in data/github.json` | The repo was renamed, deleted or made private: update or remove the entry. |
+
 The guard only checks that each translation matches the current Spanish text, not that it's right. The `status` field in
 `en.json` records whether the translations have had a human review.
 
